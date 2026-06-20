@@ -1,17 +1,3 @@
-"""
-linktransformer_ccer_workerD2.py
---------------------------------
-Runs ONE LinkTransformer configuration on D2 (Abt-Buy).
-
-Searched space (sampled by harness):
-    base_model        all-MiniLM-L6-v2, all-MiniLM-L12-v2, all-distilroberta-v1
-    loss_type         onlinecontrastive, supcon
-    num_epochs        1, 2
-    train_batch_size  16, 32
-    learning_rate     ~1e-6 .. 5e-5 (log)
-    warm_up_perc      0..1
-"""
-
 import sys
 import os
 import json

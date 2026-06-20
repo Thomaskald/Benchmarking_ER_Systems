@@ -1,18 +1,3 @@
-"""
-linktransformer_ccer_searchD2.py
---------------------------------
-Random-search harness for LinkTransformer CCER on D2 (Abt-Buy).
-Each config is a full CPU fine-tune -> SLOW. Pilot at B=5 to measure
-per-config time before committing to B=50 (may need the cluster).
-
-Searched space: base_model, loss_type, num_epochs, train_batch_size,
-learning_rate, warm_up_perc. Threshold chosen on validation in the worker.
-
-Outputs:
-    results/linktransformer_D2_configs.csv
-    results/linktransformer_D2_curves.json
-"""
-
 import os
 import json
 import time
