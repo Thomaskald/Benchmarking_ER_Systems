@@ -1,29 +1,15 @@
-"""
-dedupe_ccer_searchD2.py
--------------------------------
-Random-search harness for Dedupe CCER on D2 (Abt-Buy).
-Searched space: neg_ratio, recall, index_predicates. Threshold swept in worker.
-
-Outputs:
-    results/dedupe_D2_configs.csv
-    results/dedupe_D2_curves.json
-"""
-
 import os
 import json
 import time
 import random
 import subprocess
 
-# -------------------------------------------------------
-# SEARCH SETTINGS
-# -------------------------------------------------------
-B = 50                         # pilot = 5; real run = 50
+B = 50                         
 SEED = 42
 DATASET = "D2"
 
-TIME_CAP_SEC = 30 * 60         # 30 min per config (local pilot; real run uses 2h)
-MEM_CAP_GB   = 12              # recorded for reference; not hard-enforced locally
+TIME_CAP_SEC = 30 * 60         
+MEM_CAP_GB   = 12              
 
 WORKER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                       "dedupe_ccer_workerD2.py")
@@ -32,15 +18,10 @@ os.makedirs(OUT_DIR, exist_ok=True)
 CSV_PATH   = os.path.join(OUT_DIR, f"dedupe_{DATASET}_configs.csv")
 CURVE_PATH = os.path.join(OUT_DIR, f"dedupe_{DATASET}_curves.json")
 
-# -------------------------------------------------------
-# CONFIGURATION SPACE  (Dedupe)
-# threshold is SWEPT in the worker, not sampled here.
-# sample_size / blocked_proportion dropped (pilot: no effect in supervised mode).
-# -------------------------------------------------------
 SPACE = {
-    "neg_ratio":        ("uniform", 1.0, 10.0),   # negatives per positive
-    "recall":           ("uniform", 0.9, 1.0),    # train()
-    "index_predicates": ("choice", [True, False]),  # train()
+    "neg_ratio":        ("uniform", 1.0, 10.0),   
+    "recall":           ("uniform", 0.9, 1.0),    
+    "index_predicates": ("choice", [True, False]),  
 }
 
 

@@ -1,28 +1,3 @@
-"""
-dedupe_ccer_workerD2.py
--------------------------------
-Runs ONE Dedupe configuration on D2 (Abt-Buy, two-source -> RecordLink).
-
-Searched params (sampled by the harness):
-    neg_ratio          negatives per positive in the labelled training set
-                       (Dedupe's dominant effectiveness lever; controls only
-                        how Dedupe consumes the SHARED train split)
-    recall             train(): proportion of true-dupe pairs the blocking
-                       predicates must cover
-    index_predicates   train(): whether to consider index predicates
-
-The decision threshold is SWEPT here (not sampled): Dedupe outputs a match
-score per pair; we sweep the cutoff to trace the full precision/recall curve.
-
-sample_size / blocked_proportion are NOT searched: a pilot showed they have
-no effect on the result in supervised mode (identical output across values).
-
-Fairness: train / valid / test splits are identical across all frameworks.
-neg_ratio only reshapes how Dedupe uses the TRAIN split; valid/test untouched.
-
-Output: a single 'RESULT_JSON:' line on stdout.
-"""
-
 import sys
 import io
 import json
@@ -42,9 +17,6 @@ from unidecode import unidecode
 from sklearn.metrics import precision_score, recall_score, f1_score
 import dedupe
 
-# -------------------------------------------------------
-# PATHS  (D2 Abt-Buy)
-# -------------------------------------------------------
 ABT_PATH   = "/home/thomas/pyJedAI/data/ccer/D2/abt.csv"
 BUY_PATH   = "/home/thomas/pyJedAI/data/ccer/D2/buy.csv"
 TRAIN_PATH = "/home/thomas/train_test_valid_datasets/db2/train_set.csv"
@@ -121,7 +93,6 @@ def main():
     ]
     deduper = dedupe.RecordLink(fields)
 
-    # Build match / distinct from the SHARED train split
     matches, distinct = [], []
     for (lid, rid), label in zip(train_pairs, train_labels):
         if label == 1:
@@ -129,7 +100,6 @@ def main():
         else:
             distinct.append((abt[lid], buy[rid]))
 
-    # neg_ratio: keep at most neg_ratio negatives per positive (searched knob)
     neg_ratio = float(cfg["neg_ratio"])
     rng = random.Random(seed)
     n_keep = int(min(len(distinct), round(len(matches) * neg_ratio)))
@@ -146,7 +116,6 @@ def main():
         index_predicates=bool(cfg["index_predicates"]),
     )
 
-    # Score VALID and TEST pairs
     def score_pairs(pairs):
         rec = [((lid, abt[lid]), (rid, buy[rid])) for (lid, rid) in pairs]
         scored = deduper.score(rec)
@@ -156,7 +125,6 @@ def main():
     valid_scores = score_pairs(valid_pairs)
     test_scores  = score_pairs(test_pairs)
 
-    # 1) choose threshold on VALIDATION
     best_t, best_valid_f1 = 0.5, -1.0
     for t in THRESHOLD_GRID:
         preds = [1 if s >= t else 0 for s in valid_scores]
@@ -164,13 +132,11 @@ def main():
         if f1 > best_valid_f1:
             best_valid_f1, best_t = f1, float(t)
 
-    # 2) report TEST at that fixed threshold
     preds_test = [1 if s >= best_t else 0 for s in test_scores]
     test_p = precision_score(test_labels, preds_test, zero_division=0)
     test_r = recall_score(test_labels, preds_test, zero_division=0)
     test_f1 = f1_score(test_labels, preds_test, zero_division=0)
 
-    # 3) full TEST curve for the frontier
     curve = []
     for t in THRESHOLD_GRID:
         preds = [1 if s >= t else 0 for s in test_scores]
