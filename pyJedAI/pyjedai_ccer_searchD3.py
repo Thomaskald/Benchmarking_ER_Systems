@@ -7,13 +7,13 @@ import subprocess
 
 B = 50
 SEED = 42
-DATASET = "D2"
+DATASET = "D3"
 
 TIME_CAP_SEC = 90 * 60         # 1.5h per config
 MEM_CAP_GB   = 12              # recorded; SLURM --mem is the hard cap
 
 WORKER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                      "pyjedai_ccer_workerD2.py")
+                      "pyjedai_ccer_workerD3.py")
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
 os.makedirs(OUT_DIR, exist_ok=True)
 CSV_PATH   = os.path.join(OUT_DIR, f"pyjedai_{DATASET}_configs.csv")

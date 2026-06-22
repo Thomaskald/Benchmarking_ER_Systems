@@ -23,10 +23,12 @@ from pyjedai.comparison_cleaning import (
 from pyjedai.matching import EntityMatching
 from pyjedai.clustering import UniqueMappingClustering, ConnectedComponentsClustering
 
-ABT_PATH   = "/home/it2022025/er_scalability/datasets/D2/abt.csv"
-BUY_PATH   = "/home/it2022025/er_scalability/datasets/D2/buy.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db2/test_set.csv"
+D1_PATH    = "/home/it2022025/er_scalability/datasets/D9/dblp.csv"
+D2_PATH    = "/home/it2022025/er_scalability/datasets/D9/scholar.csv"
+VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db9/valid_set.csv"
+TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db9/test_set.csv"
+DELIM      = ">"          # D9 uses > as separator
+BLOCK_ATTRS = ["title"]   # D9 (DBLP-Scholar) blocks on title
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 
@@ -68,8 +70,8 @@ def main():
     cfg = json.loads(sys.argv[1])
     t_start = time.time()
 
-    d1 = pd.read_csv(ABT_PATH, sep="|", engine="python", na_filter=False)
-    d2 = pd.read_csv(BUY_PATH, sep="|", engine="python", na_filter=False)
+    d1 = pd.read_csv(D1_PATH, sep=DELIM, engine="python", na_filter=False)
+    d2 = pd.read_csv(D2_PATH, sep=DELIM, engine="python", na_filter=False)
     valid_df = pd.read_csv(VALID_PATH)
     test_df = pd.read_csv(TEST_PATH)
 
@@ -83,7 +85,7 @@ def main():
     )
 
     bb = StandardBlocking()
-    blocks = bb.build_blocks(data, attributes_1=["name"], attributes_2=["name"])
+    blocks = bb.build_blocks(data, attributes_1=BLOCK_ATTRS, attributes_2=BLOCK_ATTRS)
 
     bp = BlockPurging()
     cleaned = bp.process(blocks, data, tqdm_disable=True)
