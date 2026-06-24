@@ -7,13 +7,13 @@ import subprocess
 
 B = 50
 SEED = 42
-DATASET = "D2"
+DATASET = "D7"
 
 TIME_CAP_SEC = 90 * 60
 MEM_CAP_GB   = 12
 
 WORKER = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                      "zingg_ccer_workerD2.py")
+                      "zingg_ccer_workerD7.py")
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
 os.makedirs(OUT_DIR, exist_ok=True)
 CSV_PATH   = os.path.join(OUT_DIR, f"zingg_{DATASET}_configs.csv")

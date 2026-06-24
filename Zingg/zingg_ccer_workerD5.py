@@ -46,17 +46,39 @@ from pyspark.sql import SparkSession
 from zingg.client import Arguments, ClientOptions, ZinggWithSpark, FieldDefinition, MatchType
 from zingg.pipes import CsvPipe, Pipe
 
-ABT_PATH   = "/home/it2022025/er_scalability/datasets/D2/abt.csv"
-BUY_PATH   = "/home/it2022025/er_scalability/datasets/D2/buy.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db2/test_set.csv"
+# NOTE: confirmed from an actual cluster run - the D5 entity tables live
+# under datasets/D5/ as imdb.csv / tmdb.csv, '|'-delimited, with RDF-style
+# URI column headers (e.g. "https://www.scads.de/movieBenchmark/ontology/title")
+# instead of plain "title"/"name"/"genre_list", plus several extra columns we
+# don't use. Splits (train/valid/test) remain under
+# train_validation_test_sets/db5/ with the usual left_id/right_id/label schema.
+IMDB_PATH  = "/home/it2022025/er_scalability/datasets/D5/imdb.csv"
+TMDB_PATH  = "/home/it2022025/er_scalability/datasets/D5/tmdb.csv"
+TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db5/train_set.csv"
+VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db5/valid_set.csv"
+TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db5/test_set.csv"
+
+# Real column headers in imdb.csv / tmdb.csv (shared by both tables) for the
+# three fields we actually match on.
+TITLE_COL = "https://www.scads.de/movieBenchmark/ontology/title"
+NAME_COL  = "https://www.scads.de/movieBenchmark/ontology/name"
+GENRE_COL = "https://www.scads.de/movieBenchmark/ontology/genre_list"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 
 
 def peak_mem_mb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
+
+
+def load_clean(path):
+    """Read the raw '|'-delimited, URI-headered entity table and reduce it to
+    the plain id/title/name/genre_list columns we use for matching."""
+    raw = pd.read_csv(path, sep="|", engine="python", na_filter=False)
+    df = raw[["id", TITLE_COL, NAME_COL, GENRE_COL]].rename(columns={
+        TITLE_COL: "title", NAME_COL: "name", GENRE_COL: "genre_list",
+    })
+    return df
 
 
 def main():
@@ -66,23 +88,32 @@ def main():
     t_start = time.time()
 
     cid = cfg.get("config_id", 0)
-    zingg_dir = f"/tmp/zingg_d2_cfg{cid}"
+    zingg_dir = f"/tmp/zingg_d5_cfg{cid}"
     if os.path.exists(zingg_dir):
         shutil.rmtree(zingg_dir, ignore_errors=True)
     os.makedirs(zingg_dir, exist_ok=True)
     training_parquet = f"{zingg_dir}/training_data"
     output_dir = f"{zingg_dir}/output"
-    model_id = f"d2_cfg{cid}"
+    model_id = f"d5_cfg{cid}"
 
-    abt_df = pd.read_csv(ABT_PATH, sep="|", engine="python", na_filter=False)
-    buy_df = pd.read_csv(BUY_PATH, sep="|", engine="python", na_filter=False)
+    imdb_df = load_clean(IMDB_PATH)
+    tmdb_df = load_clean(TMDB_PATH)
     train_df = pd.read_csv(TRAIN_PATH)
     valid_df = pd.read_csv(VALID_PATH)
     test_df = pd.read_csv(TEST_PATH)
-    abt_idx = abt_df.set_index("id")
-    buy_idx = buy_df.set_index("id")
+    imdb_idx = imdb_df.set_index("id")
+    tmdb_idx = tmdb_df.set_index("id")
     y_valid = valid_df["label"].values
     y_test = test_df["label"].values
+
+    # ---- write cleaned, comma-delimited copies for Zingg's own CsvPipe to
+    # read (it reads the raw entity files directly, independent of pandas
+    # above, so it needs the same simplified id/title/name/genre_list schema
+    # rather than the original '|'-delimited URI-headered files) ----
+    imdb_clean_path = f"{zingg_dir}/imdb_clean.csv"
+    tmdb_clean_path = f"{zingg_dir}/tmdb_clean.csv"
+    imdb_df.to_csv(imdb_clean_path, index=False)
+    tmdb_df.to_csv(tmdb_clean_path, index=False)
 
     # ---- build Zingg training data (labelled pairs) from TRAIN only ----
     matches = train_df[train_df["label"] == 1]
@@ -98,38 +129,38 @@ def main():
     for _, row in train_sample.iterrows():
         lid, rid, label = int(row["left_id"]), int(row["right_id"]), int(row["label"])
         try:
-            left, right = abt_idx.loc[lid], buy_idx.loc[rid]
+            left, right = imdb_idx.loc[lid], tmdb_idx.loc[rid]
         except KeyError:
             continue
-        rows.append({"id": str(lid), "name": str(left["name"]),
-                     "description": str(left["description"]), "price": str(left["price"]),
-                     "z_cluster": cluster_id, "z_isMatch": label, "z_zsource": "abt"})
-        rows.append({"id": str(rid), "name": str(right["name"]),
-                     "description": str(right["description"]), "price": str(right["price"]),
-                     "z_cluster": cluster_id, "z_isMatch": label, "z_zsource": "buy"})
+        rows.append({"id": str(lid), "title": str(left["title"]),
+                     "name": str(left["name"]), "genre_list": str(left["genre_list"]),
+                     "z_cluster": cluster_id, "z_isMatch": label, "z_zsource": "imdb"})
+        rows.append({"id": str(rid), "title": str(right["title"]),
+                     "name": str(right["name"]), "genre_list": str(right["genre_list"]),
+                     "z_cluster": cluster_id, "z_isMatch": label, "z_zsource": "tmdb"})
         cluster_id += 1
     pd.DataFrame(rows).to_parquet(training_parquet, index=False, engine="pyarrow")
 
     # ---- Spark (session config already set via PYSPARK_SUBMIT_ARGS) ----
-    spark = SparkSession.builder.appName(f"ZinggD2cfg{cid}").getOrCreate()
+    spark = SparkSession.builder.appName(f"ZinggD5cfg{cid}").getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
 
-    # ---- Zingg arguments: TWO-SOURCE LINK (Clean-Clean ER, abt <-> buy) ----
+    # ---- Zingg arguments: TWO-SOURCE LINK (Clean-Clean ER, imdb <-> tmdb) ----
     args = Arguments()
     args.setFieldDefinition([
         FieldDefinition("id", "string", MatchType.DONT_USE),
-        FieldDefinition("name", "string", MatchType.FUZZY, MatchType.TEXT),
-        FieldDefinition("description", "string", MatchType.FUZZY),
-        FieldDefinition("price", "string", MatchType.DONT_USE),
+        FieldDefinition("title", "string", MatchType.FUZZY, MatchType.TEXT),
+        FieldDefinition("name", "string", MatchType.FUZZY),
+        FieldDefinition("genre_list", "string", MatchType.FUZZY),
     ])
     args.setModelId(model_id)
     args.setZinggDir(zingg_dir)
     args.setNumPartitions(int(cfg["numPartitions"]))
     args.setLabelDataSampleSize(float(cfg["labelDataSampleSize"]))
 
-    abt_pipe = CsvPipe("abt", ABT_PATH); abt_pipe.addProperty("header", "true"); abt_pipe.addProperty("delimiter", "|")
-    buy_pipe = CsvPipe("buy", BUY_PATH); buy_pipe.addProperty("header", "true"); buy_pipe.addProperty("delimiter", "|")
-    args.setData(abt_pipe, buy_pipe)
+    imdb_pipe = CsvPipe("imdb", imdb_clean_path); imdb_pipe.addProperty("header", "true"); imdb_pipe.addProperty("delimiter", ",")
+    tmdb_pipe = CsvPipe("tmdb", tmdb_clean_path); tmdb_pipe.addProperty("header", "true"); tmdb_pipe.addProperty("delimiter", ",")
+    args.setData(imdb_pipe, tmdb_pipe)
     out_pipe = CsvPipe("output", output_dir); out_pipe.addProperty("header", "true"); out_pipe.addProperty("delimiter", "|")
     args.setOutput(out_pipe)
     tr_pipe = Pipe("training", "parquet"); tr_pipe.addProperty("location", training_parquet)
@@ -142,17 +173,17 @@ def main():
     output_df = (spark.read.option("header", "true").option("delimiter", "|")
                  .csv(output_dir + "/*.csv").toPandas())
 
-    # ---- score pairs: within each output z_cluster, link abt ids to buy ids ----
+    # ---- score pairs: within each output z_cluster, link imdb ids to tmdb ids ----
     score_map = {}
     for _, group in output_df.groupby("z_cluster"):
         sources = group["z_zsource"].values
         ids = group["id"].values
         scores = group["z_score"].astype(float).values
-        abt_ids = [ids[i] for i, s in enumerate(sources) if s == "abt"]
-        buy_ids = [ids[i] for i, s in enumerate(sources) if s == "buy"]
+        imdb_ids = [ids[i] for i, s in enumerate(sources) if s == "imdb"]
+        tmdb_ids = [ids[i] for i, s in enumerate(sources) if s == "tmdb"]
         score = float(scores.max())
-        for a in abt_ids:
-            for b in buy_ids:
+        for a in imdb_ids:
+            for b in tmdb_ids:
                 score_map[(str(a), str(b))] = score
                 score_map[(str(b), str(a))] = score
 
