@@ -15,32 +15,31 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
-ABT_PATH   = "/home/it2022025/er_scalability/datasets/D2/abt.csv"
-BUY_PATH   = "/home/it2022025/er_scalability/datasets/D2/buy.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db2/test_set.csv"
+AMAZON_PATH = "/home/it2022025/er_scalability/datasets/D3/amazon.csv"
+GP_PATH     = "/home/it2022025/er_scalability/datasets/D3/gp.csv"
+TRAIN_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db3/train_set.csv"
+VALID_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db3/valid_set.csv"
+TEST_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db3/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 
 def peak_mem_mb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
 
-def extract_brand(name):
-    name = str(name).lower().strip()
-    w = name.split()
-    return w[0] if w else ""
+def normalize_token(text):
+    text = re.sub(
+        r'\b(inc\.?|llc\.?|corp\.?|ltd\.?|systems|software|technologies|usa)\b',
+        '', str(text).lower()
+    ).strip()
+    words = text.split()
+    return words[0] if words else ""
 
-def extract_model(name):
-    name = str(name).lower().strip()
-    if " - " in name:
-        last = name.rsplit(" - ", 1)[-1].strip()
-        last = re.sub(r"[^a-z0-9]", "", last)
-        if last and re.search(r"\d", last):
-            return last
-    tokens = re.sub(r"[^a-z0-9\s]", " ", name).split()
-    dt = [t for t in tokens if re.search(r"\d", t)]
-    return dt[-1] if dt else ""
+def extract_version(title):
+    m = re.search(
+        r'\b(v\.?\s*\d+[\.\d]*|\b20\d{2}\b|\b19\d{2}\b|\d+\.\d+)\b',
+        str(title).lower()
+    )
+    return re.sub(r'\s+', '', m.group(0)).replace('v.', 'v') if m else ""
 
 def jw_levels(strictness):
     s = float(strictness)
@@ -56,64 +55,70 @@ def main():
     t_start = time.time()
     cid = cfg.get("config_id", 0)
 
-    abt_df = pd.read_csv(ABT_PATH, delimiter="|")
-    buy_df = pd.read_csv(BUY_PATH, delimiter="|")
+    amazon_df = pd.read_csv(AMAZON_PATH, delimiter="#")
+    gp_df = pd.read_csv(GP_PATH, delimiter="#")
     train_df = pd.read_csv(TRAIN_PATH)
     valid_df = pd.read_csv(VALID_PATH)
     test_df = pd.read_csv(TEST_PATH)
 
-    for df in [abt_df, buy_df]:
+    for df in [amazon_df, gp_df]:
         df["id"] = df["id"].astype(str)
-        df["name"] = df["name"].fillna("").str.lower().str.strip()
+        df["title"] = df["title"].fillna("").str.lower().str.strip()
+        df["manufacturer"] = df["manufacturer"].fillna("").str.lower().str.strip()
         df["price"] = pd.to_numeric(df["price"], errors="coerce").fillna(0.0)
-        df["brand"] = df["name"].apply(extract_brand)
-        df["model"] = df["name"].apply(extract_model)
-    abt_df = abt_df.rename(columns={"id": "unique_id"})
-    buy_df = buy_df.rename(columns={"id": "unique_id"})
+        df["version"] = df["title"].apply(extract_version)
+
+    # mfr_block: Amazon -> normalized manufacturer; GP -> normalized first word
+    # of title (manufacturer is ~94% null on GP)
+    amazon_df["mfr_block"] = amazon_df["manufacturer"].apply(normalize_token)
+    gp_df["mfr_block"] = gp_df["title"].apply(normalize_token)
+
+    amazon_df = amazon_df.rename(columns={"id": "unique_id"})
+    gp_df = gp_df.rename(columns={"id": "unique_id"})
     for df in [train_df, valid_df, test_df]:
         df["left_id"] = df["left_id"].astype(str)
         df["right_id"] = df["right_id"].astype(str)
 
-    keep = ["unique_id", "name", "brand", "model", "price"]
-    abt_s = abt_df[keep].copy()
-    buy_s = buy_df[keep].copy()
-    abt_s["source_dataset"] = "abt"
-    buy_s["source_dataset"] = "buy"
+    keep = ["unique_id", "title", "mfr_block", "version", "price"]
+    amazon_s = amazon_df[keep].copy()
+    gp_s = gp_df[keep].copy()
+    amazon_s["source_dataset"] = "amazon"
+    gp_s["source_dataset"] = "gp"
 
     jw = jw_levels(cfg["comparison_strictness"])
     settings = SettingsCreator(
         link_type="link_only",
         comparisons=[
-            cl.JaroWinklerAtThresholds("name", jw),
-            cl.ExactMatch("brand"),
-            cl.ExactMatch("model"),
+            cl.JaroWinklerAtThresholds("title", jw),
+            cl.ExactMatch("mfr_block"),
+            cl.ExactMatch("version"),
         ],
         blocking_rules_to_generate_predictions=[
-            block_on("brand", "model"),
-            block_on("model"),
-            block_on("brand", "substr(name, 1, 3)"),
-            block_on("substr(name, 1, 5)"),
+            block_on("mfr_block", "version"),
+            block_on("version"),
+            block_on("mfr_block", "substr(title, 1, 3)"),
+            block_on("substr(title, 1, 5)"),
         ],
         retain_intermediate_calculation_columns=False,
         retain_matching_columns=False,
     )
     db_api = DuckDBAPI()
-    linker = Linker([abt_s, buy_s], settings, db_api,
-                    input_table_aliases=["abt", "buy"])
+    linker = Linker([amazon_s, gp_s], settings, db_api,
+                    input_table_aliases=["amazon", "gp"])
 
     linker.training.estimate_u_using_random_sampling(max_pairs=float(cfg["estimate_u_max_pairs"]))
 
     pos = train_df[train_df["label"] == 1]
     labelled = pd.DataFrame({
-        "source_dataset_l": "abt",
+        "source_dataset_l": "amazon",
         "unique_id_l": pos["left_id"].astype(str),
-        "source_dataset_r": "buy",
+        "source_dataset_r": "gp",
         "unique_id_r": pos["right_id"].astype(str),
     })
     linker.table_management.register_table(labelled, "labels", overwrite=True)
     linker.training.estimate_m_from_pairwise_labels("labels")
 
-    total_possible = len(abt_s) * len(buy_s)
+    total_possible = len(amazon_s) * len(gp_s)
     n_true = int(train_df["label"].sum())
     rate = n_true / total_possible
     # per-config temp model files (avoid any cross-config cl: unique by config_id)
@@ -126,8 +131,8 @@ def main():
     with open(m_patched, "w") as f:
         json.dump(mj, f)
     db_api2 = DuckDBAPI()
-    linker = Linker([abt_s, buy_s], m_patched, db_api2,
-                    input_table_aliases=["abt", "buy"])
+    linker = Linker([amazon_s, gp_s], m_patched, db_api2,
+                    input_table_aliases=["amazon", "gp"])
 
     res = linker.inference.predict(threshold_match_probability=0.0)
     rdf = res.as_pandas_dataframe()

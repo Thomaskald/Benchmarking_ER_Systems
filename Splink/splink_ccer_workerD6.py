@@ -15,32 +15,29 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
-ABT_PATH   = "/home/it2022025/er_scalability/datasets/D2/abt.csv"
-BUY_PATH   = "/home/it2022025/er_scalability/datasets/D2/buy.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db2/test_set.csv"
+IMDB_PATH  = "/home/it2022025/er_scalability/datasets/D6/imdb.csv"
+TVDB_PATH  = "/home/it2022025/er_scalability/datasets/D6/tvdb.csv"
+TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db6/train_set.csv"
+VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db6/valid_set.csv"
+TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db6/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 
 def peak_mem_mb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
 
-def extract_brand(name):
-    name = str(name).lower().strip()
-    w = name.split()
-    return w[0] if w else ""
+def clean_text(val):
+    return str(val).lower().strip() if pd.notna(val) and str(val).strip() else ""
 
-def extract_model(name):
-    name = str(name).lower().strip()
-    if " - " in name:
-        last = name.rsplit(" - ", 1)[-1].strip()
-        last = re.sub(r"[^a-z0-9]", "", last)
-        if last and re.search(r"\d", last):
-            return last
-    tokens = re.sub(r"[^a-z0-9\s]", " ", name).split()
-    dt = [t for t in tokens if re.search(r"\d", t)]
-    return dt[-1] if dt else ""
+def extract_year(val):
+    s = str(val).strip() if pd.notna(val) else ""
+    m = re.match(r"(\d{4})", s)
+    return m.group(1) if m else None  # NULL so missing years don't block
+
+def make_ep_key(season, episode):
+    if pd.notna(season) and pd.notna(episode):
+        return f"s{int(season)}e{int(episode)}"
+    return None  # NULL so DuckDB blocking skips missing values
 
 def jw_levels(strictness):
     s = float(strictness)
@@ -56,64 +53,86 @@ def main():
     t_start = time.time()
     cid = cfg.get("config_id", 0)
 
-    abt_df = pd.read_csv(ABT_PATH, delimiter="|")
-    buy_df = pd.read_csv(BUY_PATH, delimiter="|")
+    imdb_df = pd.read_csv(IMDB_PATH, delimiter="|")
+    tvdb_df = pd.read_csv(TVDB_PATH, delimiter="|")
     train_df = pd.read_csv(TRAIN_PATH)
     valid_df = pd.read_csv(VALID_PATH)
     test_df = pd.read_csv(TEST_PATH)
 
-    for df in [abt_df, buy_df]:
+    # Rename long URI column headers to short names
+    imdb_df.columns = [
+        "id", "title", "name", "episodeNumber", "seasonNumber",
+        "deathYear", "birthYear", "endYear", "startYear",
+        "genre_list", "primaryProfessions", "runtimeMinutes",
+    ]
+    tvdb_df.columns = [
+        "id", "title", "name", "abstract",
+        "episodeNumber", "seasonNumber", "releaseDate", "job",
+    ]
+
+    for df in [imdb_df, tvdb_df]:
         df["id"] = df["id"].astype(str)
-        df["name"] = df["name"].fillna("").str.lower().str.strip()
-        df["price"] = pd.to_numeric(df["price"], errors="coerce").fillna(0.0)
-        df["brand"] = df["name"].apply(extract_brand)
-        df["model"] = df["name"].apply(extract_model)
-    abt_df = abt_df.rename(columns={"id": "unique_id"})
-    buy_df = buy_df.rename(columns={"id": "unique_id"})
+        df["title"] = df["title"].apply(clean_text)
+        df["name"] = df["name"].apply(clean_text)
+        # unified text: prefer title, fall back to name
+        df["entity_text"] = df.apply(
+            lambda r: r["title"] if r["title"] else r["name"], axis=1
+        )
+        df["episodeNumber"] = pd.to_numeric(df["episodeNumber"], errors="coerce")
+        df["seasonNumber"] = pd.to_numeric(df["seasonNumber"], errors="coerce")
+        df["ep_key"] = df.apply(
+            lambda r: make_ep_key(r["seasonNumber"], r["episodeNumber"]), axis=1
+        )
+
+    imdb_df["year"] = imdb_df["startYear"].apply(extract_year)
+    tvdb_df["year"] = tvdb_df["releaseDate"].apply(extract_year)
+
+    imdb_df = imdb_df.rename(columns={"id": "unique_id"})
+    tvdb_df = tvdb_df.rename(columns={"id": "unique_id"})
     for df in [train_df, valid_df, test_df]:
         df["left_id"] = df["left_id"].astype(str)
         df["right_id"] = df["right_id"].astype(str)
 
-    keep = ["unique_id", "name", "brand", "model", "price"]
-    abt_s = abt_df[keep].copy()
-    buy_s = buy_df[keep].copy()
-    abt_s["source_dataset"] = "abt"
-    buy_s["source_dataset"] = "buy"
+    keep = ["unique_id", "entity_text", "year", "ep_key"]
+    imdb_s = imdb_df[keep].copy()
+    tvdb_s = tvdb_df[keep].copy()
+    imdb_s["source_dataset"] = "imdb"
+    tvdb_s["source_dataset"] = "tvdb"
 
     jw = jw_levels(cfg["comparison_strictness"])
     settings = SettingsCreator(
         link_type="link_only",
         comparisons=[
-            cl.JaroWinklerAtThresholds("name", jw),
-            cl.ExactMatch("brand"),
-            cl.ExactMatch("model"),
+            cl.JaroWinklerAtThresholds("entity_text", jw),
+            cl.ExactMatch("year"),
+            cl.ExactMatch("ep_key"),
         ],
         blocking_rules_to_generate_predictions=[
-            block_on("brand", "model"),
-            block_on("model"),
-            block_on("brand", "substr(name, 1, 3)"),
-            block_on("substr(name, 1, 5)"),
+            block_on("year", "substr(entity_text, 1, 3)"),
+            block_on("year", "substr(entity_text, 1, 5)"),
+            block_on("ep_key"),  # only fires for non-NULL ep_key (actual episodes)
+            block_on("substr(entity_text, 1, 8)"),
         ],
         retain_intermediate_calculation_columns=False,
         retain_matching_columns=False,
     )
     db_api = DuckDBAPI()
-    linker = Linker([abt_s, buy_s], settings, db_api,
-                    input_table_aliases=["abt", "buy"])
+    linker = Linker([imdb_s, tvdb_s], settings, db_api,
+                    input_table_aliases=["imdb", "tvdb"])
 
     linker.training.estimate_u_using_random_sampling(max_pairs=float(cfg["estimate_u_max_pairs"]))
 
     pos = train_df[train_df["label"] == 1]
     labelled = pd.DataFrame({
-        "source_dataset_l": "abt",
+        "source_dataset_l": "imdb",
         "unique_id_l": pos["left_id"].astype(str),
-        "source_dataset_r": "buy",
+        "source_dataset_r": "tvdb",
         "unique_id_r": pos["right_id"].astype(str),
     })
     linker.table_management.register_table(labelled, "labels", overwrite=True)
     linker.training.estimate_m_from_pairwise_labels("labels")
 
-    total_possible = len(abt_s) * len(buy_s)
+    total_possible = len(imdb_s) * len(tvdb_s)
     n_true = int(train_df["label"].sum())
     rate = n_true / total_possible
     # per-config temp model files (avoid any cross-config cl: unique by config_id)
@@ -126,8 +145,8 @@ def main():
     with open(m_patched, "w") as f:
         json.dump(mj, f)
     db_api2 = DuckDBAPI()
-    linker = Linker([abt_s, buy_s], m_patched, db_api2,
-                    input_table_aliases=["abt", "buy"])
+    linker = Linker([imdb_s, tvdb_s], m_patched, db_api2,
+                    input_table_aliases=["imdb", "tvdb"])
 
     res = linker.inference.predict(threshold_match_probability=0.0)
     rdf = res.as_pandas_dataframe()

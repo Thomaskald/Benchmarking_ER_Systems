@@ -15,32 +15,25 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
-ABT_PATH   = "/home/it2022025/er_scalability/datasets/D2/abt.csv"
-BUY_PATH   = "/home/it2022025/er_scalability/datasets/D2/buy.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db2/test_set.csv"
+DBLP_PATH    = "/home/it2022025/er_scalability/datasets/D9/dblp.csv"
+SCHOLAR_PATH = "/home/it2022025/er_scalability/datasets/D9/scholar.csv"
+TRAIN_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db9/train_set.csv"
+VALID_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db9/valid_set.csv"
+TEST_PATH    = "/home/it2022025/er_scalability/train_validation_test_sets/db9/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 
 def peak_mem_mb():
     return resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024.0
 
-def extract_brand(name):
-    name = str(name).lower().strip()
-    w = name.split()
-    return w[0] if w else ""
-
-def extract_model(name):
-    name = str(name).lower().strip()
-    if " - " in name:
-        last = name.rsplit(" - ", 1)[-1].strip()
-        last = re.sub(r"[^a-z0-9]", "", last)
-        if last and re.search(r"\d", last):
-            return last
-    tokens = re.sub(r"[^a-z0-9\s]", " ", name).split()
-    dt = [t for t in tokens if re.search(r"\d", t)]
-    return dt[-1] if dt else ""
+def first_author_token(authors):
+    """Return the lowercase last-name token of the first listed author."""
+    authors = str(authors).strip()
+    # take only the first author (comma or semicolon separated)
+    first = re.split(r'[,;]', authors)[0].strip()
+    # drop initials / middle tokens, keep last word as last name proxy
+    tokens = re.sub(r"[^a-z\s]", "", first.lower()).split()
+    return tokens[-1] if tokens else ""
 
 def jw_levels(strictness):
     s = float(strictness)
@@ -56,64 +49,66 @@ def main():
     t_start = time.time()
     cid = cfg.get("config_id", 0)
 
-    abt_df = pd.read_csv(ABT_PATH, delimiter="|")
-    buy_df = pd.read_csv(BUY_PATH, delimiter="|")
+    dblp_df = pd.read_csv(DBLP_PATH, delimiter=">")
+    scholar_df = pd.read_csv(SCHOLAR_PATH, delimiter=">")
     train_df = pd.read_csv(TRAIN_PATH)
     valid_df = pd.read_csv(VALID_PATH)
     test_df = pd.read_csv(TEST_PATH)
 
-    for df in [abt_df, buy_df]:
+    for df in [dblp_df, scholar_df]:
         df["id"] = df["id"].astype(str)
-        df["name"] = df["name"].fillna("").str.lower().str.strip()
-        df["price"] = pd.to_numeric(df["price"], errors="coerce").fillna(0.0)
-        df["brand"] = df["name"].apply(extract_brand)
-        df["model"] = df["name"].apply(extract_model)
-    abt_df = abt_df.rename(columns={"id": "unique_id"})
-    buy_df = buy_df.rename(columns={"id": "unique_id"})
+        df["title"] = df["title"].fillna("").str.lower().str.strip()
+        df["authors"] = df["authors"].fillna("").str.lower().str.strip()
+        df["venue"] = df["venue"].fillna("").str.lower().str.strip()
+        df["year"] = pd.to_numeric(df["year"], errors="coerce").fillna(0).astype(int).astype(str)
+        df["first_author"] = df["authors"].apply(first_author_token)
+    dblp_df = dblp_df.rename(columns={"id": "unique_id"})
+    scholar_df = scholar_df.rename(columns={"id": "unique_id"})
     for df in [train_df, valid_df, test_df]:
         df["left_id"] = df["left_id"].astype(str)
         df["right_id"] = df["right_id"].astype(str)
 
-    keep = ["unique_id", "name", "brand", "model", "price"]
-    abt_s = abt_df[keep].copy()
-    buy_s = buy_df[keep].copy()
-    abt_s["source_dataset"] = "abt"
-    buy_s["source_dataset"] = "buy"
+    keep = ["unique_id", "title", "authors", "venue", "year", "first_author"]
+    dblp_s = dblp_df[keep].copy()
+    scholar_s = scholar_df[keep].copy()
+    dblp_s["source_dataset"] = "dblp"
+    scholar_s["source_dataset"] = "scholar"
 
     jw = jw_levels(cfg["comparison_strictness"])
     settings = SettingsCreator(
         link_type="link_only",
         comparisons=[
-            cl.JaroWinklerAtThresholds("name", jw),
-            cl.ExactMatch("brand"),
-            cl.ExactMatch("model"),
+            cl.JaroWinklerAtThresholds("title", jw),
+            cl.JaroWinklerAtThresholds("authors", jw),
+            cl.JaroWinklerAtThresholds("venue", jw),
+            cl.ExactMatch("year"),
         ],
         blocking_rules_to_generate_predictions=[
-            block_on("brand", "model"),
-            block_on("model"),
-            block_on("brand", "substr(name, 1, 3)"),
-            block_on("substr(name, 1, 5)"),
+            block_on("year", "first_author"),
+            block_on("first_author"),
+            block_on("year", "substr(title, 1, 3)"),
+            block_on("substr(title, 1, 5)"),
         ],
         retain_intermediate_calculation_columns=False,
         retain_matching_columns=False,
     )
     db_api = DuckDBAPI()
-    linker = Linker([abt_s, buy_s], settings, db_api,
-                    input_table_aliases=["abt", "buy"])
+    linker = Linker([dblp_s, scholar_s], settings, db_api,
+                    input_table_aliases=["dblp", "scholar"])
 
     linker.training.estimate_u_using_random_sampling(max_pairs=float(cfg["estimate_u_max_pairs"]))
 
     pos = train_df[train_df["label"] == 1]
     labelled = pd.DataFrame({
-        "source_dataset_l": "abt",
+        "source_dataset_l": "dblp",
         "unique_id_l": pos["left_id"].astype(str),
-        "source_dataset_r": "buy",
+        "source_dataset_r": "scholar",
         "unique_id_r": pos["right_id"].astype(str),
     })
     linker.table_management.register_table(labelled, "labels", overwrite=True)
     linker.training.estimate_m_from_pairwise_labels("labels")
 
-    total_possible = len(abt_s) * len(buy_s)
+    total_possible = len(dblp_s) * len(scholar_s)
     n_true = int(train_df["label"].sum())
     rate = n_true / total_possible
     # per-config temp model files (avoid any cross-config cl: unique by config_id)
@@ -126,8 +121,8 @@ def main():
     with open(m_patched, "w") as f:
         json.dump(mj, f)
     db_api2 = DuckDBAPI()
-    linker = Linker([abt_s, buy_s], m_patched, db_api2,
-                    input_table_aliases=["abt", "buy"])
+    linker = Linker([dblp_s, scholar_s], m_patched, db_api2,
+                    input_table_aliases=["dblp", "scholar"])
 
     res = linker.inference.predict(threshold_match_probability=0.0)
     rdf = res.as_pandas_dataframe()
