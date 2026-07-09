@@ -1,0 +1,156 @@
+Node: hpc02
+Using python: /usr/bin/python3
+py_entitymatching 0.4.2
+Magellan CCER random search | dataset=D9 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'matcher': 'SVM', 'C': 0.0036, 'class_weight': 'none'}
+   -> OK  testF1=0.8799 (P=0.875 R=0.885)  thr=0.62 (valF1=0.851)  time=17.05s  mem=331.9MB
+
+[2/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 164, 'max_depth': 6, 'learning_rate': 0.2236}
+   -> OK  testF1=0.9450 (P=0.924 R=0.967)  thr=0.09 (valF1=0.923)  time=17.63s  mem=267.3MB
+
+[3/50] config: {'matcher': 'SVM', 'C': 5.05055, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9139 (P=0.914 R=0.914)  thr=0.45 (valF1=0.875)  time=15.53s  mem=296.2MB
+
+[4/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.58s  mem=267.9MB
+
+[5/50] config: {'matcher': 'LogisticRegression', 'C': 0.00144, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9012 (P=0.887 R=0.916)  thr=0.73 (valF1=0.862)  time=15.86s  mem=268.5MB
+
+[6/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 169, 'max_depth': 18, 'learning_rate': 0.1846}
+   -> OK  testF1=0.9130 (P=0.910 R=0.916)  thr=0.01 (valF1=0.897)  time=16.02s  mem=267.0MB
+
+[7/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=13.03s  mem=270.3MB
+
+[8/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 416, 'max_depth': 19, 'learning_rate': 0.1317}
+   -> OK  testF1=0.9058 (P=0.915 R=0.897)  thr=0.93 (valF1=0.898)  time=17.4s  mem=269.0MB
+
+[9/50] config: {'matcher': 'LogisticRegression', 'C': 0.88375, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9439 (P=0.922 R=0.967)  thr=0.73 (valF1=0.912)  time=37.93s  mem=267.5MB
+
+[10/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 407, 'max_depth': 15, 'learning_rate': 0.1087}
+   -> OK  testF1=0.9128 (P=0.912 R=0.914)  thr=0.02 (valF1=0.899)  time=18.25s  mem=268.1MB
+
+[11/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 160, 'max_depth': 12, 'learning_rate': 0.0396}
+   -> OK  testF1=0.9134 (P=0.906 R=0.921)  thr=0.46 (valF1=0.905)  time=18.9s  mem=270.0MB
+
+[12/50] config: {'matcher': 'LogisticRegression', 'C': 0.00304, 'class_weight': 'none'}
+   -> OK  testF1=0.9053 (P=0.886 R=0.926)  thr=0.34 (valF1=0.864)  time=14.51s  mem=269.3MB
+
+[13/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.58s  mem=265.4MB
+
+[14/50] config: {'matcher': 'DecisionTree', 'max_depth': 3, 'class_weight': 'none'}
+   -> OK  testF1=0.9246 (P=0.957 R=0.895)  thr=0.56 (valF1=0.897)  time=12.44s  mem=268.5MB
+
+[15/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.83s  mem=269.7MB
+
+[16/50] config: {'matcher': 'RandomForest', 'n_estimators': 243, 'max_depth': 4, 'class_weight': 'none'}
+   -> OK  testF1=0.9346 (P=0.964 R=0.907)  thr=0.68 (valF1=0.915)  time=13.47s  mem=266.4MB
+
+[17/50] config: {'matcher': 'SVM', 'C': 1.23765, 'class_weight': 'none'}
+   -> OK  testF1=0.9000 (P=0.876 R=0.926)  thr=0.15 (valF1=0.859)  time=14.02s  mem=282.6MB
+
+[18/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.43s  mem=266.8MB
+
+[19/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 410, 'max_depth': 4, 'learning_rate': 0.0233}
+   -> OK  testF1=0.9451 (P=0.943 R=0.947)  thr=0.5 (valF1=0.924)  time=20.37s  mem=266.2MB
+
+[20/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 445, 'max_depth': 11, 'learning_rate': 0.2957}
+   -> OK  testF1=0.9451 (P=0.943 R=0.947)  thr=0.57 (valF1=0.923)  time=16.81s  mem=269.3MB
+
+[21/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 493, 'max_depth': 5, 'learning_rate': 0.1202}
+   -> OK  testF1=0.9428 (P=0.920 R=0.967)  thr=0.09 (valF1=0.921)  time=24.53s  mem=266.6MB
+
+[22/50] config: {'matcher': 'LogisticRegression', 'C': 1.50807, 'class_weight': 'none'}
+   -> OK  testF1=0.9466 (P=0.919 R=0.976)  thr=0.33 (valF1=0.915)  time=33.97s  mem=270.5MB
+
+[23/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 239, 'max_depth': 13, 'learning_rate': 0.0708}
+   -> OK  testF1=0.9205 (P=0.913 R=0.928)  thr=0.01 (valF1=0.897)  time=20.22s  mem=268.8MB
+
+[24/50] config: {'matcher': 'DecisionTree', 'max_depth': 4, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9233 (P=0.886 R=0.964)  thr=0.72 (valF1=0.900)  time=12.54s  mem=267.7MB
+
+[25/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.73s  mem=268.5MB
+
+[26/50] config: {'matcher': 'SVM', 'C': 0.01675, 'class_weight': 'none'}
+   -> OK  testF1=0.8840 (P=0.858 R=0.911)  thr=0.28 (valF1=0.856)  time=15.67s  mem=312.6MB
+
+[27/50] config: {'matcher': 'LogisticRegression', 'C': 0.02237, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9222 (P=0.923 R=0.921)  thr=0.81 (valF1=0.889)  time=17.1s  mem=269.7MB
+
+[28/50] config: {'matcher': 'SVM', 'C': 0.04182, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8889 (P=0.870 R=0.909)  thr=0.39 (valF1=0.858)  time=15.84s  mem=304.9MB
+
+[29/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 470, 'max_depth': 3, 'learning_rate': 0.2435}
+   -> OK  testF1=0.9465 (P=0.941 R=0.952)  thr=0.61 (valF1=0.924)  time=20.16s  mem=269.4MB
+
+[30/50] config: {'matcher': 'LogisticRegression', 'C': 0.02181, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9222 (P=0.923 R=0.921)  thr=0.81 (valF1=0.889)  time=17.42s  mem=266.8MB
+
+[31/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.51s  mem=269.4MB
+
+[32/50] config: {'matcher': 'SVM', 'C': 0.03744, 'class_weight': 'none'}
+   -> OK  testF1=0.8894 (P=0.884 R=0.895)  thr=0.36 (valF1=0.858)  time=15.29s  mem=299.8MB
+
+[33/50] config: {'matcher': 'LogisticRegression', 'C': 26.51037, 'class_weight': 'none'}
+   -> OK  testF1=0.9451 (P=0.965 R=0.926)  thr=0.7 (valF1=0.918)  time=37.06s  mem=266.8MB
+
+[34/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 185, 'max_depth': 6, 'learning_rate': 0.0815}
+   -> OK  testF1=0.9412 (P=0.926 R=0.957)  thr=0.3 (valF1=0.919)  time=18.04s  mem=269.5MB
+
+[35/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.63s  mem=269.4MB
+
+[36/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.66s  mem=268.7MB
+
+[37/50] config: {'matcher': 'DecisionTree', 'max_depth': 20, 'class_weight': 'none'}
+   -> OK  testF1=0.9065 (P=0.909 R=0.904)  thr=0.01 (valF1=0.897)  time=12.5s  mem=269.6MB
+
+[38/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.46s  mem=268.2MB
+
+[39/50] config: {'matcher': 'LogisticRegression', 'C': 0.06456, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9265 (P=0.950 R=0.904)  thr=0.86 (valF1=0.894)  time=19.37s  mem=270.4MB
+
+[40/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.55s  mem=266.3MB
+
+[41/50] config: {'matcher': 'LogisticRegression', 'C': 0.00285, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9071 (P=0.903 R=0.911)  thr=0.77 (valF1=0.869)  time=15.51s  mem=266.7MB
+
+[42/50] config: {'matcher': 'RandomForest', 'n_estimators': 128, 'max_depth': 7, 'class_weight': 'none'}
+   -> OK  testF1=0.9402 (P=0.922 R=0.959)  thr=0.38 (valF1=0.922)  time=12.95s  mem=266.6MB
+
+[43/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.84s  mem=269.8MB
+
+[44/50] config: {'matcher': 'RandomForest', 'n_estimators': 247, 'max_depth': 14, 'class_weight': 'none'}
+   -> OK  testF1=0.9443 (P=0.917 R=0.974)  thr=0.34 (valF1=0.924)  time=13.63s  mem=270.2MB
+
+[45/50] config: {'matcher': 'NaiveBayes'}
+   -> OK  testF1=0.9247 (P=0.897 R=0.955)  thr=0.99 (valF1=0.892)  time=12.64s  mem=270.5MB
+
+[46/50] config: {'matcher': 'DecisionTree', 'max_depth': 19, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9196 (P=0.923 R=0.916)  thr=0.01 (valF1=0.896)  time=12.64s  mem=267.6MB
+
+[47/50] config: {'matcher': 'SVM', 'C': 4.01429, 'class_weight': 'none'}
+   -> OK  testF1=0.9065 (P=0.886 R=0.928)  thr=0.13 (valF1=0.864)  time=14.04s  mem=283.9MB
+
+[48/50] config: {'matcher': 'SVM', 'C': 0.05022, 'class_weight': 'none'}
+   -> OK  testF1=0.8858 (P=0.855 R=0.919)  thr=0.25 (valF1=0.858)  time=14.7s  mem=295.0MB
+
+[49/50] config: {'matcher': 'LogisticRegression', 'C': 0.00618, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9189 (P=0.903 R=0.935)  thr=0.73 (valF1=0.878)  time=15.51s  mem=266.8MB
+
+[50/50] config: {'matcher': 'SVM', 'C': 23.94775, 'class_weight': 'none'}
+   -> OK  testF1=0.9042 (P=0.970 R=0.847)  thr=0.67 (valF1=0.885)  time=14.32s  mem=279.2MB
+
+Done. Wrote /home/it2022025/er_scalability/magellan_CCER/results/magellan_D9_configs.csv and /home/it2022025/er_scalability/magellan_CCER/results/magellan_D9_curves.json

@@ -1,0 +1,29 @@
+Node: hpc02
+Using python: /usr/bin/python3
+py_entitymatching 0.4.2
+
+=== D2 ===
+  -> pairwise F1=0.6469 (csv=0.6469, dF1=+0.0000)  B3 F1=0.8863 (P=0.882 R=0.890)  cfg#44  97.09s
+
+=== D3 ===
+  -> pairwise F1=0.6492 (csv=0.6492, dF1=+0.0000)  B3 F1=0.9357 (P=0.916 R=0.956)  cfg#44  51.1s
+
+=== D4 ===
+  -> pairwise F1=0.9989 (csv=0.9989, dF1=+0.0000)  B3 F1=0.9948 (P=0.997 R=0.992)  cfg#6  6.75s
+
+=== D5 ===
+  -> pairwise F1=0.9324 (csv=0.9324, dF1=+0.0000)  B3 F1=0.9807 (P=0.982 R=0.979)  cfg#22  203.04s
+
+=== D6 ===
+  -> pairwise F1=0.6012 (csv=0.6175, dF1=-0.0162)  B3 F1=0.9679 (P=0.983 R=0.953)  cfg#33  336.92s
+
+=== D7 ===
+  -> pairwise F1=0.6545 (csv=0.6545, dF1=+0.0000)  B3 F1=0.9732 (P=0.974 R=0.972)  cfg#29  19.7s
+
+=== D8 ===
+  -> pairwise F1=0.6943 (csv=0.6943, dF1=+0.0000)  B3 F1=0.9933 (P=0.994 R=0.992)  cfg#44  71.35s
+
+=== D9 ===
+  -> pairwise F1=0.9466 (csv=0.9466, dF1=+0.0000)  B3 F1=0.9958 (P=0.996 R=0.995)  cfg#22  24.56s
+
+Done. Wrote /home/it2022025/er_scalability/magellan_CCER/results/magellan_bestconfig_eval.csv
