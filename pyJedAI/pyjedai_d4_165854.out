@@ -1,0 +1,153 @@
+pyJedAI CCER random search | dataset=D4 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'CBS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.6102, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.8708 (P=1.000 R=0.771)  thr=0.71 (valF1=0.916)  time=45.97s  mem=798.4MB
+
+[2/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CN-CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5422, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9757 (P=0.988 R=0.963)  thr=0.0 (valF1=0.981)  time=76.7s  mem=808.9MB
+
+[3/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SNC', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.7652, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9393 (P=1.000 R=0.886)  thr=0.53 (valF1=0.956)  time=82.11s  mem=785.1MB
+
+[4/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CND', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5969, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9897 (P=0.993 R=0.986)  thr=0.0 (valF1=0.994)  time=71.46s  mem=806.8MB
+
+[5/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SN-CBS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.8814, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9210 (P=1.000 R=0.854)  thr=0.35 (valF1=0.942)  time=55.66s  mem=703.8MB
+
+[6/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'EJS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.9379, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9908 (P=0.993 R=0.989)  thr=0.43 (valF1=0.992)  time=77.52s  mem=813.7MB
+
+[7/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SNC', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5206, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9827 (P=0.991 R=0.975)  thr=0.0 (valF1=0.984)  time=61.81s  mem=703.4MB
+
+[8/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'DICE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.6711, 'vectorizer': 'tf', 'tokenizer': 'word_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9767 (P=0.993 R=0.961)  thr=0.0 (valF1=0.990)  time=36.17s  mem=706.5MB
+
+[9/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SND', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8016, 'vectorizer': 'boolean', 'tokenizer': 'char_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9897 (P=0.993 R=0.986)  thr=0.49 (valF1=0.995)  time=89.89s  mem=817.3MB
+
+[10/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'ECBS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.6708, 'vectorizer': 'boolean', 'tokenizer': 'char_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9522 (P=0.997 R=0.911)  thr=0.58 (valF1=0.972)  time=75.72s  mem=811.6MB
+
+[11/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'ECBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8623, 'vectorizer': 'tf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9873 (P=0.993 R=0.982)  thr=0.0 (valF1=0.991)  time=54.36s  mem=704.4MB
+
+[12/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.5957, 'vectorizer': 'tf', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.8965 (P=1.000 R=0.812)  thr=0.07 (valF1=0.933)  time=42.01s  mem=707.2MB
+
+[13/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'JS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.611, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9395 (P=0.997 R=0.888)  thr=0.0 (valF1=0.960)  time=35.49s  mem=707.8MB
+
+[14/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SND', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.9488, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9828 (P=0.986 R=0.979)  thr=0.0 (valF1=0.989)  time=54.64s  mem=702.3MB
+
+[15/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'DICE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5688, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9827 (P=0.991 R=0.975)  thr=0.0 (valF1=0.991)  time=49.94s  mem=702.1MB
+
+[16/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNJ', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.7381, 'vectorizer': 'boolean', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9407 (P=0.997 R=0.890)  thr=0.75 (valF1=0.937)  time=72.59s  mem=807.7MB
+
+[17/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SND', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.6321, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9839 (P=0.988 R=0.979)  thr=0.0 (valF1=0.991)  time=52.6s  mem=701.3MB
+
+[18/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'EJS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.7285, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9757 (P=0.988 R=0.963)  thr=0.0 (valF1=0.992)  time=45.73s  mem=708.7MB
+
+[19/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'JS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.7427, 'vectorizer': 'boolean', 'tokenizer': 'char_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9874 (P=0.989 R=0.986)  thr=0.0 (valF1=0.992)  time=68.23s  mem=812.3MB
+
+[20/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CN-CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.9181, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9908 (P=0.991 R=0.991)  thr=0.0 (valF1=0.991)  time=70.86s  mem=805.6MB
+
+[21/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5385, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9897 (P=0.993 R=0.986)  thr=0.0 (valF1=0.992)  time=71.02s  mem=812.4MB
+
+[22/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'COSINE', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.9261, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.8923 (P=1.000 R=0.805)  thr=0.07 (valF1=0.929)  time=41.2s  mem=709.1MB
+
+[23/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8208, 'vectorizer': 'tf', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9407 (P=0.997 R=0.890)  thr=0.0 (valF1=0.958)  time=42.05s  mem=708.7MB
+
+[24/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SN-CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.6011, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9768 (P=0.991 R=0.963)  thr=0.0 (valF1=0.983)  time=89.51s  mem=812.7MB
+
+[25/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8185, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9815 (P=0.993 R=0.970)  thr=0.0 (valF1=0.985)  time=79.41s  mem=799.4MB
+
+[26/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'DICE', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.5319, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9006 (P=1.000 R=0.819)  thr=0.07 (valF1=0.939)  time=42.98s  mem=708.7MB
+
+[27/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8255, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9779 (P=0.993 R=0.963)  thr=0.0 (valF1=0.989)  time=46.61s  mem=706.0MB
+
+[28/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNJ', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5424, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9265 (P=0.997 R=0.865)  thr=0.0 (valF1=0.923)  time=41.92s  mem=710.1MB
+
+[29/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNJ', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.8887, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.8895 (P=1.000 R=0.801)  thr=0.65 (valF1=0.922)  time=93.4s  mem=801.6MB
+
+[30/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SND', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.6119, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9767 (P=0.995 R=0.959)  thr=0.0 (valF1=0.987)  time=60.03s  mem=706.6MB
+
+[31/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNC', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.7082, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9276 (P=1.000 R=0.865)  thr=0.35 (valF1=0.962)  time=68.67s  mem=704.0MB
+
+[32/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'COSINE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.936, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9885 (P=0.993 R=0.984)  thr=0.32 (valF1=0.991)  time=88.15s  mem=784.9MB
+
+[33/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SNJ', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8891, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9862 (P=0.991 R=0.982)  thr=0.29 (valF1=0.990)  time=94.91s  mem=786.1MB
+
+[34/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'EJS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.9169, 'vectorizer': 'tf', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.8937 (P=1.000 R=0.808)  thr=0.07 (valF1=0.924)  time=56.02s  mem=710.4MB
+
+[35/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNC', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.6335, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9874 (P=0.989 R=0.986)  thr=0.32 (valF1=0.990)  time=98.05s  mem=806.6MB
+
+[36/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'CBS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.7263, 'vectorizer': 'boolean', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9156 (P=1.000 R=0.844)  thr=0.75 (valF1=0.918)  time=92.82s  mem=806.6MB
+
+[37/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'DICE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.5308, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9839 (P=0.991 R=0.977)  thr=0.32 (valF1=0.989)  time=84.5s  mem=783.7MB
+
+[38/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.7605, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9874 (P=0.991 R=0.984)  thr=0.32 (valF1=0.991)  time=93.83s  mem=783.6MB
+
+[39/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CND', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.8014, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9897 (P=0.993 R=0.986)  thr=0.43 (valF1=0.992)  time=93.81s  mem=814.7MB
+
+[40/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNC', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.7058, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9395 (P=0.997 R=0.888)  thr=0.57 (valF1=0.952)  time=85.17s  mem=784.2MB
+
+[41/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.7276, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9422 (P=0.995 R=0.895)  thr=0.0 (valF1=0.947)  time=65.0s  mem=701.1MB
+
+[42/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'JS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.571, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9328 (P=1.000 R=0.874)  thr=0.34 (valF1=0.957)  time=66.04s  mem=703.6MB
+
+[43/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SN-CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.619, 'vectorizer': 'tfidf', 'tokenizer': 'char_tokenizer', 'qgram': 4, 'metric': 'cosine'}
+   -> OK  testF1=0.9745 (P=0.988 R=0.961)  thr=0.0 (valF1=0.979)  time=99.99s  mem=806.2MB
+
+[44/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'SNC', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.5916, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9006 (P=1.000 R=0.819)  thr=0.06 (valF1=0.932)  time=36.64s  mem=709.7MB
+
+[45/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CN-CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.7854, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9897 (P=0.991 R=0.989)  thr=0.0 (valF1=0.991)  time=105.3s  mem=807.3MB
+
+[46/50] config: {'comparison_cleaner': 'CardinalityNodePruning', 'weighting_scheme': 'CNC', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.5727, 'vectorizer': 'tf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9354 (P=1.000 R=0.879)  thr=0.34 (valF1=0.956)  time=64.24s  mem=702.1MB
+
+[47/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'CBS', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.7455, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 5, 'metric': 'cosine'}
+   -> OK  testF1=0.9460 (P=0.995 R=0.902)  thr=0.0 (valF1=0.950)  time=92.75s  mem=788.3MB
+
+[48/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'CBS', 'clusterer': 'ConnectedComponentsClustering', 'ratio': 0.6641, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.8766 (P=1.000 R=0.780)  thr=0.22 (valF1=0.912)  time=58.85s  mem=705.4MB
+
+[49/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'COSINE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.6592, 'vectorizer': 'boolean', 'tokenizer': 'word_tokenizer', 'qgram': 3, 'metric': 'cosine'}
+   -> OK  testF1=0.9767 (P=0.993 R=0.961)  thr=0.0 (valF1=0.990)  time=55.21s  mem=707.3MB
+
+[50/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'DICE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.9393, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
+   -> OK  testF1=0.9862 (P=0.991 R=0.982)  thr=0.0 (valF1=0.991)  time=66.79s  mem=701.7MB
+
+Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_D4_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_D4_curves.json
