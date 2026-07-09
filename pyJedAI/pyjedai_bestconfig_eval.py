@@ -1,30 +1,13 @@
 #!/usr/bin/env python3
-"""
-Best-config evaluation at TWO levels: pairwise + cluster-level (B-cubed).
+"""Best-config evaluation at two levels: pairwise + cluster-level (B-cubed).
 
-For each dataset it:
-  1. reads the BEST config (max test_f1 among status==OK rows) straight from the
-     existing results/pyjedai_<DS>_configs.csv,
-  2. reruns exactly that one config's pipeline (same steps as your workers),
-  3. reports PAIRWISE P/R/F1 the same way your workers do (scored on test_set.csv),
-     as a sanity cross-check against your existing numbers,
-  4. reports CLUSTER-LEVEL B-cubed P/R/F1, comparing the predicted clustering
-     against the full ground-truth clustering over EVERY entity,
-  5. dumps the predicted match pairs + the entity id list under results/pairs/.
+Reads each dataset's best config (max test_f1) from results/pyjedai_<DS>_configs.csv,
+reruns that one pipeline, and reports pairwise P/R/F1 (on test_set.csv, as the workers
+do) plus B-cubed P/R/F1 (predicted vs ground-truth clustering over every entity).
 
-Usage
------
-  # evaluate a single dataset (prints RESULT_JSON, writes pair dumps):
-  python3 pyjedai_bestconfig_eval.py D2
-
-  # evaluate ALL datasets (each in its own subprocess) and write the summary CSV:
-  python3 pyjedai_bestconfig_eval.py
-
-Output
-------
-  results/pyjedai_bestconfig_eval.csv   one row per dataset with both metric levels
-  results/pairs/pyjedai_<DS>_pred_pairs.csv   predicted matches (left_id,right_id)
-  results/pairs/pyjedai_<DS>_entities.csv     full entity id universe (one col)
+  python3 pyjedai_bestconfig_eval.py D2   # one dataset
+  python3 pyjedai_bestconfig_eval.py      # all -> results/pyjedai_bestconfig_eval.csv
+                                          #   + results/pairs/pyjedai_<DS>_{pred_pairs,entities}.csv
 """
 import os
 import sys
@@ -48,17 +31,8 @@ SUMMARY_CSV = os.path.join(RESULTS_DIR, "pyjedai_bestconfig_eval.csv")
 DATA_ROOT = "/home/it2022025/er_scalability/datasets"
 SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
 
-# ---------------------------------------------------------------------------
-# Per-dataset configuration.
-#   family "ccer" -> clean-clean ER pipeline (StandardBlocking ... clustering)
-#   family "der"  -> dirty ER embeddings-NN workflow
-#
-# >>> VERIFY the CCER "gt" paths below. <<<  Your CCER workers never loaded a
-# ground-truth file (they only scored on test_set.csv), so B-cubed needs it.
-# The paths follow your datasets/D<i>/ layout; fix them if the real filename
-# differs. The loader auto-detects the separator and header, so format is
-# flexible, but it expects two id columns = one true match per row.
-# ---------------------------------------------------------------------------
+# family "ccer" = clean-clean pipeline, "der" = embeddings-NN workflow.
+# gt_sep/gt_header must match each ground-truth file's actual format.
 SCADS_ATTRS = [
     "https://www.scads.de/movieBenchmark/ontology/title",
     "https://www.scads.de/movieBenchmark/ontology/name",
@@ -110,9 +84,6 @@ DATASETS = {
 ALL_DATASETS = list(DATASETS.keys())
 
 
-# ===========================================================================
-# Generic metric helpers
-# ===========================================================================
 def connected_components(pairs, universe):
     """Union-find over `universe`; `pairs` are (a, b) edges. Returns entity->root."""
     parent = {e: e for e in universe}
@@ -199,11 +170,7 @@ def check_gt_connects(ds, n_gt_total, n_gt_connected):
 
 
 def load_gt_pairs(path, sep, header):
-    """Load ground-truth match pairs as a list of (left, right) string tuples.
-
-    Separator and header are given EXPLICITLY per dataset (auto-detection is
-    unreliable on '|'-delimited files). The first two columns are the id pair.
-    """
+    """Ground-truth match pairs as (left, right) string tuples; first two columns."""
     import pandas as pd
     df = pd.read_csv(path, sep=sep, header=header, engine="python", dtype=str)
     df = df.fillna("")
@@ -215,9 +182,6 @@ def load_gt_pairs(path, sep, header):
     return [(str(a), str(b)) for a, b in zip(df[left_col], df[right_col])]
 
 
-# ===========================================================================
-# CCER (clean-clean) evaluation of one dataset
-# ===========================================================================
 def eval_ccer(ds, cfg, params):
     import pandas as pd
     from pyjedai.datamodel import Data
@@ -260,9 +224,10 @@ def eval_ccer(ds, cfg, params):
     def tag(idx):
         return ("A:" + str(d1_ids[idx])) if idx < n1 else ("B:" + str(d2_ids[idx - n1]))
 
-    # Predicted match pairs (real ids, one per cross-source link) + tagged clusters
-    predicted_pairs = set()          # native ids, for pairwise scoring/dump
-    pred_clusters_tagged = []        # tagged entities, for B-cubed
+    # predicted_pairs: native (d1_id, d2_id) for pairwise scoring/dump.
+    # pred_clusters_tagged: A:/B:-tagged entities for B-cubed (ids can overlap across sources).
+    predicted_pairs = set()
+    pred_clusters_tagged = []
     for cl in clusters:
         ids = list(cl)
         a_ids = [i for i in ids if i < n1]
@@ -296,9 +261,6 @@ def eval_ccer(ds, cfg, params):
                 dump_pairs=dump_pairs, entities=universe)
 
 
-# ===========================================================================
-# DER (dirty ER) evaluation of one dataset
-# ===========================================================================
 def eval_der(ds, cfg, params):
     import pandas as pd
     from pyjedai.datamodel import Data
@@ -362,9 +324,6 @@ def eval_der(ds, cfg, params):
                 dump_pairs=dump_pairs, entities=universe)
 
 
-# ===========================================================================
-# Best-config lookup
-# ===========================================================================
 def read_best_config(ds):
     """Return (params_dict, config_id) for the max-test_f1 OK row of this dataset."""
     path = os.path.join(RESULTS_DIR, f"pyjedai_{ds}_configs.csv")
@@ -395,9 +354,6 @@ def read_best_config(ds):
     return params, best["config_id"], float(best["test_f1"])
 
 
-# ===========================================================================
-# Single-dataset driver (subprocess entry point)
-# ===========================================================================
 def run_single(ds):
     cfg = DATASETS[ds]
     params, config_id, csv_test_f1 = read_best_config(ds)
@@ -433,9 +389,6 @@ def run_single(ds):
     return result
 
 
-# ===========================================================================
-# All-datasets driver
-# ===========================================================================
 SUMMARY_COLS = ["dataset", "config_id", "family", "csv_test_f1",
                 "pairwise_precision", "pairwise_recall", "pairwise_f1",
                 "bcubed_precision", "bcubed_recall", "bcubed_f1",

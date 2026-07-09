@@ -23,6 +23,4 @@ export TOKENIZERS_PARALLELISM=false
 export HF_HOME="$HOME/.cache/huggingface"
 export GENSIM_DATA_DIR="$HOME/gensim-data"
 
-# Best-config eval, both metric levels (pairwise + cluster-level B-cubed),
-# all datasets, each in its own subprocess.
 srun python3 -u pyjedai_bestconfig_eval.py
