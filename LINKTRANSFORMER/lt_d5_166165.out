@@ -1,0 +1,21 @@
+Node: hpc02
+Using python: /usr/bin/python3
+linktransformer 0.1.17 | torch 2.5.1+cu124
+LinkTransformer CCER random search | dataset=D5 | B=5 | caps: 1.50h / 12GB per config
+
+[1/5] config: {'base_model': 'sentence-transformers/all-distilroberta-v1', 'loss_type': 'onlinecontrastive', 'num_epochs': 1, 'train_batch_size': 32, 'learning_rate': 2.607e-06, 'warm_up_perc': 0.14}
+   -> OK  testF1=0.8730 (P=0.837 R=0.912)  thr=0.68 (valF1=0.883)  time=3791.83s  mem=3428.9MB
+
+[2/5] config: {'base_model': 'sentence-transformers/all-MiniLM-L6-v2', 'loss_type': 'onlinecontrastive', 'num_epochs': 2, 'train_batch_size': 16, 'learning_rate': 1.124e-06, 'warm_up_perc': 0.219}
+   -> OK  testF1=0.8055 (P=0.787 R=0.825)  thr=0.67 (valF1=0.841)  time=3404.8s  mem=1641.5MB
+
+[3/5] config: {'base_model': 'sentence-transformers/all-distilroberta-v1', 'loss_type': 'onlinecontrastive', 'num_epochs': 1, 'train_batch_size': 32, 'learning_rate': 2.369e-06, 'warm_up_perc': 0.589}
+   -> OK  testF1=0.8730 (P=0.837 R=0.912)  thr=0.68 (valF1=0.883)  time=3759.96s  mem=3402.4MB
+
+[4/5] config: {'base_model': 'sentence-transformers/all-MiniLM-L6-v2', 'loss_type': 'onlinecontrastive', 'num_epochs': 2, 'train_batch_size': 32, 'learning_rate': 2.965e-06, 'warm_up_perc': 0.215}
+   -> OK  testF1=0.8151 (P=0.780 R=0.853)  thr=0.68 (valF1=0.852)  time=2543.14s  mem=2193.3MB
+
+[5/5] config: {'base_model': 'sentence-transformers/all-MiniLM-L12-v2', 'loss_type': 'onlinecontrastive', 'num_epochs': 1, 'train_batch_size': 32, 'learning_rate': 1.46e-06, 'warm_up_perc': 0.847}
+   -> OK  testF1=0.8006 (P=0.802 R=0.799)  thr=0.73 (valF1=0.820)  time=2446.15s  mem=3106.2MB
+
+Done. Wrote /home/it2022025/er_scalability/linktransformer_CCER/results/linktransformer_D5_configs.csv and /home/it2022025/er_scalability/linktransformer_CCER/results/linktransformer_D5_curves.json
