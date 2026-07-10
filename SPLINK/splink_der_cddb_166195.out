@@ -1,0 +1,111 @@
+Splink DER random search | dataset=CDDB | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'comparison_strictness': 0.879, 'estimate_u_max_pairs': 112207.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.01 (valF1=0.857)  time=489.75s  mem=8337.1MB
+
+[2/50] config: {'comparison_strictness': 0.777, 'estimate_u_max_pairs': 279525.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.857)  time=494.26s  mem=8270.2MB
+
+[3/50] config: {'comparison_strictness': 0.9062, 'estimate_u_max_pairs': 2256311.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.04 (valF1=0.871)  time=498.13s  mem=8448.5MB
+
+[4/50] config: {'comparison_strictness': 0.9498, 'estimate_u_max_pairs': 149237.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.01 (valF1=0.871)  time=487.66s  mem=8268.6MB
+
+[5/50] config: {'comparison_strictness': 0.8181, 'estimate_u_max_pairs': 114708.0}
+   -> OK  testF1=0.8615 (P=1.000 R=0.757)  thr=0.05 (valF1=0.871)  time=482.18s  mem=8366.4MB
+
+[6/50] config: {'comparison_strictness': 0.7612, 'estimate_u_max_pairs': 1024968.0}
+   -> OK  testF1=0.9275 (P=1.000 R=0.865)  thr=0.01 (valF1=0.875)  time=479.44s  mem=8413.2MB
+
+[7/50] config: {'comparison_strictness': 0.7074, 'estimate_u_max_pairs': 249847.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.875)  time=487.41s  mem=8402.0MB
+
+[8/50] config: {'comparison_strictness': 0.882, 'estimate_u_max_pairs': 1229937.0}
+   -> OK  testF1=0.8788 (P=1.000 R=0.784)  thr=0.04 (valF1=0.871)  time=485.79s  mem=8431.7MB
+
+[9/50] config: {'comparison_strictness': 0.7617, 'estimate_u_max_pairs': 1508451.0}
+   -> OK  testF1=0.9275 (P=1.000 R=0.865)  thr=0.01 (valF1=0.875)  time=497.18s  mem=8300.8MB
+
+[10/50] config: {'comparison_strictness': 0.9266, 'estimate_u_max_pairs': 103038.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=483.25s  mem=8349.6MB
+
+[11/50] config: {'comparison_strictness': 0.9256, 'estimate_u_max_pairs': 2490455.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=503.14s  mem=8333.5MB
+
+[12/50] config: {'comparison_strictness': 0.7953, 'estimate_u_max_pairs': 204625.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.02 (valF1=0.871)  time=488.45s  mem=8375.6MB
+
+[13/50] config: {'comparison_strictness': 0.968, 'estimate_u_max_pairs': 471182.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=494.55s  mem=8404.1MB
+
+[14/50] config: {'comparison_strictness': 0.726, 'estimate_u_max_pairs': 156110.0}
+   -> OK  testF1=0.9275 (P=1.000 R=0.865)  thr=0.01 (valF1=0.875)  time=488.33s  mem=8262.3MB
+
+[15/50] config: {'comparison_strictness': 0.9373, 'estimate_u_max_pairs': 1612323.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=484.58s  mem=8461.5MB
+
+[16/50] config: {'comparison_strictness': 0.926, 'estimate_u_max_pairs': 2880471.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=481.44s  mem=8357.8MB
+
+[17/50] config: {'comparison_strictness': 0.8501, 'estimate_u_max_pairs': 8835508.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.02 (valF1=0.871)  time=501.17s  mem=8655.6MB
+
+[18/50] config: {'comparison_strictness': 0.806, 'estimate_u_max_pairs': 1270811.0}
+   -> OK  testF1=0.8438 (P=1.000 R=0.730)  thr=0.04 (valF1=0.871)  time=481.28s  mem=8466.2MB
+
+[19/50] config: {'comparison_strictness': 0.9322, 'estimate_u_max_pairs': 1725994.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=476.58s  mem=8483.7MB
+
+[20/50] config: {'comparison_strictness': 0.9413, 'estimate_u_max_pairs': 1427921.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=482.74s  mem=8307.0MB
+
+[21/50] config: {'comparison_strictness': 0.8973, 'estimate_u_max_pairs': 123494.0}
+   -> OK  testF1=0.8615 (P=1.000 R=0.757)  thr=0.06 (valF1=0.871)  time=484.3s  mem=8269.4MB
+
+[22/50] config: {'comparison_strictness': 0.7638, 'estimate_u_max_pairs': 379119.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.875)  time=492.99s  mem=8411.1MB
+
+[23/50] config: {'comparison_strictness': 0.7223, 'estimate_u_max_pairs': 292133.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.01 (valF1=0.875)  time=490.69s  mem=8334.4MB
+
+[24/50] config: {'comparison_strictness': 0.7283, 'estimate_u_max_pairs': 359705.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.875)  time=488.42s  mem=8263.8MB
+
+[25/50] config: {'comparison_strictness': 0.878, 'estimate_u_max_pairs': 536616.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.04 (valF1=0.871)  time=477.73s  mem=8275.4MB
+
+[26/50] config: {'comparison_strictness': 0.8037, 'estimate_u_max_pairs': 262430.0}
+   -> OK  testF1=0.8438 (P=1.000 R=0.730)  thr=0.04 (valF1=0.871)  time=484.63s  mem=8373.3MB
+
+[27/50] config: {'comparison_strictness': 0.7748, 'estimate_u_max_pairs': 7469803.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.01 (valF1=0.857)  time=486.64s  mem=8496.8MB
+
+[28/50] config: {'comparison_strictness': 0.8814, 'estimate_u_max_pairs': 1652958.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.03 (valF1=0.871)  time=479.21s  mem=8426.7MB
+
+[29/50] config: {'comparison_strictness': 0.7479, 'estimate_u_max_pairs': 2872457.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.875)  time=489.92s  mem=8437.1MB
+
+[30/50] config: {'comparison_strictness': 0.7458, 'estimate_u_max_pairs': 573998.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.875)  time=494.78s  mem=8346.4MB
+
+[31/50] config: {'comparison_strictness': 0.9771, 'estimate_u_max_pairs': 1905458.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=499.45s  mem=8323.1MB
+
+[32/50] config: {'comparison_strictness': 0.8559, 'estimate_u_max_pairs': 2340068.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.03 (valF1=0.871)  time=485.58s  mem=8335.9MB
+
+[33/50] config: {'comparison_strictness': 0.936, 'estimate_u_max_pairs': 3564509.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.871)  time=485.04s  mem=8476.6MB
+
+[34/50] config: {'comparison_strictness': 0.7641, 'estimate_u_max_pairs': 115931.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.01 (valF1=0.857)  time=484.08s  mem=8270.8MB
+
+[35/50] config: {'comparison_strictness': 0.7883, 'estimate_u_max_pairs': 343148.0}
+   -> OK  testF1=0.8955 (P=1.000 R=0.811)  thr=0.01 (valF1=0.857)  time=480.57s  mem=8267.5MB
+
+[36/50] config: {'comparison_strictness': 0.7591, 'estimate_u_max_pairs': 7688107.0}
+   -> OK  testF1=0.9118 (P=1.000 R=0.838)  thr=0.01 (valF1=0.875)  time=490.36s  mem=8613.2MB
+
+[37/50] config: {'comparison_strictness': 0.9454, 'estimate_u_max_pairs': 425947.0}

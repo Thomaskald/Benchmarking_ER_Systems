@@ -1,0 +1,153 @@
+Splink CCER random search | dataset=D4 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'comparison_strictness': 0.879, 'estimate_u_max_pairs': 112207.0}
+   -> OK  testF1=0.9774 (P=0.966 R=0.989)  thr=0.01 (valF1=0.980)  time=12.1s  mem=279.0MB
+
+[2/50] config: {'comparison_strictness': 0.777, 'estimate_u_max_pairs': 279525.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=13.09s  mem=290.2MB
+
+[3/50] config: {'comparison_strictness': 0.9062, 'estimate_u_max_pairs': 2256311.0}
+   -> OK  testF1=0.9784 (P=0.971 R=0.986)  thr=0.02 (valF1=0.976)  time=29.26s  mem=388.7MB
+
+[4/50] config: {'comparison_strictness': 0.9498, 'estimate_u_max_pairs': 149237.0}
+   -> OK  testF1=0.9774 (P=0.966 R=0.989)  thr=0.01 (valF1=0.979)  time=12.33s  mem=282.4MB
+
+[5/50] config: {'comparison_strictness': 0.8181, 'estimate_u_max_pairs': 114708.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.1s  mem=281.6MB
+
+[6/50] config: {'comparison_strictness': 0.7612, 'estimate_u_max_pairs': 1024968.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=19.28s  mem=320.7MB
+
+[7/50] config: {'comparison_strictness': 0.7074, 'estimate_u_max_pairs': 249847.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.35s  mem=287.8MB
+
+[8/50] config: {'comparison_strictness': 0.882, 'estimate_u_max_pairs': 1229937.0}
+   -> OK  testF1=0.9762 (P=0.966 R=0.986)  thr=0.02 (valF1=0.980)  time=20.77s  mem=328.0MB
+
+[9/50] config: {'comparison_strictness': 0.7617, 'estimate_u_max_pairs': 1508451.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=23.86s  mem=346.6MB
+
+[10/50] config: {'comparison_strictness': 0.9266, 'estimate_u_max_pairs': 103038.0}
+   -> OK  testF1=0.9762 (P=0.968 R=0.984)  thr=0.01 (valF1=0.976)  time=11.95s  mem=280.9MB
+
+[11/50] config: {'comparison_strictness': 0.9256, 'estimate_u_max_pairs': 2490455.0}
+   -> OK  testF1=0.9762 (P=0.968 R=0.984)  thr=0.01 (valF1=0.976)  time=31.58s  mem=404.4MB
+
+[12/50] config: {'comparison_strictness': 0.7953, 'estimate_u_max_pairs': 204625.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.43s  mem=282.3MB
+
+[13/50] config: {'comparison_strictness': 0.968, 'estimate_u_max_pairs': 471182.0}
+   -> OK  testF1=0.9784 (P=0.971 R=0.986)  thr=0.01 (valF1=0.976)  time=13.96s  mem=295.9MB
+
+[14/50] config: {'comparison_strictness': 0.726, 'estimate_u_max_pairs': 156110.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.2s  mem=282.1MB
+
+[15/50] config: {'comparison_strictness': 0.9373, 'estimate_u_max_pairs': 1612323.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=24.45s  mem=344.8MB
+
+[16/50] config: {'comparison_strictness': 0.926, 'estimate_u_max_pairs': 2880471.0}
+   -> OK  testF1=0.9762 (P=0.968 R=0.984)  thr=0.01 (valF1=0.976)  time=34.74s  mem=428.0MB
+
+[17/50] config: {'comparison_strictness': 0.8501, 'estimate_u_max_pairs': 8835508.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=61.6s  mem=635.4MB
+
+[18/50] config: {'comparison_strictness': 0.806, 'estimate_u_max_pairs': 1270811.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=20.81s  mem=323.9MB
+
+[19/50] config: {'comparison_strictness': 0.9322, 'estimate_u_max_pairs': 1725994.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=26.22s  mem=360.0MB
+
+[20/50] config: {'comparison_strictness': 0.9413, 'estimate_u_max_pairs': 1427921.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=23.34s  mem=341.0MB
+
+[21/50] config: {'comparison_strictness': 0.8973, 'estimate_u_max_pairs': 123494.0}
+   -> OK  testF1=0.9784 (P=0.971 R=0.986)  thr=0.01 (valF1=0.976)  time=12.34s  mem=282.0MB
+
+[22/50] config: {'comparison_strictness': 0.7638, 'estimate_u_max_pairs': 379119.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=13.82s  mem=288.7MB
+
+[23/50] config: {'comparison_strictness': 0.7223, 'estimate_u_max_pairs': 292133.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.77s  mem=288.6MB
+
+[24/50] config: {'comparison_strictness': 0.7283, 'estimate_u_max_pairs': 359705.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.99s  mem=290.7MB
+
+[25/50] config: {'comparison_strictness': 0.878, 'estimate_u_max_pairs': 536616.0}
+   -> OK  testF1=0.9774 (P=0.966 R=0.989)  thr=0.01 (valF1=0.980)  time=14.93s  mem=298.1MB
+
+[26/50] config: {'comparison_strictness': 0.8037, 'estimate_u_max_pairs': 262430.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.39s  mem=286.3MB
+
+[27/50] config: {'comparison_strictness': 0.7748, 'estimate_u_max_pairs': 7469803.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=61.24s  mem=634.0MB
+
+[28/50] config: {'comparison_strictness': 0.8814, 'estimate_u_max_pairs': 1652958.0}
+   -> OK  testF1=0.9762 (P=0.966 R=0.986)  thr=0.01 (valF1=0.980)  time=24.96s  mem=348.4MB
+
+[29/50] config: {'comparison_strictness': 0.7479, 'estimate_u_max_pairs': 2872457.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=35.79s  mem=440.0MB
+
+[30/50] config: {'comparison_strictness': 0.7458, 'estimate_u_max_pairs': 573998.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=14.67s  mem=297.2MB
+
+[31/50] config: {'comparison_strictness': 0.9771, 'estimate_u_max_pairs': 1905458.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=26.27s  mem=365.5MB
+
+[32/50] config: {'comparison_strictness': 0.8559, 'estimate_u_max_pairs': 2340068.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=30.63s  mem=396.6MB
+
+[33/50] config: {'comparison_strictness': 0.936, 'estimate_u_max_pairs': 3564509.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=39.1s  mem=469.5MB
+
+[34/50] config: {'comparison_strictness': 0.7641, 'estimate_u_max_pairs': 115931.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=11.76s  mem=281.6MB
+
+[35/50] config: {'comparison_strictness': 0.7883, 'estimate_u_max_pairs': 343148.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=12.96s  mem=288.3MB
+
+[36/50] config: {'comparison_strictness': 0.7591, 'estimate_u_max_pairs': 7688107.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=60.21s  mem=639.6MB
+
+[37/50] config: {'comparison_strictness': 0.9454, 'estimate_u_max_pairs': 425947.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=13.95s  mem=293.2MB
+
+[38/50] config: {'comparison_strictness': 0.8835, 'estimate_u_max_pairs': 618391.0}
+   -> OK  testF1=0.9762 (P=0.966 R=0.986)  thr=0.01 (valF1=0.980)  time=15.66s  mem=300.2MB
+
+[39/50] config: {'comparison_strictness': 0.9561, 'estimate_u_max_pairs': 827377.0}
+   -> OK  testF1=0.9784 (P=0.971 R=0.986)  thr=0.02 (valF1=0.978)  time=17.65s  mem=310.7MB
+
+[40/50] config: {'comparison_strictness': 0.7742, 'estimate_u_max_pairs': 311354.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=13.64s  mem=288.4MB
+
+[41/50] config: {'comparison_strictness': 0.8572, 'estimate_u_max_pairs': 335338.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=13.39s  mem=290.1MB
+
+[42/50] config: {'comparison_strictness': 0.8637, 'estimate_u_max_pairs': 6246629.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=62.22s  mem=636.7MB
+
+[43/50] config: {'comparison_strictness': 0.8118, 'estimate_u_max_pairs': 274562.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=13.14s  mem=289.5MB
+
+[44/50] config: {'comparison_strictness': 0.9793, 'estimate_u_max_pairs': 1044846.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=18.8s  mem=318.6MB
+
+[45/50] config: {'comparison_strictness': 0.7255, 'estimate_u_max_pairs': 124231.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=11.85s  mem=279.9MB
+
+[46/50] config: {'comparison_strictness': 0.7307, 'estimate_u_max_pairs': 1798423.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=24.53s  mem=354.1MB
+
+[47/50] config: {'comparison_strictness': 0.9218, 'estimate_u_max_pairs': 698746.0}
+   -> OK  testF1=0.9785 (P=0.969 R=0.989)  thr=0.01 (valF1=0.976)  time=17.07s  mem=306.0MB
+
+[48/50] config: {'comparison_strictness': 0.7178, 'estimate_u_max_pairs': 579747.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=16.13s  mem=303.9MB
+
+[49/50] config: {'comparison_strictness': 0.9789, 'estimate_u_max_pairs': 1143480.0}
+   -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  time=20.05s  mem=321.1MB
+
+[50/50] config: {'comparison_strictness': 0.9719, 'estimate_u_max_pairs': 5266952.0}
+   -> OK  testF1=0.9773 (P=0.971 R=0.984)  thr=0.02 (valF1=0.976)  time=55.41s  mem=588.3MB
+
+Done. Wrote /home/it2022025/er_scalability/splink_CCER/results/splink_D4_configs.csv and /home/it2022025/er_scalability/splink_CCER/results/splink_D4_curves.json
