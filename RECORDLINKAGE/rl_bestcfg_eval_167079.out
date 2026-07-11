@@ -1,0 +1,26 @@
+
+=== D2 ===
+  -> pairwise F1=0.7769 (csv=0.7769, dF1=+0.0000)  B3 F1=0.9773 (P=0.978 R=0.977)  cfg#11  17.69s
+
+=== D3 ===
+  -> pairwise F1=0.6582 (csv=0.6582, dF1=+0.0000)  B3 F1=0.9671 (P=0.952 R=0.982)  cfg#11  17.09s
+
+=== D4 ===
+  -> pairwise F1=0.9989 (csv=0.9989, dF1=+0.0000)  B3 F1=0.9995 (P=0.999 R=1.000)  cfg#1  1.48s
+
+=== D5 ===
+  -> pairwise F1=0.9349 (csv=0.9349, dF1=+0.0000)  B3 F1=0.9971 (P=0.995 R=1.000)  cfg#48  18.47s
+
+=== D6 ===
+  -> pairwise F1=0.6093 (csv=0.6093, dF1=+0.0000)  B3 F1=0.9948 (P=1.000 R=0.990)  cfg#11  40.0s
+
+=== D7 ===
+  -> pairwise F1=0.6667 (csv=0.6667, dF1=+0.0000)  B3 F1=0.9717 (P=0.967 R=0.976)  cfg#24  2.53s
+
+=== D8 ===
+  -> pairwise F1=0.7336 (csv=0.7336, dF1=+0.0000)  B3 F1=0.9953 (P=0.996 R=0.994)  cfg#9  17.59s
+
+=== D9 ===
+  -> pairwise F1=0.9531 (csv=0.9531, dF1=+0.0000)  B3 F1=0.9944 (P=0.995 R=0.994)  cfg#29  10.61s
+
+Done. Wrote /home/it2022025/er_scalability/recordlinkage_CCER/results/recordlinkage_bestconfig_eval.csv

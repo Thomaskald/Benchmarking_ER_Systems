@@ -1,0 +1,156 @@
+Node: hpc02
+Using python: /usr/bin/python3
+recordlinkage 0.16
+RecordLinkage CCER random search | dataset=D5 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 107, 'max_depth': 2, 'learning_rate': 0.225}
+   -> OK  testF1=0.9191 (P=0.893 R=0.946)  thr=0.98 (valF1=0.922)  time=20.42s  mem=339.7MB
+
+[2/50] config: {'matcher': 'LogisticRegression', 'C': 0.01306, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8923 (P=0.873 R=0.912)  thr=0.98 (valF1=0.878)  time=18.76s  mem=337.7MB
+
+[3/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 429, 'max_depth': 19, 'learning_rate': 0.0352}
+   -> OK  testF1=0.9000 (P=0.885 R=0.915)  thr=0.9 (valF1=0.897)  time=47.21s  mem=351.6MB
+
+[4/50] config: {'matcher': 'RandomForest', 'n_estimators': 66, 'max_depth': 2, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8852 (P=0.867 R=0.904)  thr=0.97 (valF1=0.895)  time=18.65s  mem=337.8MB
+
+[5/50] config: {'matcher': 'LogisticRegression', 'C': 0.01456, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8913 (P=0.869 R=0.915)  thr=0.98 (valF1=0.878)  time=18.74s  mem=352.4MB
+
+[6/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 151, 'max_depth': 19, 'learning_rate': 0.1317}
+   -> OK  testF1=0.9003 (P=0.883 R=0.918)  thr=0.93 (valF1=0.895)  time=27.61s  mem=344.5MB
+
+[7/50] config: {'matcher': 'RandomForest', 'n_estimators': 351, 'max_depth': 10, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9321 (P=0.882 R=0.989)  thr=0.32 (valF1=0.932)  time=22.2s  mem=352.6MB
+
+[8/50] config: {'matcher': 'LogisticRegression', 'C': 3.09526, 'class_weight': 'none'}
+   -> OK  testF1=0.9056 (P=0.878 R=0.935)  thr=0.44 (valF1=0.898)  time=19.01s  mem=345.5MB
+
+[9/50] config: {'matcher': 'RandomForest', 'n_estimators': 129, 'max_depth': 8, 'class_weight': 'none'}
+   -> OK  testF1=0.9292 (P=0.881 R=0.983)  thr=0.19 (valF1=0.932)  time=19.21s  mem=352.1MB
+
+[10/50] config: {'matcher': 'LogisticRegression', 'C': 0.00291, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8862 (P=0.852 R=0.924)  thr=0.94 (valF1=0.878)  time=18.33s  mem=337.5MB
+
+[11/50] config: {'matcher': 'RandomForest', 'n_estimators': 483, 'max_depth': 13, 'class_weight': 'none'}
+   -> OK  testF1=0.9312 (P=0.876 R=0.994)  thr=0.2 (valF1=0.934)  time=24.18s  mem=338.2MB
+
+[12/50] config: {'matcher': 'LogisticRegression', 'C': 4.45306, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8909 (P=0.816 R=0.980)  thr=0.95 (valF1=0.897)  time=19.52s  mem=342.3MB
+
+[13/50] config: {'matcher': 'RandomForest', 'n_estimators': 90, 'max_depth': 19, 'class_weight': 'none'}
+   -> OK  testF1=0.9274 (P=0.885 R=0.975)  thr=0.33 (valF1=0.934)  time=18.9s  mem=349.4MB
+
+[14/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 366, 'max_depth': 13, 'learning_rate': 0.1774}
+   -> OK  testF1=0.8997 (P=0.887 R=0.912)  thr=0.99 (valF1=0.898)  time=48.55s  mem=344.9MB
+
+[15/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 85, 'max_depth': 3, 'learning_rate': 0.2018}
+   -> OK  testF1=0.8989 (P=0.870 R=0.929)  thr=0.85 (valF1=0.896)  time=20.33s  mem=336.4MB
+
+[16/50] config: {'matcher': 'RandomForest', 'n_estimators': 90, 'max_depth': 9, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9255 (P=0.874 R=0.983)  thr=0.36 (valF1=0.927)  time=18.61s  mem=345.3MB
+
+[17/50] config: {'matcher': 'RandomForest', 'n_estimators': 192, 'max_depth': 16, 'class_weight': 'none'}
+   -> OK  testF1=0.9257 (P=0.873 R=0.986)  thr=0.18 (valF1=0.932)  time=20.29s  mem=338.1MB
+
+[18/50] config: {'matcher': 'LogisticRegression', 'C': 0.07094, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8895 (P=0.881 R=0.898)  thr=0.99 (valF1=0.885)  time=18.78s  mem=339.6MB
+
+[19/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 186, 'max_depth': 4, 'learning_rate': 0.1866}
+   -> OK  testF1=0.9066 (P=0.882 R=0.932)  thr=0.67 (valF1=0.902)  time=25.25s  mem=341.1MB
+
+[20/50] config: {'matcher': 'LogisticRegression', 'C': 0.46849, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8964 (P=0.828 R=0.977)  thr=0.95 (valF1=0.897)  time=19.46s  mem=343.2MB
+
+[21/50] config: {'matcher': 'LogisticRegression', 'C': 0.20479, 'class_weight': 'none'}
+   -> OK  testF1=0.9021 (P=0.881 R=0.924)  thr=0.54 (valF1=0.897)  time=18.71s  mem=338.5MB
+
+[22/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 402, 'max_depth': 19, 'learning_rate': 0.0737}
+   -> OK  testF1=0.9030 (P=0.886 R=0.921)  thr=0.98 (valF1=0.897)  time=51.99s  mem=343.6MB
+
+[23/50] config: {'matcher': 'RandomForest', 'n_estimators': 481, 'max_depth': 3, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8962 (P=0.838 R=0.963)  thr=0.79 (valF1=0.895)  time=21.7s  mem=349.8MB
+
+[24/50] config: {'matcher': 'LogisticRegression', 'C': 10.59812, 'class_weight': 'none'}
+   -> OK  testF1=0.9056 (P=0.878 R=0.935)  thr=0.41 (valF1=0.898)  time=20.41s  mem=352.9MB
+
+[25/50] config: {'matcher': 'RandomForest', 'n_estimators': 83, 'max_depth': 8, 'class_weight': 'none'}
+   -> OK  testF1=0.9275 (P=0.869 R=0.994)  thr=0.15 (valF1=0.932)  time=18.6s  mem=337.7MB
+
+[26/50] config: {'matcher': 'LogisticRegression', 'C': 1.89319, 'class_weight': 'none'}
+   -> OK  testF1=0.9056 (P=0.878 R=0.935)  thr=0.45 (valF1=0.898)  time=19.41s  mem=358.4MB
+
+[27/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 284, 'max_depth': 6, 'learning_rate': 0.0868}
+   -> OK  testF1=0.9038 (P=0.880 R=0.929)  thr=0.73 (valF1=0.898)  time=33.87s  mem=342.0MB
+
+[28/50] config: {'matcher': 'LogisticRegression', 'C': 5.30817, 'class_weight': 'none'}
+   -> OK  testF1=0.9056 (P=0.878 R=0.935)  thr=0.43 (valF1=0.898)  time=19.93s  mem=340.1MB
+
+[29/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 349, 'max_depth': 15, 'learning_rate': 0.2704}
+   -> OK  testF1=0.9058 (P=0.889 R=0.924)  thr=0.87 (valF1=0.902)  time=57.58s  mem=344.6MB
+
+[30/50] config: {'matcher': 'RandomForest', 'n_estimators': 235, 'max_depth': 9, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9260 (P=0.884 R=0.972)  thr=0.48 (valF1=0.925)  time=21.16s  mem=349.6MB
+
+[31/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 302, 'max_depth': 4, 'learning_rate': 0.2292}
+   -> OK  testF1=0.9138 (P=0.886 R=0.944)  thr=0.44 (valF1=0.896)  time=29.99s  mem=340.1MB
+
+[32/50] config: {'matcher': 'LogisticRegression', 'C': 0.00581, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8889 (P=0.864 R=0.915)  thr=0.97 (valF1=0.878)  time=18.31s  mem=338.9MB
+
+[33/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 266, 'max_depth': 4, 'learning_rate': 0.1216}
+   -> OK  testF1=0.9113 (P=0.881 R=0.944)  thr=0.71 (valF1=0.902)  time=28.8s  mem=340.6MB
+
+[34/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 289, 'max_depth': 18, 'learning_rate': 0.0829}
+   -> OK  testF1=0.8962 (P=0.868 R=0.927)  thr=0.01 (valF1=0.896)  time=39.16s  mem=352.4MB
+
+[35/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 490, 'max_depth': 2, 'learning_rate': 0.2073}
+   -> OK  testF1=0.9123 (P=0.886 R=0.941)  thr=0.85 (valF1=0.899)  time=28.78s  mem=346.2MB
+
+[36/50] config: {'matcher': 'LogisticRegression', 'C': 2.56184, 'class_weight': 'none'}
+   -> OK  testF1=0.9056 (P=0.878 R=0.935)  thr=0.45 (valF1=0.898)  time=19.61s  mem=343.1MB
+
+[37/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 224, 'max_depth': 5, 'learning_rate': 0.0951}
+   -> OK  testF1=0.9051 (P=0.882 R=0.929)  thr=0.75 (valF1=0.898)  time=28.81s  mem=350.5MB
+
+[38/50] config: {'matcher': 'LogisticRegression', 'C': 0.18562, 'class_weight': 'none'}
+   -> OK  testF1=0.9021 (P=0.881 R=0.924)  thr=0.55 (valF1=0.897)  time=18.61s  mem=340.7MB
+
+[39/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 440, 'max_depth': 7, 'learning_rate': 0.1572}
+   -> OK  testF1=0.9036 (P=0.882 R=0.927)  thr=0.11 (valF1=0.900)  time=45.68s  mem=347.9MB
+
+[40/50] config: {'matcher': 'LogisticRegression', 'C': 22.52127, 'class_weight': 'none'}
+   -> OK  testF1=0.9056 (P=0.878 R=0.935)  thr=0.39 (valF1=0.898)  time=19.65s  mem=337.9MB
+
+[41/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 309, 'max_depth': 8, 'learning_rate': 0.0543}
+   -> OK  testF1=0.9018 (P=0.883 R=0.921)  thr=0.97 (valF1=0.898)  time=40.2s  mem=353.6MB
+
+[42/50] config: {'matcher': 'LogisticRegression', 'C': 0.49762, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8964 (P=0.828 R=0.977)  thr=0.95 (valF1=0.897)  time=19.15s  mem=356.4MB
+
+[43/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 215, 'max_depth': 17, 'learning_rate': 0.0156}
+   -> OK  testF1=0.8861 (P=0.872 R=0.901)  thr=0.96 (valF1=0.890)  time=33.98s  mem=346.8MB
+
+[44/50] config: {'matcher': 'RandomForest', 'n_estimators': 499, 'max_depth': 11, 'class_weight': 'balanced'}
+   -> OK  testF1=0.9321 (P=0.882 R=0.989)  thr=0.28 (valF1=0.932)  time=23.45s  mem=342.2MB
+
+[45/50] config: {'matcher': 'LogisticRegression', 'C': 0.01601, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8913 (P=0.869 R=0.915)  thr=0.98 (valF1=0.877)  time=18.38s  mem=348.9MB
+
+[46/50] config: {'matcher': 'LogisticRegression', 'C': 4.56602, 'class_weight': 'balanced'}
+   -> OK  testF1=0.8909 (P=0.816 R=0.980)  thr=0.95 (valF1=0.897)  time=19.22s  mem=345.9MB
+
+[47/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 442, 'max_depth': 6, 'learning_rate': 0.0472}
+   -> OK  testF1=0.9061 (P=0.886 R=0.927)  thr=0.96 (valF1=0.899)  time=43.1s  mem=353.8MB
+
+[48/50] config: {'matcher': 'RandomForest', 'n_estimators': 331, 'max_depth': 7, 'class_weight': 'none'}
+   -> OK  testF1=0.9349 (P=0.882 R=0.994)  thr=0.18 (valF1=0.932)  time=22.78s  mem=342.7MB
+
+[49/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 496, 'max_depth': 15, 'learning_rate': 0.2897}
+   -> OK  testF1=0.9046 (P=0.886 R=0.924)  thr=0.81 (valF1=0.899)  time=46.83s  mem=347.0MB
+
+[50/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 436, 'max_depth': 8, 'learning_rate': 0.2168}
+   -> OK  testF1=0.9061 (P=0.886 R=0.927)  thr=0.63 (valF1=0.901)  time=47.31s  mem=347.4MB
+
+Done. Wrote /home/it2022025/er_scalability/recordlinkage_CCER/results/recordlinkage_D5_configs.csv and /home/it2022025/er_scalability/recordlinkage_CCER/results/recordlinkage_D5_curves.json
