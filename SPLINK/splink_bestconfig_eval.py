@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
 """
-Best-config evaluation at TWO levels: pairwise + cluster-level (B-cubed) -- SPLINK.
+Best-config evaluation at TWO levels: pairwise + test-set B-cubed -- SPLINK.
 
-Mirrors the pyjedai `pyjedai_bestconfig_eval.py` structure, but every pipeline is
-the *Splink* pipeline (your existing workers), unchanged. For each dataset it:
+Both metrics are computed on the fixed test set, uniform with the DEDUPE,
+MAGELLAN, RECORDLINKAGE and pyJedAI evals (test-set B-cubed, so it always
+finishes within the time budget and shares the pairwise universe). For each
+dataset it:
 
   1. reads the BEST config (max test_f1 among status==OK rows) straight from the
      existing results/splink_<DS>_configs.csv,
   2. reruns exactly that one config's Splink pipeline (same steps as your workers:
      estimate u -> supervised m from train labels -> patch match rate -> predict),
-  3. reports PAIRWISE P/R/F1 the same way your workers do (score_map + chosen
-     threshold on test_set.csv), as a sanity cross-check vs your existing numbers,
-  4. reports CLUSTER-LEVEL B-cubed P/R/F1. The predicted clustering comes from
-     Splink's OWN clusterer -- linker.clustering.cluster_pairwise_predictions_at_threshold at the
-     chosen threshold -- compared against the full ground-truth clustering
-     (connected components of the GT pair list) over EVERY entity,
-  5. dumps the predicted match pairs + the entity id universe under results/pairs/.
+  3. scores the fixed test pairs once (used for BOTH metrics),
+  4. reports PAIRWISE P/R/F1 on the test split (matches splink_<DS>_configs.csv),
+  5. reports TEST-SET B-cubed P/R/F1: predicted clusters = connected components of
+     test pairs scoring >= threshold; true clusters = connected components of test
+     pairs with label == 1; B-cubed over the test-set entities,
+  6. dumps predicted match pairs + the test-set entity universe under results/pairs/.
 
 Usage
 -----
@@ -29,7 +30,7 @@ Output
 ------
   results/splink_bestconfig_eval.csv          one row per dataset, both metric levels
   results/pairs/splink_<DS>_pred_pairs.csv     predicted matches (left_id,right_id)
-  results/pairs/splink_<DS>_entities.csv       full entity id universe (one col)
+  results/pairs/splink_<DS>_entities.csv       test-set entity id universe (tagged)
 """
 import os
 import re
@@ -41,7 +42,6 @@ import subprocess
 import warnings
 import logging
 from collections import Counter
-from itertools import combinations
 
 warnings.filterwarnings("ignore")
 logging.disable(logging.CRITICAL)
@@ -54,31 +54,7 @@ SUMMARY_CSV = os.path.join(RESULTS_DIR, "splink_bestconfig_eval.csv")
 DATA_ROOT = "/home/it2022025/er_scalability/datasets"
 SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
 
-SEED = 42  
-
-# Ground-truth pair files, needed for B-cubed (the workers only scored on
-# test_set.csv). Paths/sep/header mirror the proven pyjedai eval config.
-GT = {
-    "D2":   dict(path=f"{DATA_ROOT}/D2/gt.csv",        sep="|", header=0),
-    "D3":   dict(path=f"{DATA_ROOT}/D3/gt.csv",        sep="#", header=0),
-    "D4":   dict(path=f"{DATA_ROOT}/D4/gt.csv",        sep="%", header=0),
-    "D5":   dict(path=f"{DATA_ROOT}/D5/gt.csv",        sep="|", header=0),
-    "D6":   dict(path=f"{DATA_ROOT}/D6/gt.csv",        sep="|", header=0),
-    "D7":   dict(path=f"{DATA_ROOT}/D7/gt.csv",        sep="|", header=0),
-    "D8":   dict(path=f"{DATA_ROOT}/D8/gt.csv",        sep="|", header=0),
-    "D9":   dict(path=f"{DATA_ROOT}/D9/gt.csv",        sep=">", header=0),
-    "CORA": dict(path=f"{DATA_ROOT}/cora/cora_gt.csv", sep="|", header=None),
-    "CDDB": dict(path=f"{DATA_ROOT}/CDDB/gt.csv",      sep=",", header=0),
-}
-
-# Source each GT column belongs to, per CCER dataset: (alias for col0, col1).
-# D4 (dblp,acm) and D8 (walmart,amazon) list sources in the opposite order to
-# the Splink worker aliases, so GT ids must be tagged with their true source.
-GT_ORDER = {
-    "D2": ("abt", "buy"), "D3": ("amazon", "gp"), "D4": ("dblp", "acm"),
-    "D5": ("imdb", "tmdb"), "D6": ("imdb", "tvdb"), "D7": ("tmdb", "tvdb"),
-    "D8": ("walmart", "amazon"), "D9": ("dblp", "scholar"),
-}
+SEED = 42
 
 CCER_DATASETS = ["D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"]
 DER_DATASETS = ["CORA", "CDDB"]
@@ -86,9 +62,18 @@ ALL_DATASETS = CCER_DATASETS + DER_DATASETS
 
 
 # ===========================================================================
-# Generic metric helpers (identical to the pyjedai eval so numbers are
-# directly comparable across tools)
+# Test-set metric helpers (identical to the DEDUPE / MAGELLAN / RECORDLINKAGE
+# evals, so the B-cubed numbers are uniform across frameworks)
 # ===========================================================================
+def norm_id(v):
+    """Canonical string id. '123', 123, '123.0' -> '123'. Keeps non-numeric as-is."""
+    s = str(v).strip()
+    try:
+        return str(int(float(s)))
+    except (ValueError, TypeError):
+        return s
+
+
 def connected_components(pairs, universe):
     """Union-find over `universe`; `pairs` are (a, b) edges. Returns entity->root."""
     parent = {e: e for e in universe}
@@ -105,17 +90,6 @@ def connected_components(pairs, universe):
             if ra != rb:
                 parent[ra] = rb
     return {e: find(e) for e in universe}
-
-
-def fill_singletons(entity_to_label, universe):
-    """Ensure every universe entity has a label; missing ones become singletons.
-    Labels may be Splink's string cluster_ids, so give singletons a tuple label
-    (unique per entity, can't collide with any cluster_id)."""
-    m = dict(entity_to_label)
-    for e in universe:
-        if e not in m:
-            m[e] = ("__singleton__", e)
-    return m
 
 
 def bcubed(entity_to_pred, entity_to_gt):
@@ -138,47 +112,37 @@ def bcubed(entity_to_pred, entity_to_gt):
     return P, R, F
 
 
-def pairwise_from_scoremap(test_df, score_map, threshold):
-    """Pairwise P/R/F1 on the test split -- same logic as your Splink workers
-    (score_map holds both (l,r) and (r,l), so direction doesn't matter)."""
+def testset_metrics(test_index, probs, labels, threshold, tag_left, tag_right):
+    """Pairwise + test-set B-cubed over the fixed test pairs (uniform with the
+    DEDUPE / MAGELLAN / RECORDLINKAGE / pyJedAI evals):
+      - predicted clusters = connected components of test pairs scored >= threshold
+      - true clusters      = connected components of test pairs with label == 1
+      - both metrics over the entities that appear in the test set.
+    tag_left/tag_right disambiguate the two id spaces (CCER: 'A:' / 'B:';
+    single-source DER: '' / '')."""
     from sklearn.metrics import precision_score, recall_score, f1_score
-    scores = [score_map.get((str(row["left_id"]), str(row["right_id"])), 0.0)
-              for _, row in test_df.iterrows()]
-    y_true = test_df["label"].astype(int).values
-    y_pred = [1 if s >= threshold else 0 for s in scores]
-    return (precision_score(y_true, y_pred, zero_division=0),
-            recall_score(y_true, y_pred, zero_division=0),
-            f1_score(y_true, y_pred, zero_division=0))
-
-
-def check_gt_connects(ds, n_gt_total, n_gt_connected):
-    """Guard: if GT pairs don't reference known entities, B-cubed is meaningless
-    (recall collapses). Fail loudly instead of reporting junk."""
-    if n_gt_total == 0:
-        raise RuntimeError(f"{ds}: ground-truth file loaded 0 pairs -- check gt path/format.")
-    frac = n_gt_connected / n_gt_total
-    if frac < 0.5:
-        raise RuntimeError(
-            f"{ds}: only {n_gt_connected}/{n_gt_total} GT pairs match dataset ids "
-            f"({frac:.1%}). GT ids don't line up with the entity universe -- check "
-            f"gt sep/header/column order in GT[...]. Refusing to report bogus B-cubed.")
-    sys.stderr.write(f"[{ds}] GT: {n_gt_connected}/{n_gt_total} pairs connect "
-                     f"({frac:.1%}).\n")
-
-
-def load_gt_pairs(ds):
-    """Load ground-truth match pairs as a list of (left, right) string tuples.
-    First two columns are the id pair (col0 = dataset-1 id for CCER)."""
-    import pandas as pd
-    g = GT[ds]
-    df = pd.read_csv(g["path"], sep=g["sep"], header=g["header"], engine="python", dtype=str)
-    df = df.fillna("")
-    if df.shape[1] < 2:
-        raise RuntimeError(
-            f"{ds}: GT file {g['path']} parsed into {df.shape[1]} column with sep={g['sep']!r}. "
-            f"Wrong delimiter -- fix GT[{ds!r}]['sep'].")
-    left_col, right_col = df.columns[0], df.columns[1]
-    return [(str(a), str(b)) for a, b in zip(df[left_col], df[right_col])]
+    universe, pred_edges, true_edges, pred_pairs_out = set(), [], [], []
+    y_pred = []
+    for (na, nb), s, y in zip(test_index, probs, labels):
+        la, rb = f"{tag_left}{norm_id(na)}", f"{tag_right}{norm_id(nb)}"
+        universe.add(la)
+        universe.add(rb)
+        matched = s >= threshold
+        y_pred.append(1 if matched else 0)
+        if matched:
+            pred_edges.append((la, rb))
+            pred_pairs_out.append((norm_id(na), norm_id(nb)))
+        if int(y) == 1:
+            true_edges.append((la, rb))
+    universe = list(universe)
+    P, R, F = bcubed(connected_components(pred_edges, universe),
+                     connected_components(true_edges, universe))
+    pw = (precision_score(labels, y_pred, zero_division=0),
+          recall_score(labels, y_pred, zero_division=0),
+          f1_score(labels, y_pred, zero_division=0))
+    return dict(pairwise=pw, bcubed=(P, R, F), n_entities=len(universe),
+                n_pred_pairs=len(pred_pairs_out), n_gt_pairs=len(true_edges),
+                dump_pairs=sorted(set(pred_pairs_out)), entities=universe)
 
 
 # ===========================================================================
@@ -670,14 +634,15 @@ def _train_linker(prep, cfg, cid, link_type):
 
 
 def run_dataset(ds, cfg, cid):
-    """Full evaluation for one dataset: pairwise cross-check + Splink-clustered B-cubed."""
+    """Full evaluation for one dataset: run the best config's Splink pipeline,
+    then pairwise + test-set B-cubed over the fixed test pairs."""
     prep = PREPARE[ds](cfg)
     link_type = "dedupe_only" if ds in DER_DATASETS else "link_only"
     t = float(cfg["chosen_threshold"])
 
     linker = _train_linker(prep, cfg, cid, link_type)
 
-    # --- inference (SplinkDataFrame kept for the Splink clusterer) ---
+    # inference -> score_map over predicted pairs (both directions, as the workers)
     df_predict = linker.inference.predict(threshold_match_probability=0.0)
     rdf = df_predict.as_pandas_dataframe()
     score_map = {}
@@ -686,49 +651,13 @@ def run_dataset(ds, cfg, cid):
         score_map[(l, r)] = p
         score_map[(r, l)] = p
 
-    # --- pairwise cross-check (same as workers) ---
-    pw_p, pw_r, pw_f = pairwise_from_scoremap(prep["test"], score_map, t)
-
-    # --- predicted match pairs at the chosen threshold (for the dump) ---
-    kept = rdf[rdf["match_probability"] >= t]
-    predicted_pairs = [(str(a), str(b))
-                       for a, b in zip(kept["unique_id_l"], kept["unique_id_r"])]
-
-    # --- CLUSTER LEVEL: Splink's own clusterer at the chosen threshold ---
-    clusters_sdf = linker.clustering.cluster_pairwise_predictions_at_threshold(
-        df_predict, threshold_match_probability=t)
-    cdf = clusters_sdf.as_pandas_dataframe()
-
-    if link_type == "link_only":
-        a1, a2 = prep["aliases"]
-        d1_ids = prep["sources"][0]["unique_id"].astype(str).tolist()
-        d2_ids = prep["sources"][1]["unique_id"].astype(str).tolist()
-        universe = [f"{a1}::{x}" for x in d1_ids] + [f"{a2}::{x}" for x in d2_ids]
-        has_sd = "source_dataset" in cdf.columns
-        entity_to_pred = {}
-        for _, row in cdf.iterrows():
-            sd = str(row["source_dataset"]) if has_sd else a1
-            entity_to_pred[f"{sd}::{str(row['unique_id'])}"] = row["cluster_id"]
-        g0, g1 = GT_ORDER[ds]  # tag GT with the source each column truly belongs to
-        gt_pairs = [(f"{g0}::{a}", f"{g1}::{b}") for a, b in load_gt_pairs(ds)]
-    else:
-        ids = prep["sources"][0]["unique_id"].astype(str).tolist()
-        universe = list(ids)
-        entity_to_pred = {str(row["unique_id"]): row["cluster_id"]
-                          for _, row in cdf.iterrows()}
-        gt_pairs = [(str(a), str(b)) for a, b in load_gt_pairs(ds)]
-
-    universe_set = set(universe)
-    n_gt_connected = sum(1 for a, b in gt_pairs if a in universe_set and b in universe_set)
-    check_gt_connects(ds, len(gt_pairs), n_gt_connected)
-
-    entity_to_pred = fill_singletons(entity_to_pred, universe)
-    entity_to_gt = connected_components(gt_pairs, universe)
-    b_p, b_r, b_f = bcubed(entity_to_pred, entity_to_gt)
-
-    return dict(pairwise=(pw_p, pw_r, pw_f), bcubed=(b_p, b_r, b_f),
-                n_entities=len(universe), n_pred_pairs=len(predicted_pairs),
-                n_gt_pairs=len(gt_pairs), dump_pairs=predicted_pairs, entities=universe)
+    # score the fixed test pairs, then compute both metrics on the test set
+    test_df = prep["test"]
+    test_index = list(zip(test_df["left_id"].astype(str), test_df["right_id"].astype(str)))
+    probs = [score_map.get((a, b), 0.0) for a, b in test_index]
+    labels = test_df["label"].astype(int).tolist()
+    tag_left, tag_right = ("A:", "B:") if link_type == "link_only" else ("", "")
+    return testset_metrics(test_index, probs, labels, t, tag_left, tag_right)
 
 
 # ===========================================================================

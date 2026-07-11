@@ -1,0 +1,32 @@
+
+=== D2 ===
+  -> pairwise F1=0.5782  B3 F1=0.9620  (P=0.973 R=0.951)  cfg#1  4.87s
+
+=== D3 ===
+  -> pairwise F1=0.3601  B3 F1=0.9277  (P=0.896 R=0.961)  cfg#41  82.02s
+
+=== D4 ===
+  -> pairwise F1=0.9785  B3 F1=0.9892  (P=0.984 R=0.995)  cfg#47  4.65s
+
+=== D5 ===
+  -> pairwise F1=0.9121  B3 F1=0.9963  (P=0.995 R=0.997)  cfg#49  7.34s
+
+=== D6 ===
+  -> pairwise F1=0.5964  B3 F1=0.9947  (P=1.000 R=0.990)  cfg#10  4.61s
+
+=== D7 ===
+  -> pairwise F1=0.6062  B3 F1=0.9675  (P=0.965 R=0.970)  cfg#20  7.65s
+
+=== D8 ===
+  -> pairwise F1=0.4851  B3 F1=0.9926  (P=0.997 R=0.988)  cfg#6  53.06s
+
+=== D9 ===
+  -> pairwise F1=0.9181  B3 F1=0.9903  (P=0.991 R=0.990)  cfg#49  16.39s
+
+=== CORA ===
+  -> pairwise F1=0.7975  B3 F1=0.9932  (P=0.986 R=1.000)  cfg#40  10.97s
+
+=== CDDB ===
+  -> pairwise F1=0.9118  B3 F1=0.9951  (P=1.000 R=0.990)  cfg#6  505.16s
+
+Done. Wrote /home/it2022025/er_scalability/splink_CCER/results/splink_bestconfig_eval.csv
