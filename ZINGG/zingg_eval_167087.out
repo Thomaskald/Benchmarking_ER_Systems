@@ -1,0 +1,38 @@
+Node: hpc02
+Using python: /usr/bin/python3
+SPARK_HOME=/home/it2022025/spark-3.5.0-bin-hadoop3
+java: openjdk version "11.0.31" 2026-04-21
+ZINGG_JAR=/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar
+pyspark 3.4.1 | zingg /home/it2022025/software/zingg/zingg-0.5.0/python/build/lib/zingg/__init__.py
+
+=== D2 ===
+  -> pairwise F1=0.4675 (csv 0.4905)  B3 F1=0.9451 (P=0.943 R=0.947)  cfg#20  107.08s
+
+=== D3 ===
+  -> pairwise F1=0.2867 (csv 0.3282)  B3 F1=0.9590 (P=0.980 R=0.939)  cfg#37  292.61s
+
+=== D4 ===
+  -> pairwise F1=0.9850 (csv 0.9873)  B3 F1=0.9927 (P=0.996 R=0.989)  cfg#39  117.93s
+
+=== D5 ===
+  -> pairwise F1=0.8629 (csv 0.8608)  B3 F1=0.9935 (P=0.989 R=0.998)  cfg#50  118.09s
+
+=== D6 ===
+  -> pairwise F1=0.4906 (csv 0.4886)  B3 F1=0.9813 (P=0.964 R=0.999)  cfg#10  101.32s
+
+=== D7 ===
+  -> pairwise F1=0.4519 (csv 0.4531)  B3 F1=0.9057 (P=0.834 R=0.991)  cfg#20  123.55s
+
+=== D8 ===
+  -> pairwise F1=0.4593 (csv 0.4593)  B3 F1=0.9912 (P=0.994 R=0.989)  cfg#31  121.37s
+
+=== D9 ===
+  -> pairwise F1=0.3514 (csv 0.3545)  B3 F1=0.9515 (P=0.998 R=0.910)  cfg#4  127.5s
+
+=== CORA ===
+  -> pairwise F1=0.5598 (csv 0.5905)  B3 F1=0.6823 (P=1.000 R=0.518)  cfg#6  461.81s
+
+=== CDDB ===
+  -> pairwise F1=0.9118 (csv 0.9118)  B3 F1=0.9956 (P=1.000 R=0.991)  cfg#8  140.29s
+
+Done. Wrote /home/it2022025/er_scalability/zingg_CCER/results/zingg_bestconfig_eval.csv

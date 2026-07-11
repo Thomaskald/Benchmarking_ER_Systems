@@ -1,0 +1,159 @@
+Node: hpc02
+Using python: /usr/bin/python3
+SPARK_HOME=/home/it2022025/spark-3.5.0-bin-hadoop3
+java: openjdk version "11.0.31" 2026-04-21
+ZINGG_JAR=/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar
+pyspark 3.4.1 | zingg /home/it2022025/software/zingg/zingg-0.5.0/python/build/lib/zingg/__init__.py
+Zingg CCER random search | dataset=D2 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'numPartitions': 48, 'labelDataSampleSize': 0.2002, 'neg_ratio': 7.674}
+   -> OK  testF1=0.4611 (P=0.546 R=0.399)  thr=0.01 (valF1=0.491)  time=115.11s  mem=197.0MB
+
+[2/50] config: {'numPartitions': 23, 'labelDataSampleSize': 0.3009, 'neg_ratio': 7.6282}
+   -> OK  testF1=0.4540 (P=0.556 R=0.383)  thr=0.01 (valF1=0.455)  time=110.61s  mem=195.5MB
+
+[3/50] config: {'numPartitions': 51, 'labelDataSampleSize': 0.7666, 'neg_ratio': 5.9083}
+   -> OK  testF1=0.4822 (P=0.473 R=0.492)  thr=0.01 (valF1=0.469)  time=112.12s  mem=193.4MB
+
+[4/50] config: {'numPartitions': 45, 'labelDataSampleSize': 0.4797, 'neg_ratio': 1.2682}
+   -> OK  testF1=0.4729 (P=0.451 R=0.497)  thr=0.46 (valF1=0.501)  time=99.1s  mem=188.2MB
+
+[5/50] config: {'numPartitions': 21, 'labelDataSampleSize': 0.3094, 'neg_ratio': 6.4182}
+   -> OK  testF1=0.4862 (P=0.521 R=0.456)  thr=0.48 (valF1=0.475)  time=108.1s  mem=194.7MB
+
+[6/50] config: {'numPartitions': 43, 'labelDataSampleSize': 0.279, 'neg_ratio': 6.849}
+   -> OK  testF1=0.4740 (P=0.536 R=0.425)  thr=0.01 (valF1=0.481)  time=113.08s  mem=195.4MB
+
+[7/50] config: {'numPartitions': 42, 'labelDataSampleSize': 0.4776, 'neg_ratio': 5.0429}
+   -> OK  testF1=0.4566 (P=0.408 R=0.518)  thr=0.01 (valF1=0.467)  time=106.08s  mem=192.8MB
+
+[8/50] config: {'numPartitions': 25, 'labelDataSampleSize': 0.8285, 'neg_ratio': 1.0585}
+   -> OK  testF1=0.4122 (P=0.340 R=0.523)  thr=0.01 (valF1=0.420)  time=105.11s  mem=190.0MB
+
+[9/50] config: {'numPartitions': 59, 'labelDataSampleSize': 0.2437, 'neg_ratio': 4.8035}
+   -> OK  testF1=0.4599 (P=0.459 R=0.461)  thr=0.01 (valF1=0.464)  time=107.57s  mem=193.6MB
+
+[10/50] config: {'numPartitions': 25, 'labelDataSampleSize': 0.2399, 'neg_ratio': 9.6149}
+   -> OK  testF1=0.4786 (P=0.532 R=0.435)  thr=0.01 (valF1=0.506)  time=117.64s  mem=199.0MB
+
+[11/50] config: {'numPartitions': 29, 'labelDataSampleSize': 0.192, 'neg_ratio': 4.4193}
+   -> OK  testF1=0.4703 (P=0.450 R=0.492)  thr=0.43 (valF1=0.457)  time=105.12s  mem=191.9MB
+
+[12/50] config: {'numPartitions': 30, 'labelDataSampleSize': 0.8627, 'neg_ratio': 6.4335}
+   -> OK  testF1=0.4641 (P=0.497 R=0.435)  thr=0.48 (valF1=0.457)  time=115.11s  mem=193.6MB
+
+[13/50] config: {'numPartitions': 59, 'labelDataSampleSize': 0.1391, 'neg_ratio': 5.1348}
+   -> OK  testF1=0.4861 (P=0.439 R=0.544)  thr=0.43 (valF1=0.469)  time=108.11s  mem=194.4MB
+
+[14/50] config: {'numPartitions': 15, 'labelDataSampleSize': 0.9758, 'neg_ratio': 4.4068}
+   -> OK  testF1=0.4387 (P=0.403 R=0.482)  thr=0.43 (valF1=0.458)  time=105.09s  mem=192.8MB
+
+[15/50] config: {'numPartitions': 43, 'labelDataSampleSize': 0.3639, 'neg_ratio': 6.6578}
+   -> OK  testF1=0.4516 (P=0.469 R=0.435)  thr=0.01 (valF1=0.458)  time=109.11s  mem=194.3MB
+
+[16/50] config: {'numPartitions': 64, 'labelDataSampleSize': 0.8755, 'neg_ratio': 6.1962}
+   -> OK  testF1=0.4812 (P=0.546 R=0.430)  thr=0.01 (valF1=0.486)  time=109.61s  mem=193.6MB
+
+[17/50] config: {'numPartitions': 53, 'labelDataSampleSize': 0.1626, 'neg_ratio': 6.9514}
+   -> OK  testF1=0.4732 (P=0.519 R=0.435)  thr=0.01 (valF1=0.473)  time=112.08s  mem=194.4MB
+
+[18/50] config: {'numPartitions': 57, 'labelDataSampleSize': 0.3604, 'neg_ratio': 1.7181}
+   -> OK  testF1=0.4398 (P=0.397 R=0.492)  thr=0.65 (valF1=0.451)  time=98.06s  mem=188.3MB
+
+[19/50] config: {'numPartitions': 22, 'labelDataSampleSize': 0.8798, 'neg_ratio': 4.4211}
+   -> OK  testF1=0.4438 (P=0.485 R=0.409)  thr=0.56 (valF1=0.458)  time=101.6s  mem=192.7MB
+
+[20/50] config: {'numPartitions': 37, 'labelDataSampleSize': 0.6721, 'neg_ratio': 4.2835}
+   -> OK  testF1=0.4905 (P=0.517 R=0.466)  thr=0.01 (valF1=0.508)  time=104.07s  mem=189.9MB
+
+[21/50] config: {'numPartitions': 31, 'labelDataSampleSize': 0.4197, 'neg_ratio': 7.0316}
+   -> OK  testF1=0.4518 (P=0.540 R=0.389)  thr=0.01 (valF1=0.485)  time=110.58s  mem=194.9MB
+
+[22/50] config: {'numPartitions': 52, 'labelDataSampleSize': 0.943, 'neg_ratio': 6.8323}
+   -> OK  testF1=0.4654 (P=0.500 R=0.435)  thr=0.42 (valF1=0.475)  time=110.58s  mem=194.4MB
+
+[23/50] config: {'numPartitions': 46, 'labelDataSampleSize': 0.6715, 'neg_ratio': 5.8073}
+   -> OK  testF1=0.4603 (P=0.488 R=0.435)  thr=0.01 (valF1=0.475)  time=122.1s  mem=193.5MB
+
+[24/50] config: {'numPartitions': 23, 'labelDataSampleSize': 0.2471, 'neg_ratio': 4.4151}
+   -> OK  testF1=0.4476 (P=0.494 R=0.409)  thr=0.56 (valF1=0.460)  time=102.11s  mem=192.8MB
+
+[25/50] config: {'numPartitions': 48, 'labelDataSampleSize': 0.7193, 'neg_ratio': 2.9765}
+   -> OK  testF1=0.4652 (P=0.481 R=0.451)  thr=0.47 (valF1=0.504)  time=102.07s  mem=190.0MB
+
+[26/50] config: {'numPartitions': 28, 'labelDataSampleSize': 0.8586, 'neg_ratio': 7.984}
+   -> OK  testF1=0.4718 (P=0.489 R=0.456)  thr=0.01 (valF1=0.493)  time=115.09s  mem=197.9MB
+
+[27/50] config: {'numPartitions': 22, 'labelDataSampleSize': 0.8396, 'neg_ratio': 8.2454}
+   -> OK  testF1=0.4824 (P=0.506 R=0.461)  thr=0.01 (valF1=0.525)  time=120.12s  mem=197.1MB
+
+[28/50] config: {'numPartitions': 33, 'labelDataSampleSize': 0.341, 'neg_ratio': 2.8988}
+   -> OK  testF1=0.4641 (P=0.431 R=0.503)  thr=0.45 (valF1=0.466)  time=101.61s  mem=190.0MB
+
+[29/50] config: {'numPartitions': 44, 'labelDataSampleSize': 0.8887, 'neg_ratio': 3.8321}
+   -> OK  testF1=0.4541 (P=0.447 R=0.461)  thr=0.41 (valF1=0.457)  time=106.09s  mem=190.5MB
+
+[30/50] config: {'numPartitions': 49, 'labelDataSampleSize': 0.5493, 'neg_ratio': 8.9621}
+   -> OK  testF1=0.4430 (P=0.596 R=0.352)  thr=0.01 (valF1=0.465)  time=114.59s  mem=199.5MB
+
+[31/50] config: {'numPartitions': 49, 'labelDataSampleSize': 0.513, 'neg_ratio': 3.3839}
+   -> OK  testF1=0.4483 (P=0.427 R=0.472)  thr=0.01 (valF1=0.440)  time=103.6s  mem=190.3MB
+
+[32/50] config: {'numPartitions': 23, 'labelDataSampleSize': 0.7705, 'neg_ratio': 5.8508}
+   -> OK  testF1=0.4784 (P=0.539 R=0.430)  thr=0.01 (valF1=0.480)  time=109.09s  mem=193.1MB
+
+[33/50] config: {'numPartitions': 55, 'labelDataSampleSize': 0.6261, 'neg_ratio': 9.0804}
+   -> OK  testF1=0.4713 (P=0.612 R=0.383)  thr=0.01 (valF1=0.471)  time=116.09s  mem=197.1MB
+
+[34/50] config: {'numPartitions': 33, 'labelDataSampleSize': 0.4258, 'neg_ratio': 9.9759}
+   -> OK  testF1=0.4528 (P=0.576 R=0.373)  thr=0.01 (valF1=0.473)  time=140.67s  mem=201.2MB
+
+[35/50] config: {'numPartitions': 16, 'labelDataSampleSize': 0.5586, 'neg_ratio': 1.8182}
+   -> OK  testF1=0.4276 (P=0.375 R=0.497)  thr=0.62 (valF1=0.425)  time=96.58s  mem=188.5MB
+
+[36/50] config: {'numPartitions': 11, 'labelDataSampleSize': 0.875, 'neg_ratio': 2.3756}
+   -> OK  testF1=0.4658 (P=0.455 R=0.477)  thr=0.45 (valF1=0.475)  time=96.07s  mem=190.1MB
+
+[37/50] config: {'numPartitions': 18, 'labelDataSampleSize': 0.8129, 'neg_ratio': 4.7994}
+   -> OK  testF1=0.4588 (P=0.531 R=0.404)  thr=0.01 (valF1=0.504)  time=107.11s  mem=192.1MB
+
+[38/50] config: {'numPartitions': 12, 'labelDataSampleSize': 0.4463, 'neg_ratio': 6.363}
+   -> OK  testF1=0.4462 (P=0.442 R=0.451)  thr=0.01 (valF1=0.466)  time=107.6s  mem=194.5MB
+
+[39/50] config: {'numPartitions': 37, 'labelDataSampleSize': 0.5762, 'neg_ratio': 9.7397}
+   -> OK  testF1=0.4748 (P=0.556 R=0.415)  thr=0.01 (valF1=0.497)  time=117.12s  mem=201.5MB
+
+[40/50] config: {'numPartitions': 63, 'labelDataSampleSize': 0.9482, 'neg_ratio': 7.1226}
+   -> OK  testF1=0.4702 (P=0.552 R=0.409)  thr=0.6 (valF1=0.479)  time=113.11s  mem=194.6MB
+
+[41/50] config: {'numPartitions': 15, 'labelDataSampleSize': 0.7135, 'neg_ratio': 5.8327}
+   -> OK  testF1=0.4718 (P=0.489 R=0.456)  thr=0.01 (valF1=0.477)  time=107.09s  mem=194.5MB
+
+[42/50] config: {'numPartitions': 25, 'labelDataSampleSize': 0.7917, 'neg_ratio': 4.0616}
+   -> OK  testF1=0.4569 (P=0.448 R=0.466)  thr=0.01 (valF1=0.432)  time=103.07s  mem=190.8MB
+
+[43/50] config: {'numPartitions': 26, 'labelDataSampleSize': 0.4913, 'neg_ratio': 5.0835}
+   -> OK  testF1=0.4611 (P=0.478 R=0.446)  thr=0.54 (valF1=0.481)  time=105.1s  mem=193.2MB
+
+[44/50] config: {'numPartitions': 54, 'labelDataSampleSize': 0.8883, 'neg_ratio': 3.3705}
+   -> OK  testF1=0.4467 (P=0.438 R=0.456)  thr=0.42 (valF1=0.450)  time=103.58s  mem=190.1MB
+
+[45/50] config: {'numPartitions': 40, 'labelDataSampleSize': 0.7858, 'neg_ratio': 5.5691}
+   -> OK  testF1=0.4518 (P=0.540 R=0.389)  thr=0.52 (valF1=0.511)  time=108.11s  mem=193.4MB
+
+[46/50] config: {'numPartitions': 14, 'labelDataSampleSize': 0.8835, 'neg_ratio': 3.686}
+   -> OK  testF1=0.4752 (P=0.479 R=0.472)  thr=0.47 (valF1=0.503)  time=103.08s  mem=190.0MB
+
+[47/50] config: {'numPartitions': 48, 'labelDataSampleSize': 0.5569, 'neg_ratio': 2.7902}
+   -> OK  testF1=0.4323 (P=0.374 R=0.513)  thr=0.01 (valF1=0.425)  time=101.12s  mem=190.8MB
+
+[48/50] config: {'numPartitions': 31, 'labelDataSampleSize': 0.7863, 'neg_ratio': 5.8544}
+   -> OK  testF1=0.4675 (P=0.545 R=0.409)  thr=0.01 (valF1=0.475)  time=109.09s  mem=194.6MB
+
+[49/50] config: {'numPartitions': 57, 'labelDataSampleSize': 0.9302, 'neg_ratio': 9.2664}
+   -> OK  testF1=0.4580 (P=0.520 R=0.409)  thr=0.01 (valF1=0.492)  time=117.61s  mem=197.9MB
+
+[50/50] config: {'numPartitions': 46, 'labelDataSampleSize': 0.3917, 'neg_ratio': 1.1753}
+   -> OK  testF1=0.4506 (P=0.385 R=0.544)  thr=0.01 (valF1=0.440)  time=100.09s  mem=189.8MB
+
+Done. Wrote /home/it2022025/er_scalability/zingg_CCER/results/zingg_D2_configs.csv and /home/it2022025/er_scalability/zingg_CCER/results/zingg_D2_curves.json
