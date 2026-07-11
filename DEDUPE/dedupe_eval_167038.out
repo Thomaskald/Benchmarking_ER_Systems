@@ -1,0 +1,32 @@
+
+=== D2 ===
+  -> pairwise F1=0.3820  B3 F1=0.9230  (P=0.901 R=0.947)  cfg#38  35.48s
+
+=== D3 ===
+  -> pairwise F1=0.4674  B3 F1=0.9529  (P=0.943 R=0.963)  cfg#17  86.06s
+
+=== D4 ===
+  -> pairwise F1=0.9746  B3 F1=0.9867  (P=0.974 R=1.000)  cfg#1  264.42s
+
+=== D5 ===
+  -> pairwise F1=0.9081  B3 F1=0.9959  (P=0.993 R=0.998)  cfg#29  222.81s
+
+=== D6 ===
+  -> pairwise F1=0.3424  B3 F1=0.9678  (P=0.938 R=0.999)  cfg#10  162.1s
+
+=== D7 ===
+  -> pairwise F1=0.4591  B3 F1=0.9024  (P=0.825 R=0.995)  cfg#43  132.48s
+
+=== D8 ===
+  -> pairwise F1=0.0264  B3 F1=0.5103  (P=0.343 R=1.000)  cfg#28  291.42s
+
+=== D9 ===
+  -> pairwise F1=0.9399  B3 F1=0.9929  (P=0.993 R=0.993)  cfg#17  502.57s
+
+=== CORA ===
+  -> pairwise F1=0.7552  B3 F1=0.9328  (P=1.000 R=0.874)  cfg#13  324.73s
+
+=== CDDB ===
+  -> pairwise F1=0.9867  B3 F1=0.9992  (P=0.998 R=1.000)  cfg#6  64.28s
+
+Done. Wrote /home/it2022025/er_scalability/dedupe_CCER/results/dedupe_bestconfig_eval.csv

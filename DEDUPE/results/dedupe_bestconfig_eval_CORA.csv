@@ -1,0 +1,2 @@
+dataset,config_id,family,csv_test_f1,pairwise_precision,pairwise_recall,pairwise_f1,bcubed_precision,bcubed_recall,bcubed_f1,n_entities,n_pred_pairs,n_gt_pairs,time_sec,status
+CORA,13,der,0.755232,1.0,0.606725,0.755232,1.0,0.874117,0.932831,177,1606,2647,324.73,OK

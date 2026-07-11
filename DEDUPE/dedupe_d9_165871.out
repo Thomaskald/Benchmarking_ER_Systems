@@ -1,0 +1,99 @@
+Dedupe CCER random search | dataset=D9 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'neg_ratio': 6.7548, 'recall': 0.9025, 'index_predicates': False}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=538.02s  mem=7868.8MB
+
+[2/50] config: {'neg_ratio': 3.204, 'recall': 0.914, 'index_predicates': True}
+   -> OK  testF1=0.9386 (P=0.944 R=0.933)  thr=0.69 (valF1=0.900)  time=492.62s  mem=7878.1MB
+
+[3/50] config: {'neg_ratio': 7.0903, 'recall': 0.9892, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=497.88s  mem=7914.2MB
+
+[4/50] config: {'neg_ratio': 6.3144, 'recall': 0.9032, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=559.79s  mem=7861.0MB
+
+[5/50] config: {'neg_ratio': 2.9677, 'recall': 0.9505, 'index_predicates': True}
+   -> OK  testF1=0.9388 (P=0.942 R=0.935)  thr=0.7 (valF1=0.900)  time=714.37s  mem=7895.1MB
+
+[6/50] config: {'neg_ratio': 6.0512, 'recall': 0.9716, 'index_predicates': False}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=524.57s  mem=7870.0MB
+
+[7/50] config: {'neg_ratio': 2.984, 'recall': 0.9589, 'index_predicates': True}
+   -> OK  testF1=0.9388 (P=0.942 R=0.935)  thr=0.7 (valF1=0.900)  time=632.86s  mem=7876.6MB
+
+[8/50] config: {'neg_ratio': 7.8293, 'recall': 0.916, 'index_predicates': False}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=538.92s  mem=7880.2MB
+
+[9/50] config: {'neg_ratio': 4.0623, 'recall': 0.9155, 'index_predicates': False}
+   -> OK  testF1=0.9383 (P=0.949 R=0.928)  thr=0.66 (valF1=0.897)  time=519.78s  mem=7874.7MB
+
+[10/50] config: {'neg_ratio': 1.9199, 'recall': 0.938, 'index_predicates': False}
+   -> OK  testF1=0.9356 (P=0.933 R=0.938)  thr=0.74 (valF1=0.901)  time=519.99s  mem=7865.6MB
+
+[11/50] config: {'neg_ratio': 8.6274, 'recall': 0.9604, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=651.22s  mem=7869.4MB
+
+[12/50] config: {'neg_ratio': 7.5676, 'recall': 0.9536, 'index_predicates': False}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=502.33s  mem=7899.9MB
+
+[13/50] config: {'neg_ratio': 1.7092, 'recall': 0.9293, 'index_predicates': False}
+   -> OK  testF1=0.9359 (P=0.929 R=0.943)  thr=0.75 (valF1=0.900)  time=540.71s  mem=7863.9MB
+
+[14/50] config: {'neg_ratio': 6.1962, 'recall': 0.9705, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=510.02s  mem=7894.1MB
+
+[15/50] config: {'neg_ratio': 6.9514, 'recall': 0.9773, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=486.24s  mem=7904.8MB
+
+[16/50] config: {'neg_ratio': 8.6979, 'recall': 0.9866, 'index_predicates': False}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=529.49s  mem=7880.4MB
+
+[17/50] config: {'neg_ratio': 3.5018, 'recall': 0.9636, 'index_predicates': False}
+   -> OK  testF1=0.9399 (P=0.944 R=0.935)  thr=0.67 (valF1=0.900)  time=533.87s  mem=7871.2MB
+
+[18/50] config: {'neg_ratio': 2.4639, 'recall': 0.9355, 'index_predicates': False}
+   -> OK  testF1=0.9362 (P=0.942 R=0.931)  thr=0.74 (valF1=0.900)  time=538.65s  mem=7884.0MB
+
+[19/50] config: {'neg_ratio': 7.3164, 'recall': 0.9684, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=601.3s  mem=7887.8MB
+
+[20/50] config: {'neg_ratio': 6.4822, 'recall': 0.9171, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=524.27s  mem=7858.3MB
+
+[21/50] config: {'neg_ratio': 2.4706, 'recall': 0.9379, 'index_predicates': True}
+   -> OK  testF1=0.9362 (P=0.942 R=0.931)  thr=0.74 (valF1=0.900)  time=700.43s  mem=7896.6MB
+
+[22/50] config: {'neg_ratio': 7.1615, 'recall': 0.9843, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=510.14s  mem=7868.5MB
+
+[23/50] config: {'neg_ratio': 3.0614, 'recall': 0.9032, 'index_predicates': False}
+   -> OK  testF1=0.9388 (P=0.942 R=0.935)  thr=0.69 (valF1=0.899)  time=569.74s  mem=7871.9MB
+
+[24/50] config: {'neg_ratio': 4.6105, 'recall': 0.9066, 'index_predicates': False}
+   -> OK  testF1=0.9392 (P=0.955 R=0.923)  thr=0.67 (valF1=0.897)  time=464.23s  mem=7910.8MB
+
+[25/50] config: {'neg_ratio': 2.9136, 'recall': 0.9499, 'index_predicates': False}
+   -> OK  testF1=0.9388 (P=0.942 R=0.935)  thr=0.71 (valF1=0.900)  time=491.49s  mem=7868.5MB
+
+[26/50] config: {'neg_ratio': 2.2858, 'recall': 0.914, 'index_predicates': False}
+   -> OK  testF1=0.9368 (P=0.933 R=0.940)  thr=0.7 (valF1=0.900)  time=455.93s  mem=7873.3MB
+
+[27/50] config: {'neg_ratio': 7.7231, 'recall': 0.9428, 'index_predicates': False}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=467.24s  mem=7870.7MB
+
+[28/50] config: {'neg_ratio': 4.258, 'recall': 0.9997, 'index_predicates': True}
+   -> OK  testF1=0.9372 (P=0.946 R=0.928)  thr=0.63 (valF1=0.897)  time=454.49s  mem=7875.4MB
+
+[29/50] config: {'neg_ratio': 5.5857, 'recall': 0.9091, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=459.71s  mem=7899.0MB
+
+[30/50] config: {'neg_ratio': 8.7499, 'recall': 0.9153, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=452.99s  mem=7877.4MB
+
+[31/50] config: {'neg_ratio': 8.1287, 'recall': 0.9422, 'index_predicates': True}
+   -> OK  testF1=0.9371 (P=0.929 R=0.945)  thr=0.46 (valF1=0.897)  time=641.93s  mem=7878.1MB
+
+[32/50] config: {'neg_ratio': 4.4629, 'recall': 0.9596, 'index_predicates': False}
+   -> OK  testF1=0.9392 (P=0.955 R=0.923)  thr=0.67 (valF1=0.897)  time=484.2s  mem=7882.1MB
+
+[33/50] config: {'neg_ratio': 5.762, 'recall': 0.9971, 'index_predicates': True}
