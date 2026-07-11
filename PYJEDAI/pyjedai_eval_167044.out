@@ -1,0 +1,32 @@
+
+=== D2 ===
+  -> pairwise F1=0.8877  B3 F1=0.9892  (P=0.992 R=0.986)  cfg#33  28.14s
+
+=== D3 ===
+  -> pairwise F1=0.6998  B3 F1=0.9742  (P=0.966 R=0.982)  cfg#33  30.37s
+
+=== D4 ===
+  -> pairwise F1=0.9908  B3 F1=0.9956  (P=0.996 R=0.996)  cfg#20  30.32s
+
+=== D5 ===
+  -> pairwise F1=0.8928  B3 F1=0.9953  (P=0.993 R=0.998)  cfg#11  35.26s
+
+=== D6 ===
+  -> pairwise F1=0.7831  B3 F1=0.9963  (P=0.998 R=0.995)  cfg#46  33.23s
+
+=== D7 ===
+  -> pairwise F1=0.6692  B3 F1=0.9651  (P=0.942 R=0.989)  cfg#11  30.57s
+
+=== D8 ===
+  -> pairwise F1=0.6461  B3 F1=0.9923  (P=0.989 R=0.995)  cfg#35  112.92s
+
+=== D9 ===
+  -> pairwise F1=0.9488  B3 F1=0.9942  (P=0.996 R=0.992)  cfg#14  937.87s
+
+=== CORA ===
+  -> pairwise F1=0.8257  B3 F1=0.8910  (P=0.906 R=0.876)  cfg#40  126.36s
+
+=== CDDB ===
+  -> pairwise F1=0.8169  B3 F1=0.9894  (P=0.992 R=0.987)  cfg#7  17.47s
+
+Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_bestconfig_eval.csv

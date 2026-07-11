@@ -1,0 +1,153 @@
+pyJedAI DER random search | dataset=CORA | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 48, 'similarity_threshold': 0.275}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.275 (valF1=0.167)  time=128.39s  mem=1137.2MB
+
+[2/50] config: {'vectorizer': 'st5', 'similarity_distance': 'cosine', 'top_k': 48, 'similarity_threshold': 0.1025}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.1025 (valF1=0.167)  time=452.24s  mem=2607.6MB
+
+[3/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'cosine', 'top_k': 38, 'similarity_threshold': 0.4219}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.4219 (valF1=0.167)  time=398.97s  mem=2782.5MB
+
+[4/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'cosine', 'top_k': 14, 'similarity_threshold': 0.2327}
+   -> OK  testF1=0.3490 (P=0.211 R=1.000)  thr=0.2327 (valF1=0.208)  time=42.41s  mem=862.9MB
+
+[5/50] config: {'vectorizer': 'albert', 'similarity_distance': 'cosine', 'top_k': 36, 'similarity_threshold': 0.1988}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.1988 (valF1=0.167)  time=282.2s  mem=2419.3MB
+
+[6/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'euclidean', 'top_k': 15, 'similarity_threshold': 0.4492}
+   -> OK  testF1=0.0195 (P=1.000 R=0.010)  thr=0.4492 (valF1=0.034)  time=425.35s  mem=2796.1MB
+
+[7/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 49, 'similarity_threshold': 0.8058}
+   -> OK  testF1=0.3454 (P=0.209 R=1.000)  thr=0.8058 (valF1=0.171)  time=21.68s  mem=1756.0MB
+
+[8/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'euclidean', 'top_k': 18, 'similarity_threshold': 0.1555}
+   -> OK  testF1=0.2968 (P=0.183 R=0.785)  thr=0.1555 (valF1=0.191)  time=136.41s  mem=1962.5MB
+
+[9/50] config: {'vectorizer': 'bert', 'similarity_distance': 'cosine', 'top_k': 6, 'similarity_threshold': 0.3799}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.3799 (valF1=0.167)  time=253.72s  mem=2099.9MB
+
+[10/50] config: {'vectorizer': 'bert', 'similarity_distance': 'euclidean', 'top_k': 39, 'similarity_threshold': 0.2645}
+   -> OK  testF1=0.0544 (P=1.000 R=0.028)  thr=0.2645 (valF1=0.119)  time=232.39s  mem=2090.3MB
+
+[11/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'euclidean', 'top_k': 35, 'similarity_threshold': 0.1248}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.1248 (valF1=0.167)  time=42.3s  mem=854.2MB
+
+[12/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'cosine', 'top_k': 36, 'similarity_threshold': 0.2932}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.2932 (valF1=0.167)  time=121.39s  mem=1921.2MB
+
+[13/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 37, 'similarity_threshold': 0.1923}
+   -> OK  testF1=0.0283 (P=1.000 R=0.014)  thr=0.1923 (valF1=0.040)  time=271.19s  mem=2320.0MB
+
+[14/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 43, 'similarity_threshold': 0.2279}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.2279 (valF1=0.167)  time=118.98s  mem=1120.6MB
+
+[15/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 15, 'similarity_threshold': 0.8665}
+   -> OK  testF1=0.4916 (P=0.339 R=0.895)  thr=0.8665 (valF1=0.226)  time=6.73s  mem=1721.1MB
+
+[16/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'euclidean', 'top_k': 30, 'similarity_threshold': 0.6357}
+   -> OK  testF1=0.0537 (P=1.000 R=0.028)  thr=0.6357 (valF1=0.106)  time=120.61s  mem=1997.8MB
+
+[17/50] config: {'vectorizer': 'bert', 'similarity_distance': 'cosine', 'top_k': 24, 'similarity_threshold': 0.3553}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.3553 (valF1=0.167)  time=232.79s  mem=2081.6MB
+
+[18/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 39, 'similarity_threshold': 0.635}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.635 (valF1=0.167)  time=8.28s  mem=1719.0MB
+
+[19/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'cosine', 'top_k': 11, 'similarity_threshold': 0.4623}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.4623 (valF1=0.167)  time=421.32s  mem=2788.2MB
+
+[20/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.3243}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.3243 (valF1=0.167)  time=7.04s  mem=1719.0MB
+
+[21/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'cosine', 'top_k': 3, 'similarity_threshold': 0.805}
+   -> OK  testF1=0.4258 (P=1.000 R=0.270)  thr=0.805 (valF1=0.612)  time=42.22s  mem=866.6MB
+
+[22/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'euclidean', 'top_k': 5, 'similarity_threshold': 0.211}
+   -> OK  testF1=0.4646 (P=0.615 R=0.373)  thr=0.211 (valF1=0.698)  time=121.12s  mem=2015.2MB
+
+[23/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 14, 'similarity_threshold': 0.6554}
+   -> OK  testF1=0.0209 (P=1.000 R=0.011)  thr=0.6554 (valF1=0.034)  time=270.78s  mem=2480.1MB
+
+[24/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'euclidean', 'top_k': 10, 'similarity_threshold': 0.2649}
+   -> OK  testF1=0.4100 (P=0.921 R=0.264)  thr=0.2649 (valF1=0.557)  time=121.24s  mem=2000.4MB
+
+[25/50] config: {'vectorizer': 'st5', 'similarity_distance': 'euclidean', 'top_k': 48, 'similarity_threshold': 0.5846}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.5846 (valF1=0.167)  time=443.71s  mem=2608.8MB
+
+[26/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 24, 'similarity_threshold': 0.2193}
+   -> OK  testF1=0.0268 (P=1.000 R=0.014)  thr=0.2193 (valF1=0.039)  time=270.65s  mem=2401.8MB
+
+[27/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'euclidean', 'top_k': 6, 'similarity_threshold': 0.7558}
+   -> OK  testF1=0.7327 (P=0.996 R=0.580)  thr=0.7558 (valF1=0.695)  time=64.9s  mem=970.6MB
+
+[28/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 41, 'similarity_threshold': 0.16}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.16 (valF1=0.167)  time=119.03s  mem=1117.3MB
+
+[29/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'cosine', 'top_k': 25, 'similarity_threshold': 0.3816}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.3816 (valF1=0.167)  time=121.48s  mem=1917.7MB
+
+[30/50] config: {'vectorizer': 'roberta', 'similarity_distance': 'euclidean', 'top_k': 36, 'similarity_threshold': 0.8608}
+   -> OK  testF1=0.2812 (P=0.284 R=0.279)  thr=0.8608 (valF1=0.306)  time=249.27s  mem=2147.4MB
+
+[31/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.8848}
+   -> OK  testF1=0.7593 (P=1.000 R=0.612)  thr=0.8848 (valF1=0.700)  time=43.22s  mem=863.2MB
+
+[32/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'euclidean', 'top_k': 8, 'similarity_threshold': 0.2935}
+   -> OK  testF1=0.3109 (P=0.184 R=1.000)  thr=0.2935 (valF1=0.241)  time=7.45s  mem=1718.3MB
+
+[33/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'euclidean', 'top_k': 1, 'similarity_threshold': 0.9538}
+   -> OK  testF1=0.0195 (P=1.000 R=0.010)  thr=0.9538 (valF1=0.034)  time=65.29s  mem=971.6MB
+
+[34/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 33, 'similarity_threshold': 0.9126}
+   -> OK  testF1=0.5913 (P=0.989 R=0.422)  thr=0.9126 (valF1=0.665)  time=7.25s  mem=1721.3MB
+
+[35/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 10, 'similarity_threshold': 0.3739}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.3739 (valF1=0.197)  time=7.32s  mem=1718.3MB
+
+[36/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'cosine', 'top_k': 39, 'similarity_threshold': 0.3242}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.3242 (valF1=0.167)  time=67.95s  mem=971.8MB
+
+[37/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'cosine', 'top_k': 24, 'similarity_threshold': 0.8787}
+   -> OK  testF1=0.7645 (P=1.000 R=0.619)  thr=0.8787 (valF1=0.700)  time=42.58s  mem=846.0MB
+
+[38/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 4, 'similarity_threshold': 0.2409}
+   -> OK  testF1=0.3900 (P=0.244 R=0.974)  thr=0.2409 (valF1=0.263)  time=6.74s  mem=1721.1MB
+
+[39/50] config: {'vectorizer': 'albert', 'similarity_distance': 'cosine', 'top_k': 6, 'similarity_threshold': 0.7319}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.7319 (valF1=0.167)  time=266.8s  mem=2364.6MB
+
+[40/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 9, 'similarity_threshold': 0.6598}
+   -> OK  testF1=0.8257 (P=0.941 R=0.736)  thr=0.6598 (valF1=0.647)  time=117.41s  mem=1114.8MB
+
+[41/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'cosine', 'top_k': 17, 'similarity_threshold': 0.5277}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.5277 (valF1=0.167)  time=419.92s  mem=2809.8MB
+
+[42/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 14, 'similarity_threshold': 0.9289}
+   -> OK  testF1=0.0195 (P=1.000 R=0.010)  thr=0.9289 (valF1=0.034)  time=268.09s  mem=1759.6MB
+
+[43/50] config: {'vectorizer': 'st5', 'similarity_distance': 'euclidean', 'top_k': 26, 'similarity_threshold': 0.9951}
+   -> OK  testF1=0.0378 (P=1.000 R=0.019)  thr=0.9951 (valF1=0.080)  time=441.16s  mem=2610.2MB
+
+[44/50] config: {'vectorizer': 'bert', 'similarity_distance': 'euclidean', 'top_k': 34, 'similarity_threshold': 0.4515}
+   -> OK  testF1=0.0364 (P=1.000 R=0.019)  thr=0.4515 (valF1=0.064)  time=236.44s  mem=2082.8MB
+
+[45/50] config: {'vectorizer': 'st5', 'similarity_distance': 'cosine', 'top_k': 5, 'similarity_threshold': 0.3381}
+   -> OK  testF1=0.5612 (P=0.510 R=0.624)  thr=0.3381 (valF1=0.340)  time=444.32s  mem=2609.3MB
+
+[46/50] config: {'vectorizer': 'albert', 'similarity_distance': 'cosine', 'top_k': 38, 'similarity_threshold': 0.2202}
+   -> OK  testF1=0.2905 (P=0.170 R=1.000)  thr=0.2202 (valF1=0.167)  time=271.85s  mem=2366.7MB
+
+[47/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 15, 'similarity_threshold': 0.0674}
+   -> OK  testF1=0.2933 (P=0.172 R=1.000)  thr=0.0674 (valF1=0.170)  time=118.7s  mem=1121.9MB
+
+[48/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'euclidean', 'top_k': 5, 'similarity_threshold': 0.5142}
+   -> OK  testF1=0.6092 (P=0.665 R=0.562)  thr=0.5142 (valF1=0.676)  time=41.85s  mem=848.3MB
+
+[49/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'euclidean', 'top_k': 14, 'similarity_threshold': 0.5392}
+   -> OK  testF1=0.3595 (P=1.000 R=0.219)  thr=0.5392 (valF1=0.684)  time=6.63s  mem=1718.1MB
+
+[50/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 16, 'similarity_threshold': 0.7846}
+   -> OK  testF1=0.0195 (P=1.000 R=0.010)  thr=0.7846 (valF1=0.034)  time=275.23s  mem=2507.1MB
+
+Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_CORA_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_CORA_curves.json
