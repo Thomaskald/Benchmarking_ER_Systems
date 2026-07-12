@@ -1,0 +1,39 @@
+pyJedAI scalability search (10K tuning) | dataset=10K | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 5, 'similarity_threshold': 0.7735}
+   -> OK  testF1=0.3657 (P=0.300 R=0.468)  thr=0.7735 (valF1=0.378)  time=781.08s  mem=2571.1MB
+
+[2/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'cosine', 'top_k': 2, 'similarity_threshold': 0.8771}
+   -> OK  testF1=0.3122 (P=1.000 R=0.185)  thr=0.8771 (valF1=0.260)  time=387.78s  mem=1117.1MB
+
+[3/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'cosine', 'top_k': 2, 'similarity_threshold': 0.7656}
+   -> OK  testF1=0.6404 (P=0.998 R=0.471)  thr=0.7656 (valF1=0.589)  time=224.79s  mem=897.0MB
+
+[4/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'cosine', 'top_k': 4, 'similarity_threshold': 0.9148}
+   -> OK  testF1=0.3923 (P=0.252 R=0.890)  thr=0.9148 (valF1=0.381)  time=3180.3s  mem=15495.2MB
+
+[5/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'euclidean', 'top_k': 4, 'similarity_threshold': 0.8348}
+   -> OK  testF1=0.0060 (P=1.000 R=0.003)  thr=0.8348 (valF1=0.011)  time=3086.27s  mem=13138.4MB
+
+[6/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 3, 'similarity_threshold': 0.9094}
+   -> OK  testF1=0.1438 (P=1.000 R=0.077)  thr=0.9094 (valF1=0.137)  time=8.32s  mem=1722.0MB
+
+[7/50] config: {'vectorizer': 'bert', 'similarity_distance': 'euclidean', 'top_k': 3, 'similarity_threshold': 0.7646}
+   -> OK  testF1=0.0060 (P=1.000 R=0.003)  thr=0.7646 (valF1=0.011)  time=1836.83s  mem=8717.1MB
+
+[8/50] config: {'vectorizer': 'bert', 'similarity_distance': 'cosine', 'top_k': 2, 'similarity_threshold': 0.814}
+   -> OK  testF1=0.4362 (P=0.954 R=0.283)  thr=0.814 (valF1=0.376)  time=1821.82s  mem=8719.9MB
+
+[9/50] config: {'vectorizer': 'bert', 'similarity_distance': 'euclidean', 'top_k': 5, 'similarity_threshold': 0.9421}
+   -> OK  testF1=0.0060 (P=1.000 R=0.003)  thr=0.9421 (valF1=0.011)  time=1813.06s  mem=8716.8MB
+
+[10/50] config: {'vectorizer': 'roberta', 'similarity_distance': 'cosine', 'top_k': 7, 'similarity_threshold': 0.7236}
+   -> OK  testF1=0.4000 (P=0.250 R=1.000)  thr=0.7236 (valF1=0.400)  time=1903.66s  mem=11404.2MB
+
+[11/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'euclidean', 'top_k': 4, 'similarity_threshold': 0.9114}
+   -> OK  testF1=0.0766 (P=0.981 R=0.040)  thr=0.9114 (valF1=0.075)  time=7.23s  mem=1723.4MB
+
+[12/50] config: {'vectorizer': 'sminilm', 'similarity_distance': 'cosine', 'top_k': 5, 'similarity_threshold': 0.9956}
+   -> OK  testF1=0.0105 (P=1.000 R=0.005)  thr=0.9956 (valF1=0.011)  time=226.07s  mem=907.9MB
+
+[13/50] config: {'vectorizer': 'st5', 'similarity_distance': 'cosine', 'top_k': 7, 'similarity_threshold': 0.7834}

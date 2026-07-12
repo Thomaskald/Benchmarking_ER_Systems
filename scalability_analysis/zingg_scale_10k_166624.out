@@ -1,0 +1,57 @@
+Zingg scalability search (10K tuning) | dataset=10K | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'numPartitions': 48, 'labelDataSampleSize': 0.2002, 'neg_ratio': 7.674}
+   -> OK  testF1=0.9067 (P=1.000 R=0.829)  thr=0.01 (valF1=0.900)  time=985.28s  mem=231.4MB
+
+[2/50] config: {'numPartitions': 23, 'labelDataSampleSize': 0.3009, 'neg_ratio': 7.6282}
+   -> OK  testF1=0.9138 (P=1.000 R=0.841)  thr=0.01 (valF1=0.895)  time=962.29s  mem=229.9MB
+
+[3/50] config: {'numPartitions': 51, 'labelDataSampleSize': 0.7666, 'neg_ratio': 5.9083}
+   -> OK  testF1=0.9013 (P=1.000 R=0.820)  thr=0.01 (valF1=0.889)  time=969.74s  mem=230.9MB
+
+[4/50] config: {'numPartitions': 45, 'labelDataSampleSize': 0.4797, 'neg_ratio': 1.2682}
+   -> OK  testF1=0.9017 (P=1.000 R=0.821)  thr=0.01 (valF1=0.887)  time=885.12s  mem=211.2MB
+
+[5/50] config: {'numPartitions': 21, 'labelDataSampleSize': 0.3094, 'neg_ratio': 6.4182}
+   -> OK  testF1=0.9017 (P=1.000 R=0.821)  thr=0.01 (valF1=0.890)  time=942.22s  mem=231.6MB
+
+[6/50] config: {'numPartitions': 43, 'labelDataSampleSize': 0.279, 'neg_ratio': 6.849}
+   -> OK  testF1=0.9058 (P=1.000 R=0.828)  thr=0.01 (valF1=0.903)  time=965.19s  mem=231.8MB
+
+[7/50] config: {'numPartitions': 42, 'labelDataSampleSize': 0.4776, 'neg_ratio': 5.0429}
+   -> OK  testF1=0.9076 (P=1.000 R=0.831)  thr=0.01 (valF1=0.894)  time=975.87s  mem=230.7MB
+
+[8/50] config: {'numPartitions': 25, 'labelDataSampleSize': 0.8285, 'neg_ratio': 1.0585}
+   -> OK  testF1=0.9042 (P=0.993 R=0.830)  thr=0.01 (valF1=0.894)  time=850.09s  mem=208.4MB
+
+[9/50] config: {'numPartitions': 59, 'labelDataSampleSize': 0.2437, 'neg_ratio': 4.8035}
+   -> OK  testF1=0.9040 (P=1.000 R=0.825)  thr=0.01 (valF1=0.894)  time=951.31s  mem=231.3MB
+
+[10/50] config: {'numPartitions': 25, 'labelDataSampleSize': 0.2399, 'neg_ratio': 9.6149}
+   -> OK  testF1=0.9008 (P=1.000 R=0.820)  thr=0.01 (valF1=0.894)  time=972.78s  mem=231.2MB
+
+[11/50] config: {'numPartitions': 29, 'labelDataSampleSize': 0.192, 'neg_ratio': 4.4193}
+   -> OK  testF1=0.9035 (P=1.000 R=0.824)  thr=0.01 (valF1=0.895)  time=953.35s  mem=231.9MB
+
+[12/50] config: {'numPartitions': 30, 'labelDataSampleSize': 0.8627, 'neg_ratio': 6.4335}
+   -> OK  testF1=0.9107 (P=1.000 R=0.836)  thr=0.01 (valF1=0.900)  time=945.21s  mem=230.9MB
+
+[13/50] config: {'numPartitions': 59, 'labelDataSampleSize': 0.1391, 'neg_ratio': 5.1348}
+   -> OK  testF1=0.9071 (P=1.000 R=0.830)  thr=0.01 (valF1=0.891)  time=971.95s  mem=231.1MB
+
+[14/50] config: {'numPartitions': 15, 'labelDataSampleSize': 0.9758, 'neg_ratio': 4.4068}
+   -> OK  testF1=0.9004 (P=1.000 R=0.819)  thr=0.01 (valF1=0.889)  time=943.87s  mem=230.4MB
+
+[15/50] config: {'numPartitions': 43, 'labelDataSampleSize': 0.3639, 'neg_ratio': 6.6578}
+   -> OK  testF1=0.8986 (P=1.000 R=0.816)  thr=0.01 (valF1=0.887)  time=955.3s  mem=230.8MB
+
+[16/50] config: {'numPartitions': 64, 'labelDataSampleSize': 0.8755, 'neg_ratio': 6.1962}
+   -> OK  testF1=0.9049 (P=1.000 R=0.826)  thr=0.01 (valF1=0.891)  time=970.26s  mem=230.7MB
+
+[17/50] config: {'numPartitions': 53, 'labelDataSampleSize': 0.1626, 'neg_ratio': 6.9514}
+   -> OK  testF1=0.9067 (P=1.000 R=0.829)  thr=0.01 (valF1=0.899)  time=971.28s  mem=230.7MB
+
+[18/50] config: {'numPartitions': 57, 'labelDataSampleSize': 0.3604, 'neg_ratio': 1.7181}
+   -> OK  testF1=0.9112 (P=1.000 R=0.837)  thr=0.01 (valF1=0.894)  time=912.58s  mem=216.9MB
+
+[19/50] config: {'numPartitions': 22, 'labelDataSampleSize': 0.8798, 'neg_ratio': 4.4211}

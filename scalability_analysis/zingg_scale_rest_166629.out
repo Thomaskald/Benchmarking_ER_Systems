@@ -1,0 +1,41 @@
+
+============================================================
+  ZINGG SCALABILITY (fixed best config)
+  numPartitions=43 | labelSampleSize=0.279 | neg_ratio=6.849 | thr=0.01
+============================================================
+
+============================================================
+  Dataset: 50K
+============================================================
+['--phase', 'train']
+arguments for client options are  ['--phase', 'train', '--license', 'zinggLic.txt', '--email', 'zingg@zingg.ai', '--conf', 'dummyConf.json']
+['--phase', 'match']
+arguments for client options are  ['--phase', 'match', '--license', 'zinggLic.txt', '--email', 'zingg@zingg.ai', '--conf', 'dummyConf.json']
+
+  --- RESULTS ---
+  Records    : 50,000  |  Test pairs: 25,356 (pos=6,339)
+  Precision  : 1.0000  Recall: 0.7465  F1: 0.8548
+  Workflow   : 2693.72s  (44.9 min)
+  Peak mem   : 498 MB (python only -- use sacct MaxRSS)
+  [checkpoint saved]
+
+============================================================
+  Dataset: 100K
+============================================================
+['--phase', 'train']
+arguments for client options are  ['--phase', 'train', '--license', 'zinggLic.txt', '--email', 'zingg@zingg.ai', '--conf', 'dummyConf.json']
+['--phase', 'match']
+arguments for client options are  ['--phase', 'match', '--license', 'zinggLic.txt', '--email', 'zingg@zingg.ai', '--conf', 'dummyConf.json']
+
+  --- RESULTS ---
+  Records    : 100,000  |  Test pairs: 52,076 (pos=13,019)
+  Precision  : 0.9996  Recall: 0.7369  F1: 0.8484
+  Workflow   : 6708.93s  (111.8 min)
+  Peak mem   : 836 MB (python only -- use sacct MaxRSS)
+  [checkpoint saved]
+
+============================================================
+  Dataset: 200K
+============================================================
+['--phase', 'train']
+arguments for client options are  ['--phase', 'train', '--license', 'zinggLic.txt', '--email', 'zingg@zingg.ai', '--conf', 'dummyConf.json']
