@@ -1,4 +1,0 @@
-config_id,status,base_model,loss_type,num_epochs,train_batch_size,learning_rate,warm_up_perc,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,time_sec,peak_mem_mb
-1,TIMEOUT,sentence-transformers/all-distilroberta-v1,onlinecontrastive,1,32,2.607e-06,0.14,,,,,,5400.19,
-2,OK,sentence-transformers/all-MiniLM-L6-v2,onlinecontrastive,2,16,1.124e-06,0.219,0.98,0.497854,0.326531,0.921466,0.482192,5022.21,1719.4
-3,TIMEOUT,sentence-transformers/all-distilroberta-v1,onlinecontrastive,1,32,2.369e-06,0.589,,,,,,5400.18,
