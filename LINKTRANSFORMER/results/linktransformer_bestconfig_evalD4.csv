@@ -1,0 +1,2 @@
+dataset,config_id,csv_test_f1,pairwise_precision,pairwise_recall,pairwise_f1,bcubed_precision,bcubed_recall,bcubed_f1,n_entities,n_pred_pairs,n_gt_pairs,time_sec
+D4,1,0.993151,0.990888,0.995423,0.993151,0.995243,0.997805,0.996522,911,439,437,365.19
