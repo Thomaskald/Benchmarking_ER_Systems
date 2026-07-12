@@ -1,0 +1,5 @@
+config_id,status,neg_ratio,recall,index_predicates,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,time_sec,peak_mem_mb
+1,OK,6.7548,0.9025,False,0.1,0.953479,0.9904,0.930827,0.95969,2263.26,4381.6
+2,OK,3.204,0.914,True,0.1,0.954778,0.984326,0.944361,0.963929,2702.56,4443.8
+3,TIMEOUT,7.0903,0.9892,True,,,,,,5400.61,
+4,OK,6.3144,0.9032,True,0.1,0.954419,0.989608,0.930827,0.959318,2731.06,4457.0
