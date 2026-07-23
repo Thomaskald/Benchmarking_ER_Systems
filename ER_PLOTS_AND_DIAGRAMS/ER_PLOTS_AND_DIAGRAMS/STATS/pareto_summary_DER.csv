@@ -1,0 +1,5 @@
+framework,pairwise_f1,bcubed_f1,time
+Dedupe,0.8709,0.966,194.505
+Splink,0.8546,0.9941,258.065
+Zingg,0.7358,0.839,301.05
+pyJedAI,0.8213,0.9402,71.915
