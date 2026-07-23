@@ -1,8 +1,0 @@
-framework,pairwise_f1,bcubed_f1,time
-Dedupe,0.5625,0.904,212.1675
-Splink,0.6793,0.9775,22.5738
-Zingg,0.5444,0.965,138.6812
-Magellan,0.7655,0.9845,53.1338
-pyJedAI,0.8148,0.9878,154.835
-LinkTransformer,0.6967,0.9735,2457.31
-RecordLinkage,0.7914,0.9871,15.6825
