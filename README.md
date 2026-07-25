@@ -556,11 +556,3 @@ files. The values match the CSVs.
 **Determinism.** `SEED = 42` is fixed throughout, but exact reproduction also depends on
 library versions, thread counts (`OMP_NUM_THREADS` / `MKL_NUM_THREADS` follow
 `SLURM_CPUS_PER_TASK`), and — for LinkTransformer — GPU/CPU non-determinism in training.
-
----
-
-## Reference
-
-Demšar, J. (2006). *Statistical Comparisons of Classifiers over Multiple Data Sets.*
-Journal of Machine Learning Research, 7, 1–30. — the Friedman + Nemenyi procedure and the
-`q_alpha` critical values used in `stats_analysis.py`.
