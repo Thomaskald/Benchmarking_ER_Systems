@@ -9,7 +9,7 @@ two metric families (**pairwise** and **B-Cubed**) on the same fixed test sets, 
 compared with the same statistics (Friedman omnibus test + Nemenyi post-hoc critical
 difference diagrams, mean-rank heatmaps, and quality-vs-cost Pareto fronts).
 
-All experiments were executed on a SLURM cluster; the plotting and statistics layer runs
+All experiments were executed on a SLURM cluster the plotting and statistics layer runs
 locally on the collected result files.
 
 ---
@@ -46,7 +46,7 @@ locally on the collected result files.
 **DER** = Dirty ER (one source containing duplicates).
 
 Magellan, LinkTransformer and RecordLinkage are two-source-only in this study and were
-therefore not run on the DER datasets; they appear as `—` in the DER columns of the
+therefore not run on the DER datasets, they appear as `—` in the DER columns of the
 ranking heatmaps.
 
 ---
@@ -55,7 +55,7 @@ ranking heatmaps.
 
 ### CCER — 8 clean-clean datasets
 
-Source ids are `D2 … D9`. In every figure and in the thesis text they are displayed as
+Source ids are `D2 … D9`. In every figure and the text they are displayed as
 `D1 … D8` (`D2 → D1`, `D3 → D2`, …, `D9 → D8`). **Only the label changes — the underlying
 data is untouched.** The rename is applied by `DISPLAY_NAME` in both plotting scripts.
 
@@ -64,9 +64,9 @@ data is untouched.** The rename is applied by `DISPLAY_NAME` in both plotting sc
 | `D2` | D1 | `abt.csv` | `buy.csv` | products |
 | `D3` | D2 | `amazon.csv` | `gp.csv` | products |
 | `D4` | D3 | `acm.csv` | `dblp.csv` | bibliographic |
-| `D5` | D4 | `imdb.csv` | `tmdb.csv` | movies (SCADS) |
-| `D6` | D5 | `imdb.csv` | `tvdb.csv` | movies (SCADS) |
-| `D7` | D6 | `tmdb.csv` | `tvdb.csv` | movies (SCADS) |
+| `D5` | D4 | `imdb.csv` | `tmdb.csv` | movies  |
+| `D6` | D5 | `imdb.csv` | `tvdb.csv` | movies  |
+| `D7` | D6 | `tmdb.csv` | `tvdb.csv` | movies  |
 | `D8` | D7 | `amazon.csv` | `walmart.csv` | products |
 | `D9` | D8 | `dblp.csv` | `scholar.csv` | bibliographic |
 
@@ -79,7 +79,7 @@ the per-dataset loaders in any `*_bestconfig_eval.py`.
 | Dataset | File | Notes |
 |---|---|---|
 | `CORA` | `cora/cora.csv` | bibliographic, `\|`-delimited, id column `Entity Id` |
-| `CDDB` | `CDDB/cddb.csv` | music CDs, comma-delimited; the `tracks` field is excluded (very long strings → OOM) |
+| `CDDB` | `CDDB/cddb.csv` | music CDs, comma-delimited, the `tracks` field is excluded (very long strings → OOM) |
 
 ### Synthetic scalability ladder
 
@@ -182,7 +182,7 @@ the fixed test pairs:
 
 > **Why test-set B-Cubed rather than full-dataset clustering?** Clustering the whole
 > dataset requires scoring each framework's entire blocked candidate set, which does not
-> scale — the two largest CCER datasets (D8, D9) time out. It is also inconsistent to
+> scale — the two largest CCER datasets (D7, D8) time out. It is also inconsistent to
 > measure pairwise on the test set but B-Cubed on the full dataset. Computing B-Cubed over
 > the *same* test-pair universe always finishes, keeps both metrics on one universe, and is
 > uniform across all seven frameworks — which is what makes the significance testing valid.
@@ -246,76 +246,49 @@ deliberately — they are part of the result (see [caveats](#reproducibility-not
 
 ## Installing the frameworks
 
-All frameworks were installed as **user pip installs** for the cluster's system
-`python3` (Python 3.10) — no conda environment. The job scripts therefore prepend
-`$HOME/.local/bin` to `PATH` and `$HOME/.local/lib/python3.10/site-packages` to
-`PYTHONPATH`.
-
-> Add the download / documentation links for each item below.
+Everything was installed as a **user pip install** for the cluster's system `python3`
+(Python 3.10) — no conda environment. The job scripts prepend `$HOME/.local/bin` to `PATH`
+and `$HOME/.local/lib/python3.10/site-packages` to `PYTHONPATH`.
 
 ### Python packages
 
-Six of the seven frameworks are plain pip installs. Zingg is the exception — it ships a
-jar and needs a JVM and Spark alongside the Python client (see the next section).
+Six of the seven are plain pip installs. Zingg is the exception — it runs on Spark, so it
+needs a bit more (see below).
 
-| Package | Used by | Install | Source |
+| Package | Used by | Install | Where it came from |
 |---|---|---|---|
 | `dedupe` | DEDUPE | `pip install --user dedupe` | https://github.com/dedupeio/dedupe |
 | `splink` | SPLINK | `pip install --user splink` | https://moj-analytical-services.github.io/splink/index.html |
-| `py_entitymatching` | MAGELLAN | `pip install --user py_entitymatching` | pip package (Magellan is distributed as a library, no repo build needed) |
+| `py_entitymatching` | MAGELLAN | `pip install --user py_entitymatching` | plain pip library |
 | `pyjedai` | PYJEDAI | `pip install --user pyjedai` | https://github.com/AI-team-UoA/pyJedAI |
 | `linktransformer` | LINKTRANSFORMER | `pip install --user linktransformer` | https://github.com/dell-research-harvard/linktransformer |
 | `recordlinkage` | RECORDLINKAGE | `pip install --user recordlinkage` | https://github.com/J535D165/recordlinkage |
-| `zingg` (Python client) | ZINGG | see below — must match the jar version | https://github.com/zinggAI/zingg |
+| `zingg` | ZINGG | see below | https://github.com/zinggAI/zingg |
 
 Shared dependencies: `numpy`, `pandas`, `scikit-learn`, `scipy`, `matplotlib`,
 `unidecode`, `psutil`, `pyarrow`, `torch` + `sentence-transformers` (LinkTransformer),
-`duckdb` (pulled in by Splink), `pyjnius` (dataset conversion only).
+`duckdb` (via Splink), `pyjnius` (dataset conversion only).
 
-### Zingg — extra setup
+### Zingg
 
-Zingg needs a JVM and Spark, and the Python package must match the jar:
+Zingg needs Java and Spark on top of the Python client — follow the install instructions
+in the repo: https://github.com/zinggAI/zingg
 
-| Component | Version used | Path in the job scripts | Source |
-|---|---|---|---|
-| Java | OpenJDK **11** | `JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64` | _(add link)_ |
-| Spark | **3.5.0** (standalone, `bin-hadoop3`) | `SPARK_HOME=$HOME/spark-3.5.0-bin-hadoop3` | _(add link)_ |
-| Zingg jar | **0.5.0** | `ZINGG_JAR=$HOME/software/zingg/zingg-0.5.0/zingg-0.5.0.jar` | https://github.com/zinggAI/zingg (releases) |
-| Zingg Python | **0.5.0** | `$HOME/software/zingg/zingg-0.5.0/python/build/lib` | https://github.com/zinggAI/zingg (`python/` in the 0.5.0 tree) |
+Versions used here: **Java 11**, standalone **Spark 3.5.0**, **Zingg 0.5.0** (the jar and
+the Python client must be the same version). 0.5.0 was chosen because 0.6.0 adds a
+license/registration step, and standalone Spark because the bare pip `pyspark` stalled
+during training. All the paths are set at the top of the `ZINGG/job*.sh` scripts.
 
-Two things this study had to work around, both documented in the job scripts and workers:
+### Dedupe
 
-- **Use standalone Spark 3.5.0, not the bare pip `pyspark`** — with pip `pyspark` the run
-  stalls inside `LogisticRegression.treeAggregate`.
-- **Use Zingg 0.5.0, not 0.6.0** — 0.5.0 avoids the license/registration step. The Python
-  package path is *prepended* to `sys.path` so it shadows any 0.6.0 install in `~/.local`.
-  Zingg builds its `SparkSession` at import time, so Spark resources must be set via
-  `PYSPARK_SUBMIT_ARGS` *before* importing `zingg` — configuring the session afterwards is
-  silently ignored.
-
-### Dedupe — extra setup
-
-`dedupe` needs the complete `zope` namespace (including `zope.index`). Both the job scripts
-and the workers patch it explicitly:
-
-```python
-import zope
-zope.__path__.append("$HOME/.local/lib/python3.10/site-packages/zope")
-import dedupe
-```
+`dedupe` needs the full `zope` namespace, so the job scripts and workers append it to
+`zope.__path__` before the import.
 
 ### LinkTransformer / pyJedAI DER — model caches
 
-Both download language models on first use. The job scripts set:
-
-```bash
-export HF_HOME="$HOME/.cache/huggingface"
-export GENSIM_DATA_DIR="$HOME/gensim-data"     # pyJedAI DER only
-export WANDB_DISABLED=true                      # LinkTransformer only
-```
-
-If the compute nodes have no internet access, **pre-cache the models on the login node
-first.**
+Both download language models on first use, so the job scripts point `HF_HOME` (and
+`GENSIM_DATA_DIR` for pyJedAI DER) at a cache under `$HOME`. If the compute nodes have no
+internet, pre-cache the models on the login node first.
 
 ### Datasets
 
@@ -475,7 +448,7 @@ greyscale and black-and-white printing.
 ### CCER — 7 frameworks × 8 datasets
 
 Friedman omnibus test is significant for both metrics
-(pairwise F1: χ² = 34.91, p = 4.5e-06; B-Cubed F1: χ² = 30.56, p = 3.1e-05).
+(pairwise F1: χ² = 34.91, p = 4.5e-06, B-Cubed F1: χ² = 30.56, p = 3.1e-05).
 Nemenyi critical difference at α = 0.05 is **CD = 3.19**.
 
 | Framework | Mean rank — pairwise F1 | Mean rank — B-Cubed F1 |
@@ -533,7 +506,7 @@ and [`combined_metrics.csv`](ER_PLOTS_AND_DIAGRAMS/ER_PLOTS_AND_DIAGRAMS/combine
 
 Read this section before quoting any single number.
 
-**Search budgets are not equal.** LinkTransformer ran `B = 5`; every other framework ran
+**Search budgets are not equal.** LinkTransformer ran `B = 5`, every other framework ran
 `B = 50`. Each LinkTransformer configuration takes hours, which is the reason — but its
 mid-table placement should be read with that in mind.
 
@@ -563,7 +536,7 @@ optimistic. The scalability scripts differ here — they select by `valid_f1`.
 
 **Scalability runs that did not finish.** Splink was cut off during 2M, pyJedAI during 1M,
 Zingg during 200K, and Dedupe during 50K. The `*_scalability_results.csv` files contain
-only completed sizes; the `.out` logs show where each run stopped.
+only completed sizes, the `.out` logs show where each run stopped.
 
 **Zingg memory numbers understate reality.** The recorded `peak_mem_mb` covers the Python
 process only, not the child JVM. Use `sacct -j <jobid> --format=MaxRSS`.
@@ -574,7 +547,7 @@ everything as a match (pairwise P = 0.013, R = 1.00, F1 = 0.026). It is reported
 **Duplicated result files.** `MAGELLAN/*.csv` and `MAGELLAN/results/*.csv` are identical
 copies, as are `scalability_analysis/*.csv` and `scalability_analysis/results/*.csv`.
 `make_plots.py` reads Magellan from `results/`, `stats_analysis.py` reads it from the
-directory root; the files agree today.
+directory root, the files agree today.
 
 **Hardcoded data in the scalability figures.** `make_scalability_plots.py` carries its
 numbers in a module-level `DATA` dict rather than reading the `*_scalability_results.csv`
