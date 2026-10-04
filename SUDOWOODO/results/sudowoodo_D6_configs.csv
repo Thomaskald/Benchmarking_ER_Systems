@@ -1,0 +1,4 @@
+config_id,status,task,lm,ssl_method,n_ssl_epochs,n_epochs,max_len,batch_size,lr,da,projector,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,best_epoch,n_train_pairs,time_sec,peak_mem_mb
+1,TIMEOUT,,distilbert,simclr,1,2,64,64,1.76e-05,drop_col,768,,,,,,,,5400.32,
+2,TIMEOUT,,distilbert,simclr,1,3,32,64,1.07e-05,drop_col,768,,,,,,,,5400.28,
+3,TIMEOUT,,distilbert,simclr,1,2,64,64,1.66e-05,ins,4096,,,,,,,,5400.32,

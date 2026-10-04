@@ -10,6 +10,10 @@ common schema, and produces, per dataset, four plots:
     3. pairwise f1 only                    -> one bar per framework
     4. bcubed   f1 only                    -> one bar per framework
 
+A framework with no result on a dataset (Sudowoodo, where no configuration
+finished within the time limits) gets no bar, an "n/a" marker and a footnote --
+never a zero bar.
+
 Output is split into two folders by ER family:
     CCER/   -> datasets D2..D9   (8 clean-clean ER datasets, shown as D1..D8)
     DER/    -> datasets CORA, CDDB (2 dirty ER datasets)
@@ -21,14 +25,19 @@ Run:  python3 make_plots.py
 
 import os
 import glob
+import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+from er_style import (HERE, REPO, FRAMEWORK_ORDER, FRAMEWORK_COLORS,
+                      FRAMEWORK_HATCH, CCER_DATASETS, DER_DATASETS, disp,
+                      TIME_LIMIT_NOTE)
+
 # ---------------------------------------------------------------- paths -----
-HOME = "/home/thomas"
-OUT_ROOT = "/home/thomas/ER_PLOTS_AND_DIAGRAMS"
+HOME = REPO
+OUT_ROOT = HERE
 CCER_DIR = os.path.join(OUT_ROOT, "CCER")
 DER_DIR = os.path.join(OUT_ROOT, "DER")
 
@@ -36,53 +45,17 @@ DER_DIR = os.path.join(OUT_ROOT, "DER")
 # dataset, so it gets a glob; everyone else has a single combined file.
 FRAMEWORK_FILES = {
     "Dedupe":         [f"{HOME}/DEDUPE/results/dedupe_bestconfig_eval.csv"],
-    "pyJedAI":        [f"{HOME}/PYJEDAI/results/pyjedai_bestconfig_eval.csv"],
+    "pyJedAI-syn":    [f"{HOME}/PYJEDAI/results/pyjedai_syn_bestconfig_eval.csv"],
+    "pyJedAI-sem":    [f"{HOME}/PYJEDAI/results/pyjedai_sem_bestconfig_eval.csv"],
     "Zingg":          [f"{HOME}/ZINGG/results/zingg_bestconfig_eval.csv"],
     "Splink":         [f"{HOME}/SPLINK/results/splink_bestconfig_eval.csv"],
     "Magellan":       [f"{HOME}/MAGELLAN/results/magellan_bestconfig_eval.csv"],
     "RecordLinkage":  [f"{HOME}/RECORDLINKAGE/results/recordlinkage_bestconfig_eval.csv"],
     "LinkTransformer": sorted(glob.glob(
         f"{HOME}/LINKTRANSFORMER/results/linktransformer_bestconfig_evalD*.csv")),
+    "DeepER":         [f"{HOME}/DEEPER/results/deeper_bestconfig_eval.csv"],
+    "Sudowoodo":      [f"{HOME}/SUDOWOODO/results/sudowoodo_bestconfig_eval.csv"],
 }
-
-# Fixed framework order + colors so every plot reads the same way.
-FRAMEWORK_ORDER = ["Dedupe", "Splink", "Zingg", "Magellan",
-                   "pyJedAI", "LinkTransformer", "RecordLinkage"]
-# CVD-safe categorical palette (validated: worst all-pairs deutan dE 12.9 on
-# white). Order follows FRAMEWORK_ORDER so adjacent bars stay distinguishable.
-FRAMEWORK_COLORS = {
-    "Dedupe":          "#2a78d6",  # blue
-    "Splink":          "#1baf7a",  # aqua
-    "Zingg":           "#eda100",  # yellow
-    "Magellan":        "#008300",  # green
-    "pyJedAI":         "#4a3aa7",  # violet
-    "LinkTransformer": "#e34948",  # red
-    "RecordLinkage":   "#e87ba4",  # magenta
-}
-# A second, redundant channel next to colour: every framework also gets its own
-# hatch, so the bars stay separable in greyscale / B&W print.
-FRAMEWORK_HATCH = {
-    "Dedupe":          "/",
-    "Splink":          "\\",
-    "Zingg":           "x",
-    "Magellan":        ".",
-    "pyJedAI":         "+",
-    "LinkTransformer": "|",
-    "RecordLinkage":   "-",
-}
-
-# Dataset -> family / ordering. Keys are the ids used in the source CSVs.
-CCER_DATASETS = ["D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"]
-DER_DATASETS = ["CORA", "CDDB"]
-
-# Display / file names: the CCER datasets are presented as D1..D8 (D2 -> D1,
-# D3 -> D2, ... D9 -> D8). Only naming changes; the underlying data is untouched.
-DISPLAY_NAME = {f"D{i}": f"D{i - 1}" for i in range(2, 10)}
-
-
-def disp(dataset):
-    """Name a dataset is shown/saved under."""
-    return DISPLAY_NAME.get(dataset, dataset)
 
 METRIC_COLS = [
     "pairwise_precision", "pairwise_recall", "pairwise_f1",
@@ -115,9 +88,37 @@ def load_all():
 
 # --------------------------------------------------------------- plotting ---
 def _frameworks_for(df_ds):
-    """Frameworks present for a dataset, in the fixed global order."""
-    present = set(df_ds["framework"])
+    """Frameworks with a result for a dataset, in the fixed global order."""
+    present = set(df_ds.dropna(subset=METRIC_COLS)["framework"])
     return [fw for fw in FRAMEWORK_ORDER if fw in present]
+
+
+def _missing_for(df_ds):
+    """Frameworks with no result (no OK config) on any of these rows."""
+    na = set(df_ds[df_ds[METRIC_COLS].isna().any(axis=1)]["framework"])
+    return [fw for fw in FRAMEWORK_ORDER if fw in na]
+
+
+def _note_missing(fig, missing, y=-0.01, ax=None):
+    """Footnote explaining which frameworks have no result.
+
+    Placed in figure coords, or in `ax` coords when given (so it sits a fixed
+    distance under an axes-anchored legend)."""
+    if not missing:
+        return
+    text = TIME_LIMIT_NOTE.replace("Sudowoodo", ", ".join(missing))
+    kw = dict(ha="center", va="top", fontsize=8.5, style="italic",
+              color="#555555")
+    if ax is not None:
+        ax.text(0.5, y, text, transform=ax.transAxes, **kw)
+    else:
+        fig.text(0.5, y, text, **kw)
+
+
+def _mark_na(ax, x, y=0.012):
+    """Visible marker where a framework has no bar."""
+    ax.text(x, y, "n/a", ha="center", va="bottom", fontsize=6.5,
+            rotation=90, color="#555555")
 
 
 def plot_grouped(df_ds, dataset, metric_prefix, title_metric, out_path):
@@ -149,9 +150,11 @@ def plot_grouped(df_ds, dataset, metric_prefix, title_metric, out_path):
     ax.set_title(f"{disp(dataset)} — {title_metric} metrics")
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     ax.set_axisbelow(True)
-    ax.legend(fontsize=8, ncol=2, framealpha=0.9)
+    ax.legend(fontsize=8, framealpha=0.9, loc="upper left",
+              bbox_to_anchor=(1.01, 1.0))
     fig.tight_layout()
-    fig.savefig(out_path, dpi=150)
+    _note_missing(fig, _missing_for(df_ds))
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -178,7 +181,8 @@ def plot_f1_only(df_ds, dataset, metric_prefix, title_metric, out_path):
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     ax.set_axisbelow(True)
     fig.tight_layout()
-    fig.savefig(out_path, dpi=150)
+    _note_missing(fig, _missing_for(df_ds))
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -206,11 +210,14 @@ def plot_overview_pr(combined, datasets, metric_prefix, title_metric,
             vals = []
             for ds in datasets:
                 row = sub[(sub["framework"] == fw) & (sub["dataset"] == ds)]
-                vals.append(row.iloc[0][col] if len(row) else 0.0)
+                vals.append(row.iloc[0][col] if len(row) else np.nan)
             xs = [g - group_w / 2 + bar_w * (i + 0.5) for g in range(n_groups)]
             ax.bar(xs, vals, width=bar_w, label=fw,
                    color=FRAMEWORK_COLORS[fw], edgecolor="white", linewidth=0.6,
                    hatch=FRAMEWORK_HATCH[fw])
+            for xv, v in zip(xs, vals):
+                if pd.isna(v):
+                    _mark_na(ax, xv)
         ax.set_ylim(0, 1.05)
         ax.set_ylabel(f"{title_metric} {part}")
         ax.grid(axis="y", linestyle="--", alpha=0.4)
@@ -222,9 +229,10 @@ def plot_overview_pr(combined, datasets, metric_prefix, title_metric,
     fig.suptitle(f"{family_label} — {title_metric} precision and recall "
                  f"across datasets")
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, fontsize=8, ncol=min(n_fw, 4), framealpha=0.9,
+    fig.legend(handles, labels, fontsize=8, ncol=min(n_fw, 5), framealpha=0.9,
                loc="lower center", bbox_to_anchor=(0.5, -0.02))
     fig.tight_layout(rect=(0, 0.04, 1, 0.97))
+    _note_missing(fig, _missing_for(sub), y=-0.035)
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
@@ -250,11 +258,14 @@ def plot_overview_f1(combined, datasets, metric_prefix, title_metric,
         vals = []
         for ds in datasets:
             row = sub[(sub["framework"] == fw) & (sub["dataset"] == ds)]
-            vals.append(row.iloc[0][col] if len(row) else 0.0)
+            vals.append(row.iloc[0][col] if len(row) else np.nan)
         xs = [g - group_w / 2 + bar_w * (i + 0.5) for g in range(n_groups)]
         ax.bar(xs, vals, width=bar_w, label=fw,
                color=FRAMEWORK_COLORS[fw], edgecolor="white", linewidth=0.6,
                hatch=FRAMEWORK_HATCH[fw])
+        for xv, v in zip(xs, vals):
+            if pd.isna(v):
+                _mark_na(ax, xv)
 
     ax.set_xticks(range(n_groups))
     ax.set_xticklabels([disp(d) for d in datasets])
@@ -264,9 +275,10 @@ def plot_overview_f1(combined, datasets, metric_prefix, title_metric,
     ax.set_title(f"{family_label} — {title_metric} F1 across datasets")
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     ax.set_axisbelow(True)
-    ax.legend(fontsize=8, ncol=min(n_fw, 4), framealpha=0.9,
+    ax.legend(fontsize=8, ncol=min(n_fw, 5), framealpha=0.9,
               loc="upper center", bbox_to_anchor=(0.5, -0.12))
     fig.tight_layout()
+    _note_missing(fig, _missing_for(sub), y=-0.31, ax=ax)
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 

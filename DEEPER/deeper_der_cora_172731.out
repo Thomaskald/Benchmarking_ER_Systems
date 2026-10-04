@@ -1,0 +1,24 @@
+DeepER (fastText, per-attribute) DER random search | dataset=CORA | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.003042, 'epochs': 12, 'dropout': 0.112, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> TIMEOUT  time=5400.22s
+
+[2/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000154, 'epochs': 12, 'dropout': 0.253, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.7423 (P=0.989 R=0.594)  thr=0.99 (valF1=0.759)  attrs=12  time=739.49s  mem=1014.7MB
+
+[3/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000791, 'epochs': 13, 'dropout': 0.405, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False, 'lstm_hidden': 64}
+   -> TIMEOUT  time=5400.18s
+
+[4/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 128, 'lr': 0.008212, 'epochs': 15, 'dropout': 0.051, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.7066 (P=0.994 R=0.548)  thr=0.8 (valF1=0.768)  attrs=12  time=319.29s  mem=772.8MB
+
+[5/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 64, 'lr': 0.00288, 'epochs': 22, 'dropout': 0.062, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.9073 (P=0.977 R=0.847)  thr=0.81 (valF1=0.809)  attrs=12  time=391.1s  mem=762.7MB
+
+[6/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002565, 'epochs': 6, 'dropout': 0.331, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.6317 (P=1.000 R=0.462)  thr=1.0 (valF1=0.813)  attrs=12  time=1306.81s  mem=970.9MB
+
+[7/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.001868, 'epochs': 16, 'dropout': 0.081, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.8587 (P=0.983 R=0.762)  thr=1.0 (valF1=0.813)  attrs=12  time=519.12s  mem=823.9MB
+
+[8/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.00117, 'epochs': 12, 'dropout': 0.082, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 128}

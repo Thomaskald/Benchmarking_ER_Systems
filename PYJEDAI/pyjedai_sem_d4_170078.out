@@ -1,0 +1,75 @@
+pyJedAI SEMANTIC CCER random search | dataset=D4 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 48, 'similarity_threshold': 0.275, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9850 (P=0.995 R=0.975)  thr=0.275 (valF1=0.985)  time=389.42s  mem=1182.0MB
+
+[2/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.7407, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9814 (P=0.998 R=0.966)  thr=0.7407 (valF1=0.978)  time=226.8s  mem=1062.2MB
+
+[3/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 3, 'similarity_threshold': 0.0298, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.1204 (P=1.000 R=0.064)  thr=0.0298 (valF1=0.167)  time=959.97s  mem=3418.1MB
+
+[4/50] config: {'vectorizer': 'st5', 'similarity_distance': 'cosine', 'top_k': 36, 'similarity_threshold': 0.1988, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.1988 (valF1=0.000)  time=1682.75s  mem=2608.2MB
+
+[5/50] config: {'vectorizer': 'st5', 'similarity_distance': 'euclidean', 'top_k': 38, 'similarity_threshold': 0.2782, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9897 (P=0.989 R=0.991)  thr=0.2782 (valF1=0.994)  time=1691.55s  mem=2607.6MB
+
+[6/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'euclidean', 'top_k': 22, 'similarity_threshold': 0.2779, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9908 (P=0.993 R=0.989)  thr=0.2779 (valF1=0.992)  time=224.91s  mem=1062.2MB
+
+[7/50] config: {'vectorizer': 'bert', 'similarity_distance': 'cosine', 'top_k': 6, 'similarity_threshold': 0.3799, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.3799 (valF1=0.000)  time=868.2s  mem=3125.2MB
+
+[8/50] config: {'vectorizer': 'bert', 'similarity_distance': 'euclidean', 'top_k': 3, 'similarity_threshold': 0.7297, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.7297 (valF1=0.000)  time=869.07s  mem=3126.6MB
+
+[9/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'cosine', 'top_k': 36, 'similarity_threshold': 0.2932, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.2932 (valF1=0.000)  time=443.79s  mem=2955.6MB
+
+[10/50] config: {'vectorizer': 'albert', 'similarity_distance': 'cosine', 'top_k': 46, 'similarity_threshold': 0.0696, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.4712 (P=0.993 R=0.309)  thr=0.0696 (valF1=0.528)  time=958.23s  mem=3648.7MB
+
+[11/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'cosine', 'top_k': 15, 'similarity_threshold': 0.8665, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.8439 (P=1.000 R=0.730)  thr=0.8665 (valF1=0.874)  time=4.73s  mem=1718.6MB
+
+[12/50] config: {'vectorizer': 'sent_glove', 'similarity_distance': 'euclidean', 'top_k': 41, 'similarity_threshold': 0.8341, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.0136 (P=1.000 R=0.007)  thr=0.8341 (valF1=0.023)  time=4.58s  mem=1720.1MB
+
+[13/50] config: {'vectorizer': 'bert', 'similarity_distance': 'euclidean', 'top_k': 14, 'similarity_threshold': 0.6702, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.6702 (valF1=0.000)  time=869.89s  mem=3227.9MB
+
+[14/50] config: {'vectorizer': 'albert', 'similarity_distance': 'cosine', 'top_k': 35, 'similarity_threshold': 0.7291, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.4712 (P=0.993 R=0.309)  thr=0.7291 (valF1=0.528)  time=959.85s  mem=3836.2MB
+
+[15/50] config: {'vectorizer': 'roberta', 'similarity_distance': 'euclidean', 'top_k': 18, 'similarity_threshold': 0.9895, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.9895 (valF1=0.000)  time=885.35s  mem=3423.0MB
+
+[16/50] config: {'vectorizer': 'bert', 'similarity_distance': 'cosine', 'top_k': 15, 'similarity_threshold': 0.8218, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.8218 (valF1=0.000)  time=879.06s  mem=3158.0MB
+
+[17/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'euclidean', 'top_k': 5, 'similarity_threshold': 0.211, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.8205 (P=1.000 R=0.696)  thr=0.211 (valF1=0.852)  time=443.71s  mem=3034.3MB
+
+[18/50] config: {'vectorizer': 'st5', 'similarity_distance': 'euclidean', 'top_k': 26, 'similarity_threshold': 0.8847, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.9302 (P=1.000 R=0.870)  thr=0.8847 (valF1=0.937)  time=1702.94s  mem=2608.0MB
+
+[19/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'euclidean', 'top_k': 9, 'similarity_threshold': 0.2466, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.2466 (valF1=0.000)  time=235.96s  mem=1059.8MB
+
+[20/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 38, 'similarity_threshold': 0.3994, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.3994 (valF1=0.000)  time=987.68s  mem=3114.2MB
+
+[21/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'euclidean', 'top_k': 6, 'similarity_threshold': 0.7558, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9534 (P=0.998 R=0.913)  thr=0.7558 (valF1=0.946)  time=230.41s  mem=1058.5MB
+
+[22/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.4222, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9908 (P=0.993 R=0.989)  thr=0.4222 (valF1=0.992)  time=233.32s  mem=1059.3MB
+
+[23/50] config: {'vectorizer': 'distilbert', 'similarity_distance': 'euclidean', 'top_k': 39, 'similarity_threshold': 0.9961, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.9961 (valF1=0.000)  time=462.32s  mem=3041.4MB
+
+[24/50] config: {'vectorizer': 'xlnet', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.7207, 'clusterer': 'ConnectedComponentsClustering'}
+   -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.7207 (valF1=0.000)  time=1442.8s  mem=4364.6MB
+
+[25/50] config: {'vectorizer': 'bert', 'similarity_distance': 'cosine', 'top_k': 19, 'similarity_threshold': 0.4348, 'clusterer': 'ConnectedComponentsClustering'}

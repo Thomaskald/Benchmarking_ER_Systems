@@ -1,0 +1,86 @@
+
+============================================================
+  DEEPER SCALABILITY (fixed best config)
+  {'composition': 'idf_average', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000154, 'epochs': 26, 'dropout': 0.216, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': False}
+  frozen threshold = 0.11   (selected by argmax valid_f1 at 10K)
+  NOTE: no candidate generation -- runtime excludes blocking.
+============================================================
+
+============================================================
+  Dataset: 50K
+============================================================
+  Records    : 50,000
+  Test pairs : 25,356  (pos=6,339)
+  Load time  : 0.37s  |  mem: 540 MB
+  columns present but NOT embedded: ['entity_url', 'street_number', 'address_2', 'age']
+  Vocab      : 146,900  |  record tensor: 27 MB  |  mem: 1114 MB
+
+  --- RESULTS ---
+  Precision  : 0.9978  Recall: 0.9920  F1: 0.9949
+  Workflow   : 685.24s (11.4 min)
+  Peak mem   : 1302 MB
+
+============================================================
+  Dataset: 100K
+============================================================
+  Records    : 100,000
+  Test pairs : 52,076  (pos=13,019)
+  Load time  : 0.78s  |  mem: 1302 MB
+  columns present but NOT embedded: ['entity_url', 'age', 'address_2', 'street_number']
+  Vocab      : 265,467  |  record tensor: 55 MB  |  mem: 1828 MB
+
+  --- RESULTS ---
+  Precision  : 0.9962  Recall: 0.9942  F1: 0.9952
+  Workflow   : 902.94s (15.0 min)
+  Peak mem   : 1828 MB
+
+============================================================
+  Dataset: 200K
+============================================================
+  Records    : 200,000
+  Test pairs : 104,164  (pos=26,041)
+  Load time  : 2.16s  |  mem: 1828 MB
+  columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+  Vocab      : 480,890  |  record tensor: 110 MB  |  mem: 2784 MB
+
+  --- RESULTS ---
+  Precision  : 0.9983  Recall: 0.9919  F1: 0.9951
+  Workflow   : 2250.43s (37.5 min)
+  Peak mem   : 2784 MB
+
+============================================================
+  Dataset: 300K
+============================================================
+  Records    : 300,000
+  Test pairs : 156,424  (pos=39,106)
+  Load time  : 3.36s  |  mem: 2784 MB
+  columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+  Vocab      : 684,253  |  record tensor: 165 MB  |  mem: 3740 MB
+
+  --- RESULTS ---
+  Precision  : 0.9959  Recall: 0.9960  F1: 0.9959
+  Workflow   : 3029.76s (50.5 min)
+  Peak mem   : 3740 MB
+
+============================================================
+  Dataset: 1M
+============================================================
+  Records    : 1,000,000
+  Test pairs : 508,308  (pos=127,077)
+  Load time  : 13.03s  |  mem: 3740 MB
+  columns present but NOT embedded: ['entity_url', 'address_2', 'street_number', 'age']
+  Vocab      : 2,018,101  |  record tensor: 549 MB  |  mem: 9969 MB
+
+  --- RESULTS ---
+  Precision  : 0.9921  Recall: 0.9980  F1: 0.9950
+  Workflow   : 10693.95s (178.2 min)
+  Peak mem   : 9969 MB
+
+============================================================
+  Dataset: 2M
+============================================================
+  Records    : 2,000,000
+  Test pairs : 1,026,696  (pos=256,674)
+  Load time  : 20.32s  |  mem: 9969 MB
+  columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+  Vocab      : 3,784,877  |  record tensor: 1099 MB  |  mem: 18363 MB

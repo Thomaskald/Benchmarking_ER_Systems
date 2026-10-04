@@ -1,0 +1,32 @@
+D2    attrs=['name', 'description', 'price']
+      6648 distinct tokens
+D3    attrs=['title', 'description', 'manufacturer', 'price']
+      17669 distinct tokens
+D4    attrs=['title', 'authors', 'venue', 'year']
+      8043 distinct tokens
+D5    attrs=['title', 'name', 'genre_list', 'episodeNumber', 'seasonNumber']
+      9812 distinct tokens
+D6    attrs=['title', 'name', 'episodeNumber', 'seasonNumber']
+      9113 distinct tokens
+D7    attrs=['title', 'name', 'abstract', 'episodeNumber', 'seasonNumber', 'releaseDate']
+      20938 distinct tokens
+D8    attrs=['title', 'brand', 'modelno', 'dimensions', 'price', 'shipweight']
+      36967 distinct tokens
+D9    attrs=['title', 'authors', 'venue', 'year']
+      89979 distinct tokens
+CORA  attrs=['address', 'author', 'editor', 'institution', 'month', 'note', 'pages', 'publisher', 'title', 'venue', 'volume', 'year', 'Unnamed: 13']
+      1209 distinct tokens
+CDDB  attrs=['artist', 'category', 'genre', 'title', 'year']
+      16265 distinct tokens
+
+loading /home/it2022025/er_scalability/embeddings/wiki.en.bin (this is the slow part) ...
+D2    -> /home/it2022025/er_scalability/embeddings/ft_cache_D2.npz  (6648 x 300)
+D3    -> /home/it2022025/er_scalability/embeddings/ft_cache_D3.npz  (17669 x 300)
+D4    -> /home/it2022025/er_scalability/embeddings/ft_cache_D4.npz  (8043 x 300)
+D5    -> /home/it2022025/er_scalability/embeddings/ft_cache_D5.npz  (9812 x 300)
+D6    -> /home/it2022025/er_scalability/embeddings/ft_cache_D6.npz  (9113 x 300)
+D7    -> /home/it2022025/er_scalability/embeddings/ft_cache_D7.npz  (20938 x 300)
+D8    -> /home/it2022025/er_scalability/embeddings/ft_cache_D8.npz  (36967 x 300)
+D9    -> /home/it2022025/er_scalability/embeddings/ft_cache_D9.npz  (89979 x 300)
+CORA  -> /home/it2022025/er_scalability/embeddings/ft_cache_CORA.npz  (1209 x 300)
+CDDB  -> /home/it2022025/er_scalability/embeddings/ft_cache_CDDB.npz  (16265 x 300)

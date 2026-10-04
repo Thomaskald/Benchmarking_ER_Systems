@@ -1,0 +1,35 @@
+
+=== D2  [sem_ccer] ===
+  -> pairwise F1=0.8587  B3 F1=0.9864  (P=0.989 R=0.984)  cfg#42  588.59s
+
+=== D3  [sem_ccer] ===
+  -> pairwise F1=0.6389  B3 F1=0.9698  (P=0.964 R=0.976)  cfg#5  1458.13s
+
+=== D4  [sem_ccer] ===
+  -> pairwise F1=0.9908  B3 F1=0.9956  (P=0.997 R=0.995)  cfg#6  186.86s
+
+=== D5  [sem_ccer] ===
+  -> pairwise F1=0.7952  B3 F1=0.9899  (P=0.983 R=0.997)  cfg#1  589.52s
+
+=== D6  [sem_ccer] ===
+  -> pairwise F1=0.5541  B3 F1=0.9884  (P=0.981 R=0.996)  cfg#1  639.05s
+
+=== D7  [sem_ccer] ===
+  -> pairwise F1=0.6598  B3 F1=0.9670  (P=0.951 R=0.983)  cfg#2  405.47s
+
+=== D8  [sem_ccer] ===
+  -> pairwise F1=0.4818  B3 F1=0.9860  (P=0.978 R=0.994)  cfg#2  900.88s
+
+=== D9  [sem_ccer] ===
+  -> pairwise F1=0.9525  B3 F1=0.9946  (P=0.997 R=0.993)  cfg#1  4092.37s
+
+=== CORA  [syn_der] ===
+  -> pairwise F1=0.8379  B3 F1=0.9099  (P=0.992 R=0.840)  cfg#15  20.96s
+
+=== CDDB  [syn_der] ===
+  -> pairwise F1=1.0000  B3 F1=1.0000  (P=1.000 R=1.000)  cfg#26  35.53s
+
+  pyJedAI-sem -> /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_sem_bestconfig_eval.csv  (8 new + 2 copied)
+  pyJedAI-syn -> /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_syn_bestconfig_eval.csv  (8 copied + 2 new)
+
+Done.

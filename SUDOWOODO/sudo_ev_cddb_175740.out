@@ -1,0 +1,2 @@
+pairwise_f1=0.5714 (search 0.5714, delta +0.000000)  bcubed_f1=0.9802  n_entities=612  972s
+RESULT_JSON:{"dataset": "CDDB", "config_id": 5, "family": "der", "csv_test_f1": 0.571429, "pairwise_precision": 0.842105, "pairwise_recall": 0.432432, "pairwise_f1": 0.571429, "bcubed_precision": 0.995098, "bcubed_recall": 0.965686, "bcubed_f1": 0.980172, "n_entities": 612, "n_pred_pairs": 19, "n_gt_pairs": 37, "chosen_threshold": 0.2, "time_sec": 972.39, "peak_mem_mb": 3466.0, "status": "OK"}

@@ -1,0 +1,2 @@
+pairwise_f1=0.9775 (search 0.9775, delta +0.000000)  bcubed_f1=0.9882  n_entities=911  1720s
+RESULT_JSON:{"dataset": "D4", "config_id": 3, "family": "ccer", "csv_test_f1": 0.977528, "pairwise_precision": 0.960265, "pairwise_recall": 0.995423, "pairwise_f1": 0.977528, "bcubed_precision": 0.978778, "bcubed_recall": 0.997805, "bcubed_f1": 0.9882, "n_entities": 911, "n_pred_pairs": 453, "n_gt_pairs": 437, "chosen_threshold": 0.74, "time_sec": 1719.92, "peak_mem_mb": 5761.5, "status": "OK"}

@@ -1,0 +1,64 @@
+########## simclr / max_len 128 ##########
+Sudowoodo CPU feasibility check
+  lm=distilbert ssl_method=simclr batch_size=64 max_len=128 threads=4
+  cuda available: False (expected False)
+
+  model load: 1s (counted as per-config startup)
+
+  Measured per-step cost, per dataset (seq = mean padded sequence length):
+
+    task   train     ssl step    ft step    
+    --------------------------------------------
+    CDDB   2508      6.85s seq53 5.82s seq78
+    CORA   142714    17.67s seq114 11.98s seq128
+    D2     20014     19.41s seq128 13.06s seq128
+    D3     8124      19.37s seq128 13.19s seq128
+    D4     1376      13.00s seq92 9.72s seq127
+    D5     95194     6.17s seq50 5.69s seq76
+    D6     193460    4.26s seq33 4.17s seq58
+    D7     4686      18.64s seq124 12.93s seq128
+    D8     26050     11.51s seq86 9.79s seq128
+    D9     7548      13.33s seq95 11.28s seq127
+
+  Projected wall time per config. Lower bound -- excludes
+  --bootstrap and --clustering, which add an encode pass each.
+
+    task   (3,50)      (3,10)      (2,5)       (1,3)       (1,1)      
+    ------------------------------------------------------------------
+    CDDB   7.5h      ! 1.9h      ! 63m         35m         19m        
+    CORA   749.4h    ! 116.1h    ! 51.0h     ! 33.4h     ! 1.8h      !
+    D2     129.4h    ! 22.5h     ! 10.5h     ! 6.6h      ! 75m        
+    D3     54.5h     ! 10.7h     ! 5.3h      ! 3.2h      ! 60m        
+    D4     8.3h      ! 2.7h      ! 1.6h      ! 52m         35m        
+    D5     266.0h    ! 42.6h     ! 19.1h     ! 12.3h     ! 69m        
+    D6     394.1h    ! 62.4h     ! 27.8h     ! 18.1h     ! 88m        
+    D7     31.9h     ! 7.1h      ! 3.7h      ! 2.1h      ! 54m        
+    D8     127.5h    ! 21.4h     ! 9.8h      ! 6.2h      ! 56m        
+    D9     43.7h     ! 8.4h      ! 4.1h      ! 2.5h      ! 43m        
+
+    '!' = over the 1.5h cap. Those become TIMEOUT rows, which is a
+    reportable result -- but a dataset that is '!' in EVERY column
+    cannot be searched at all under the frozen protocol, and that
+    needs raising with the supervisor.
+
+    (3,50) is the authors' published setting.
+
+########## simclr / max_len 64 ##########
+Sudowoodo CPU feasibility check
+  lm=distilbert ssl_method=simclr batch_size=64 max_len=64 threads=4
+  cuda available: False (expected False)
+
+  model load: 1s (counted as per-config startup)
+
+  Measured per-step cost, per dataset (seq = mean padded sequence length):
+
+    task   train     ssl step    ft step    
+    --------------------------------------------
+    CDDB   2508      6.71s seq53 4.76s seq64
+    CORA   142714    8.48s seq64 6.24s seq64
+    D2     20014     8.34s seq64 6.17s seq64
+    D3     8124      8.50s seq64 6.31s seq64
+    D4     1376      8.45s seq64 6.18s seq64
+    D5     95194     5.37s seq42 5.01s seq64
+    D6     193460    4.40s seq34 3.83s seq54
+    D7     4686      8.65s seq64 6.27s seq64

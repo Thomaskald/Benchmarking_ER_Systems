@@ -1,8 +1,10 @@
 ,mean_rank
-RecordLinkage,1.5625
-Magellan,2.6875
-pyJedAI,2.75
-Splink,4.375
-LinkTransformer,4.625
-Zingg,5.875
-Dedupe,6.125
+RecordLinkage,2.0625
+Magellan,3.3125
+pyJedAI-syn,3.375
+DeepER,4.125
+pyJedAI-sem,4.875
+Splink,5.625
+LinkTransformer,6.125
+Zingg,7.5
+Dedupe,8.0

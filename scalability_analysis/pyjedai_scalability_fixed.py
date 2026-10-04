@@ -2,8 +2,9 @@
 pyjedai_scalability_fixed.py
 ----------------------------
 Fixed-config scalability runs for pyJedAI on synthetic FEBRL datasets.
-Uses the single BEST config chosen from the 10K B=50 search:
-    vectorizer=sminilm, similarity_distance=cosine, top_k=14, threshold=0.7698
+Uses the single BEST config chosen from the 10K B=50 search by argmax(valid_f1)
+(config #3, valid_f1=0.588745; the search completed 12 of 50 configs):
+    vectorizer=sminilm, similarity_distance=cosine, top_k=2, threshold=0.7656
 
 No random search, no B -- one fixed config applied to each size.
 10K is excluded (it was the tuning size).

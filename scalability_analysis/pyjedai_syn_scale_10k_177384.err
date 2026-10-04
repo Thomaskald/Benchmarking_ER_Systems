@@ -1,0 +1,3 @@
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 177384 ON hpc02 CANCELLED AT 2026-10-01T19:30:53 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 177384.0 ON hpc02 CANCELLED AT 2026-10-01T19:30:53 DUE TO TIME LIMIT ***

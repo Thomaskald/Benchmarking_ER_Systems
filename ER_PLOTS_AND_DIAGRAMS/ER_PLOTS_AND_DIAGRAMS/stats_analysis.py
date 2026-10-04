@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Statistical + scalability analysis for the 7-framework ER comparison.
+Statistical + scalability analysis for the ER framework comparison.
 
 Produces the two artefacts the professor asked for, plus a supporting
 scalability curve:
@@ -17,9 +17,12 @@ scalability curve:
 
     3. Scalability curves (runtime vs. dataset size)     -> STATS/scalability_runtime.png
 
-All 7 frameworks share the 8 CCER datasets D2..D9, so the analysis runs on
-that complete 7x8 block.  (Magellan, RecordLinkage, LinkTransformer never ran
-CORA/CDDB, so those two DER datasets cannot enter a 7-way Friedman test.)
+Rank statistics need a complete block (every framework on every dataset), so
+they run over the frameworks with a result on all 8 CCER datasets D2..D9.
+Sudowoodo is excluded from the ranks and the Pareto means: no configuration
+finished within the time limits on D5, D6, D8 and CORA.  It still appears in
+every per-dataset plot (make_plots.py).  Magellan, RecordLinkage and
+LinkTransformer are two-source only and never ran CORA/CDDB.
 
 Run:  python3 stats_analysis.py
 """
@@ -33,57 +36,31 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
+from er_style import (HERE, REPO, FRAMEWORK_ORDER, FRAMEWORK_COLORS,
+                      CCER_DATASETS, DER_DATASETS, DER_FRAMEWORKS, disp)
+from er_style import FRAMEWORK_HATCH as _HATCH
+
 # ---------------------------------------------------------------- paths -----
-HOME = "/home/thomas"
-OUT_ROOT = "/home/thomas/ER_PLOTS_AND_DIAGRAMS"
+HOME = REPO
+OUT_ROOT = HERE
 STATS_DIR = os.path.join(OUT_ROOT, "STATS")
 
 FRAMEWORK_FILES = {
     "Dedupe":          [f"{HOME}/DEDUPE/results/dedupe_bestconfig_eval.csv"],
-    "pyJedAI":         [f"{HOME}/PYJEDAI/results/pyjedai_bestconfig_eval.csv"],
+    "pyJedAI-syn":     [f"{HOME}/PYJEDAI/results/pyjedai_syn_bestconfig_eval.csv"],
+    "pyJedAI-sem":     [f"{HOME}/PYJEDAI/results/pyjedai_sem_bestconfig_eval.csv"],
     "Zingg":           [f"{HOME}/ZINGG/results/zingg_bestconfig_eval.csv"],
     "Splink":          [f"{HOME}/SPLINK/results/splink_bestconfig_eval.csv"],
-    "Magellan":        [f"{HOME}/MAGELLAN/magellan_bestconfig_eval.csv"],
+    "Magellan":        [f"{HOME}/MAGELLAN/results/magellan_bestconfig_eval.csv"],
     "RecordLinkage":   [f"{HOME}/RECORDLINKAGE/results/recordlinkage_bestconfig_eval.csv"],
     "LinkTransformer": sorted(glob.glob(
         f"{HOME}/LINKTRANSFORMER/results/linktransformer_bestconfig_evalD*.csv")),
+    "DeepER":          [f"{HOME}/DEEPER/results/deeper_bestconfig_eval.csv"],
+    "Sudowoodo":       [f"{HOME}/SUDOWOODO/results/sudowoodo_bestconfig_eval.csv"],
 }
 
-FRAMEWORK_ORDER = ["Dedupe", "Splink", "Zingg", "Magellan",
-                   "pyJedAI", "LinkTransformer", "RecordLinkage"]
-FRAMEWORK_COLORS = {
-    "Dedupe":          "#2a78d6",
-    "Splink":          "#1baf7a",
-    "Zingg":           "#eda100",
-    "Magellan":        "#008300",
-    "pyJedAI":         "#4a3aa7",
-    "LinkTransformer": "#e34948",
-    "RecordLinkage":   "#e87ba4",
-}
 # Redundant channel next to colour so bars survive greyscale printing.
-FRAMEWORK_HATCH = {
-    "Dedupe":          "//",
-    "Splink":          "\\\\",
-    "Zingg":           "xx",
-    "Magellan":        "..",
-    "pyJedAI":         "++",
-    "LinkTransformer": "||",
-    "RecordLinkage":   "--",
-}
-
-# All 7 frameworks share exactly these 8 datasets -> complete block.
-CCER_DATASETS = ["D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9"]
-# Only these 4 frameworks ran the 2 DER (dirty) datasets.
-DER_DATASETS = ["CORA", "CDDB"]
-DER_FRAMEWORKS = ["Dedupe", "Splink", "Zingg", "pyJedAI"]
-
-# The CCER datasets are presented as D1..D8 (source ids stay D2..D9).
-DISPLAY_NAME = {f"D{i}": f"D{i - 1}" for i in range(2, 10)}
-
-
-def disp(dataset):
-    """Name a dataset is shown under."""
-    return DISPLAY_NAME.get(dataset, dataset)
+FRAMEWORK_HATCH = {fw: h * 2 for fw, h in _HATCH.items()}
 
 VALUE_COLS = ["pairwise_f1", "bcubed_f1", "time_sec", "n_entities"]
 
@@ -115,6 +92,26 @@ def load_all():
     return combined
 
 
+def complete_frameworks(combined, datasets, candidates):
+    """Split candidates into (with a result on every dataset, the rest)."""
+    ok, out = [], []
+    for fw in candidates:
+        sub = combined[(combined["framework"] == fw) &
+                       (combined["dataset"].isin(datasets))]
+        full = (set(sub.dropna(subset=["pairwise_f1", "bcubed_f1"])["dataset"])
+                >= set(datasets))
+        (ok if full else out).append(fw)
+    return ok, out
+
+
+def exclusion_note(excluded):
+    if not excluded:
+        return ""
+    return (f"{', '.join(excluded)} excluded: no configuration finished within "
+            f"the time limits on some datasets, and a rank test needs every "
+            f"framework on every dataset.")
+
+
 # ------------------------------------------------------ nemenyi machinery ---
 def critical_difference(k, n, alpha):
     q = NEMENYI_Q[alpha][k]
@@ -141,7 +138,8 @@ def average_ranks(score_matrix):
 
 
 # ----------------------------------------------------------- CD diagram -----
-def plot_cd_diagram(avg_ranks, cd, k, n, title, out_path, alpha=0.05):
+def plot_cd_diagram(avg_ranks, cd, k, n, title, out_path, alpha=0.05,
+                    note=""):
     """Critical-difference diagram, decluttered.
 
     Layout keeps the two visually-noisy elements apart:
@@ -225,6 +223,9 @@ def plot_cd_diagram(avg_ranks, cd, k, n, title, out_path, alpha=0.05):
 
     ax.set_ylim(bottom, cd_y + 0.35)
     ax.axis("off")
+    if note:
+        ax.text(0.5, bottom - 0.05, note, ha="center", va="top", fontsize=9,
+                style="italic", color="#555555")
     ax.set_title(f"{title}\n(k={k} frameworks, N={n} datasets,  "
                  f"1 = best; bars join groups with no significant difference)",
                  fontsize=12)
@@ -270,17 +271,19 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
 
     CCER (D1..D8) and DER (CORA, CDDB) sit in the same figure; the last column
     holds the mean rank over the CCER datasets.  Ranks are computed within each
-    column over the frameworks that actually ran that dataset, so DER columns
-    rank 4 frameworks and CCER columns rank 7.  Cells are shaded by relative
+    column over the frameworks with a complete block, so they match the
+    critical-difference and mean-rank tables.  Cells are shaded by relative
     position inside their own column (dark = best) so the two blocks stay
-    comparable; the three frameworks that never ran DER get empty cells.
+    comparable; the frameworks that never ran DER get empty cells.
     """
-    ccer_fw = [fw for fw in FRAMEWORK_ORDER if fw in set(combined["framework"])]
+    present = [fw for fw in FRAMEWORK_ORDER if fw in set(combined["framework"])]
+    ccer_fw, ccer_out = complete_frameworks(combined, CCER_DATASETS, present)
     ccer_M = rank_matrix(combined, metric, CCER_DATASETS, ccer_fw)
     ccer_ranks = ccer_M.rank(axis=1, ascending=False, method="average")
     avg = ccer_ranks.mean(axis=0)
 
-    der_fw = [fw for fw in ccer_fw if fw in DER_FRAMEWORKS]
+    der_fw, der_out = complete_frameworks(
+        combined, DER_DATASETS, [fw for fw in ccer_fw if fw in DER_FRAMEWORKS])
     der_M = rank_matrix(combined, metric, DER_DATASETS, der_fw)
     der_ranks = der_M.rank(axis=1, ascending=False, method="average")
 
@@ -345,12 +348,16 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
             ha="center", va="center", fontsize=11, fontweight="bold")
     ax.set_title(f"Ranking position per dataset — {nice}  (1 = best)",
                  fontsize=13, pad=34)
+    two_source = [fw for fw in ccer_fw if fw not in DER_FRAMEWORKS]
+    excluded = sorted(set(ccer_out) | set(der_out),
+                      key=FRAMEWORK_ORDER.index)
     ax.text(0.5, -0.14,
-            "Ranks are within a column: 7 frameworks on CCER, 4 on DER "
-            "(Magellan, LinkTransformer and RecordLinkage are two-source only "
-            "and did not run DER, shown as —).\n"
+            f"Ranks are within a column: {len(ccer_fw)} frameworks on CCER, "
+            f"{len(der_fw)} on DER ({', '.join(two_source)} are two-source "
+            f"only and did not run DER, shown as —).\n"
             "Shading is the relative position inside each column (darker = "
-            "better), so CCER and DER columns stay comparable.",
+            "better), so CCER and DER columns stay comparable.\n"
+            + exclusion_note(excluded),
             transform=ax.transAxes, ha="center", va="top", fontsize=8.5,
             style="italic", color="#555555")
     fig.tight_layout()
@@ -377,7 +384,7 @@ def pareto_front(points):
     return set(front)
 
 
-def plot_pareto(agg, metric, title, out_path):
+def plot_pareto(agg, metric, title, out_path, note=""):
     """agg: DataFrame indexed by framework with columns 'f1' and 'time'."""
     pts = [(agg.loc[fw, "time"], agg.loc[fw, metric], fw) for fw in agg.index]
     front = pareto_front([(t, q, fw) for (t, q, fw) in pts])
@@ -422,15 +429,22 @@ def plot_pareto(agg, metric, title, out_path):
     ]
     ax.legend(handles=legend_handles, loc="lower left", fontsize=9,
               framealpha=0.9)
+    if note:
+        ax.text(0.5, -0.13, note.replace("a rank test needs every framework on every dataset", "a mean over fewer datasets is not comparable"),
+                transform=ax.transAxes, ha="center", va="top", fontsize=8.5,
+                style="italic", color="#555555", wrap=True)
     fig.tight_layout()
-    fig.savefig(out_path, dpi=150)
+    fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
 
 # ----------------------------------------------------- scalability curve ----
 def plot_scalability(combined, datasets, out_path):
+    # One x position per dataset: the test-set entity count most frameworks
+    # agree on (a framework whose loader saw fewer records must not move the
+    # dataset for everyone).
     sizes = (combined[combined["dataset"].isin(datasets)]
-             .groupby("dataset")["n_entities"].first())
+             .groupby("dataset")["n_entities"].median())
     fig, ax = plt.subplots(figsize=(8.4, 6))
     for fw in FRAMEWORK_ORDER:
         xs, ys = [], []
@@ -464,7 +478,7 @@ def plot_scalability(combined, datasets, out_path):
 METRICS = [("pairwise_f1", "Pairwise F1"), ("bcubed_f1", "B-Cubed F1")]
 
 
-def pareto_section(combined, datasets, frameworks, family, log):
+def pareto_section(combined, datasets, frameworks, family, log, excluded=()):
     """Pareto front (quality vs runtime) for one dataset family."""
     sub = combined[combined["dataset"].isin(datasets)]
     agg = sub.groupby("framework").agg(
@@ -480,7 +494,8 @@ def pareto_section(combined, datasets, frameworks, family, log):
             f"{', '.join(sorted(front))}")
         plot_pareto(agg, metric,
                     f"Pareto front — {nice} vs. runtime ({family})",
-                    os.path.join(STATS_DIR, f"pareto_{family}_{metric}.png"))
+                    os.path.join(STATS_DIR, f"pareto_{family}_{metric}.png"),
+                    note=exclusion_note(list(excluded)))
     agg.round(4).to_csv(os.path.join(STATS_DIR, f"pareto_summary_{family}.csv"))
 
 
@@ -499,10 +514,14 @@ def main():
 
     # ===================== CCER: full Friedman + Nemenyi ================
     log("=" * 70)
-    log("CCER  —  7 frameworks x 8 datasets (D2-D9)")
+    present = [fw for fw in FRAMEWORK_ORDER if fw in set(combined["framework"])]
+    ccer_fw, ccer_out = complete_frameworks(combined, CCER_DATASETS, present)
+    log(f"CCER  —  {len(ccer_fw)} frameworks x {len(CCER_DATASETS)} datasets "
+        f"(D2-D9)")
     log("Friedman omnibus test + Nemenyi post-hoc (critical-difference)")
+    if ccer_out:
+        log(exclusion_note(ccer_out))
     log("=" * 70)
-    ccer_fw = [fw for fw in FRAMEWORK_ORDER if fw in set(combined["framework"])]
     for metric, nice in METRICS:
         M = rank_matrix(combined, metric, CCER_DATASETS, ccer_fw)
         if M.isna().any().any():
@@ -520,19 +539,25 @@ def main():
             log(f"    {fw:<16} {avg[fw]:.3f}")
         plot_cd_diagram(avg, cd05, k, n,
                         f"Critical-difference diagram — {nice}  (CCER)",
-                        os.path.join(STATS_DIR, f"cd_CCER_{metric}.png"))
+                        os.path.join(STATS_DIR, f"cd_CCER_{metric}.png"),
+                        note=exclusion_note(ccer_out))
         M.to_csv(os.path.join(STATS_DIR, f"scores_CCER_{metric}.csv"))
         pd.DataFrame({"mean_rank": avg}).sort_values("mean_rank").to_csv(
             os.path.join(STATS_DIR, f"meanranks_CCER_{metric}.csv"))
 
     # ===================== DER: descriptive only (N=2) ==================
     log("\n" + "=" * 70)
-    log("DER  —  4 frameworks x 2 datasets (CORA, CDDB)")
+    der_fw, der_out = complete_frameworks(
+        combined, DER_DATASETS,
+        [fw for fw in FRAMEWORK_ORDER if fw in DER_FRAMEWORKS])
+    log(f"DER  —  {len(der_fw)} frameworks x {len(DER_DATASETS)} datasets "
+        f"(CORA, CDDB)")
     log("NOTE: with only N=2 datasets a Friedman/Nemenyi test is under-")
     log("powered and a CD diagram is not meaningful. Reporting the test")
     log("for completeness, but the ranking below is DESCRIPTIVE only.")
+    if der_out:
+        log(exclusion_note(der_out))
     log("=" * 70)
-    der_fw = [fw for fw in FRAMEWORK_ORDER if fw in DER_FRAMEWORKS]
     for metric, nice in METRICS:
         M = rank_matrix(combined, metric, DER_DATASETS, der_fw)
         if M.isna().any().any():
@@ -551,7 +576,8 @@ def main():
             avg, k, n, f"Mean ranks — {nice}  (DER: CORA, CDDB)",
             os.path.join(STATS_DIR, f"meanranks_DER_{metric}.png"),
             note="Descriptive ranking only — N=2 datasets is too few for a "
-                 "valid Friedman/Nemenyi significance test.")
+                 "valid Friedman/Nemenyi significance test."
+                 + ("\n" + exclusion_note(der_out) if der_out else ""))
         M.to_csv(os.path.join(STATS_DIR, f"scores_DER_{metric}.csv"))
 
     # ============ ranking heatmap (CCER + DER in one figure) ============
@@ -574,8 +600,8 @@ def main():
     log("\n" + "=" * 70)
     log("PARETO FRONTS  (quality vs. runtime)")
     log("=" * 70)
-    pareto_section(combined, CCER_DATASETS, ccer_fw, "CCER", log)
-    pareto_section(combined, DER_DATASETS, der_fw, "DER", log)
+    pareto_section(combined, CCER_DATASETS, ccer_fw, "CCER", log, ccer_out)
+    pareto_section(combined, DER_DATASETS, der_fw, "DER", log, der_out)
 
     # ===================== scalability curve (CCER) =====================
     plot_scalability(combined, CCER_DATASETS,

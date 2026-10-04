@@ -1,0 +1,31 @@
+using interpreter: /home/it2022025/er_scalability/ftenv/bin/python
+10K   10,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+      37,319 distinct tokens
+50K   50,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'street_number', 'address_2', 'age']
+      146,898 distinct tokens
+100K  100,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'age', 'address_2', 'street_number']
+      265,465 distinct tokens
+200K  200,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+      480,888 distinct tokens
+300K  300,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+      684,251 distinct tokens
+1M    1,000,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'address_2', 'street_number', 'age']
+      2,018,099 distinct tokens
+2M    2,000,000 records  attrs=['given_name', 'surname', 'address_1', 'suburb', 'postcode', 'state', 'date_of_birth', 'soc_sec_id', 'phone_number']
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+      3,784,875 distinct tokens
+
+loading /home/it2022025/er_scalability/embeddings/wiki.en.bin (this is the slow part) ...
+10K   -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN10K.npz  (37,319 x 300, 46 MB)
+50K   -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN50K.npz  (146,898 x 300, 180 MB)
+100K  -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN100K.npz  (265,465 x 300, 327 MB)
+200K  -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN200K.npz  (480,888 x 300, 591 MB)
+300K  -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN300K.npz  (684,251 x 300, 846 MB)
+1M    -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN1M.npz  (2,018,099 x 300, 2494 MB)
+2M    -> /home/it2022025/er_scalability/embeddings/ft_cache_SYN2M.npz  (3,784,875 x 300, 4678 MB)

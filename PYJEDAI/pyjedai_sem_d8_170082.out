@@ -1,0 +1,18 @@
+pyJedAI SEMANTIC CCER random search | dataset=D8 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 48, 'similarity_threshold': 0.275, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.4569 (P=0.341 R=0.693)  thr=0.275 (valF1=0.460)  time=1728.65s  mem=1419.5MB
+
+[2/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.7407, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.4818 (P=0.369 R=0.693)  thr=0.7407 (valF1=0.472)  time=888.87s  mem=1306.1MB
+
+[3/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 3, 'similarity_threshold': 0.0298, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.0899 (P=0.320 R=0.052)  thr=0.0298 (valF1=0.091)  time=4506.54s  mem=19309.5MB
+
+[4/50] config: {'vectorizer': 'st5', 'similarity_distance': 'cosine', 'top_k': 36, 'similarity_threshold': 0.1988, 'clusterer': 'ConnectedComponentsClustering'}
+   -> TIMEOUT  time=5400.29s
+
+[5/50] config: {'vectorizer': 'st5', 'similarity_distance': 'euclidean', 'top_k': 38, 'similarity_threshold': 0.2782, 'clusterer': 'UniqueMappingClustering'}
+   -> TIMEOUT  time=5400.29s
+
+[6/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'euclidean', 'top_k': 22, 'similarity_threshold': 0.2779, 'clusterer': 'UniqueMappingClustering'}

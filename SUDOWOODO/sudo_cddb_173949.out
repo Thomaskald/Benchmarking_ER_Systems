@@ -1,0 +1,18 @@
+Sudowoodo random search | dataset=CDDB | B=5 | caps: 1.50h / 12GB per config
+
+[1/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 1.76e-05, 'da': 'drop_col', 'projector': '768'}
+   -> OK  testF1=0.2759 (P=0.185 R=0.541)  thr=0.1 (valF1=0.281)  epoch=2  time=1507.71s  mem=6506.7MB
+
+[2/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 3, 'max_len': 32, 'batch_size': 64, 'lr': 1.07e-05, 'da': 'drop_col', 'projector': '768'}
+   -> OK  testF1=0.5397 (P=0.654 R=0.459)  thr=0.14 (valF1=0.415)  epoch=3  time=1249.13s  mem=3231.5MB
+
+[3/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 1.66e-05, 'da': 'ins', 'projector': '4096'}
+   -> OK  testF1=0.5067 (P=0.500 R=0.514)  thr=0.13 (valF1=0.719)  epoch=2  time=1528.16s  mem=6558.4MB
+
+[4/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 2.19e-05, 'da': 'drop_col', 'projector': '768'}
+   -> OK  testF1=0.3091 (P=0.233 R=0.459)  thr=0.1 (valF1=0.356)  epoch=2  time=1526.77s  mem=6407.4MB
+
+[5/5] config: {'lm': 'distilbert', 'ssl_method': 'barlow_twins', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 32, 'batch_size': 64, 'lr': 2.4e-05, 'da': 'append_col', 'projector': '4096'}
+   -> OK  testF1=0.5714 (P=0.842 R=0.432)  thr=0.2 (valF1=0.679)  epoch=2  time=1016.4s  mem=3452.2MB
+
+Done. 5/5 OK. Wrote /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_CDDB_configs.csv and /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_CDDB_curves.json

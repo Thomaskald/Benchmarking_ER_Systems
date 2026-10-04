@@ -1,0 +1,42 @@
+Sudowoodo random search | dataset=D2 | B=5 | caps: 1.50h / 12GB per config
+
+[1/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 128, 'batch_size': 64, 'lr': 1.88e-05, 'da': 'drop_col', 'projector': '768', 'bootstrap': True}
+   -> TIMEOUT  time=5400.36s
+
+[2/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 3, 'max_len': 32, 'batch_size': 64, 'lr': 1.07e-05, 'da': 'drop_col', 'projector': '768', 'bootstrap': True}
+   -> ERROR  time=1145.4s
+      stderr: rD2.py", line 183, in main
+    new_trainset, _tpr, _tnr, _fpr, _fnr = do_bootstrap(model, hp)
+  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
+    for i in range(min(hp.size, N)):
+TypeError: '<' not supported between instances of 'int' and 'NoneType'
+
+
+[3/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 3, 'max_len': 32, 'batch_size': 64, 'lr': 2.81e-05, 'da': 'swap', 'projector': '768', 'bootstrap': True}
+   -> ERROR  time=1192.36s
+      stderr: rD2.py", line 183, in main
+    new_trainset, _tpr, _tnr, _fpr, _fnr = do_bootstrap(model, hp)
+  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
+    for i in range(min(hp.size, N)):
+TypeError: '<' not supported between instances of 'int' and 'NoneType'
+
+
+[4/5] config: {'lm': 'distilbert', 'ssl_method': 'barlow_twins', 'n_ssl_epochs': 1, 'n_epochs': 3, 'max_len': 64, 'batch_size': 64, 'lr': 1.43e-05, 'da': 'swap', 'projector': '768', 'bootstrap': True}
+   -> ERROR  time=2259.7s
+      stderr: rD2.py", line 183, in main
+    new_trainset, _tpr, _tnr, _fpr, _fnr = do_bootstrap(model, hp)
+  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
+    for i in range(min(hp.size, N)):
+TypeError: '<' not supported between instances of 'int' and 'NoneType'
+
+
+[5/5] config: {'lm': 'distilbert', 'ssl_method': 'barlow_twins', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 7.04e-05, 'da': 'shuffle', 'projector': '4096', 'bootstrap': True}
+   -> ERROR  time=5.37s
+      stderr: lability/sudowoodo/src/selfsl/augment.py", line 234, in augment_sent
+    tokens, labels = self.augment(tokens, labels, op=op)
+  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/augment.py", line 185, in augment
+    raise ValueError('DA operator not found')
+ValueError: DA operator not found
+
+
+Done. 0/5 OK. Wrote /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_D2_configs.csv and /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_D2_curves.json

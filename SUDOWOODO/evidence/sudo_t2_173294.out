@@ -1,0 +1,45 @@
+################ distilbert / torch 2.x ################
+torch 2.14.0+cpu
+Sudowoodo CPU feasibility check
+  lm=distilbert ssl_method=combined batch_size=64 max_len=128 threads=4
+  cuda available: False (expected False)
+
+  model load: 2s (counted as per-config startup)
+
+  Measured per-step cost, per dataset (seq = mean padded sequence length):
+
+    task   train     ssl step    ft step    
+    --------------------------------------------
+    CDDB   2508      13.08s seq53 6.43s seq82
+    CORA   142714    34.65s seq117 11.45s seq128
+    D2     20014     38.91s seq128 12.75s seq128
+    D3     8124      38.72s seq128 12.87s seq128
+    D4     1376      31.90s seq103 9.38s seq127
+    D5     95194     11.95s seq49 5.00s seq74
+    D6     193460    8.39s seq34 3.69s seq54
+    D7     4686      37.02s seq128 12.51s seq128
+    D8     26050     23.26s seq90 9.50s seq128
+    D9     7548      24.88s seq96 11.50s seq127
+
+  Projected wall time per config. Lower bound -- excludes
+  --bootstrap and --clustering, which add an encode pass each.
+
+    task   (3,50)      (3,10)      (2,5)       (1,3)       (1,1)      
+    ------------------------------------------------------------------
+    CDDB   8.9h      ! 2.8h      ! 1.6h      ! 53m         35m        
+    CORA   726.6h    ! 114.9h    ! 51.1h     ! 33.2h     ! 2.6h      !
+    D2     128.9h    ! 24.5h     ! 12.0h     ! 7.3h      ! 2.1h      !
+    D3     55.7h     ! 13.0h     ! 6.9h      ! 4.0h      ! 1.8h      !
+    D4     10.5h     ! 5.2h      ! 3.2h      ! 1.7h      ! 84m        
+    D5     239.1h    ! 39.1h     ! 17.8h     ! 11.4h     ! 83m        
+    D6     354.5h    ! 56.9h     ! 25.5h     ! 16.5h     ! 1.6h      !
+    D7     33.3h     ! 9.3h      ! 5.2h      ! 2.9h      ! 1.7h      !
+    D8     125.1h    ! 22.3h     ! 10.6h     ! 6.6h      ! 86m        
+    D9     45.5h     ! 9.9h      ! 5.1h      ! 3.0h      ! 73m        
+
+    '!' = over the 1.5h cap. Those become TIMEOUT rows, which is a
+    reportable result -- but a dataset that is '!' in EVERY column
+    cannot be searched at all under the frozen protocol, and that
+    needs raising with the supervisor.
+
+    (3,50) is the authors' published setting.

@@ -1,0 +1,95 @@
+DeepER scalability random search | dataset=10K | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.003042, 'epochs': 12, 'dropout': 0.112, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.9865 (P=0.984 R=0.989)  thr=0.05 (valF1=0.985)  attrs=9  time=710.78s  mem=1550.4MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[2/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000154, 'epochs': 12, 'dropout': 0.253, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.9851 (P=0.979 R=0.991)  thr=0.61 (valF1=0.985)  attrs=9  time=334.43s  mem=1193.9MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[3/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000791, 'epochs': 13, 'dropout': 0.405, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False, 'lstm_hidden': 64}
+   -> OK  testF1=0.9902 (P=0.994 R=0.986)  thr=0.84 (valF1=0.988)  attrs=9  time=423.82s  mem=1012.0MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[4/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 128, 'lr': 0.008212, 'epochs': 15, 'dropout': 0.051, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.9823 (P=0.983 R=0.982)  thr=0.12 (valF1=0.975)  attrs=9  time=39.09s  mem=841.0MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[5/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 64, 'lr': 0.00288, 'epochs': 22, 'dropout': 0.062, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.9883 (P=0.993 R=0.983)  thr=0.37 (valF1=0.994)  attrs=9  time=45.57s  mem=809.4MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[6/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002565, 'epochs': 6, 'dropout': 0.331, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.9803 (P=0.989 R=0.972)  thr=0.03 (valF1=0.974)  attrs=9  time=194.72s  mem=1081.6MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[7/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.001868, 'epochs': 16, 'dropout': 0.081, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.9853 (P=0.986 R=0.985)  thr=0.37 (valF1=0.991)  attrs=9  time=58.29s  mem=867.5MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[8/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.00117, 'epochs': 12, 'dropout': 0.082, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.9917 (P=0.990 R=0.994)  thr=0.15 (valF1=0.990)  attrs=9  time=1376.24s  mem=1507.3MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[9/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.004402, 'epochs': 30, 'dropout': 0.158, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.9899 (P=0.989 R=0.991)  thr=0.09 (valF1=0.990)  attrs=9  time=432.6s  mem=1040.1MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[10/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002046, 'epochs': 17, 'dropout': 0.442, 'batch_size': 256, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 64}
+   -> OK  testF1=0.9837 (P=0.990 R=0.977)  thr=0.12 (valF1=0.979)  attrs=9  time=1166.41s  mem=1777.5MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[11/50] config: {'composition': 'average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.003119, 'epochs': 18, 'dropout': 0.449, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.9754 (P=0.967 R=0.983)  thr=0.99 (valF1=0.963)  attrs=9  time=272.67s  mem=1118.7MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[12/50] config: {'composition': 'average', 'pair_feature': 'both', 'hidden_dim': 64, 'lr': 0.003248, 'epochs': 32, 'dropout': 0.055, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.9925 (P=0.995 R=0.990)  thr=0.49 (valF1=0.987)  attrs=9  time=70.81s  mem=837.3MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[13/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 512, 'lr': 0.00058, 'epochs': 19, 'dropout': 0.265, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.9921 (P=0.988 R=0.996)  thr=0.13 (valF1=0.991)  attrs=9  time=1111.18s  mem=1619.3MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[14/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 256, 'lr': 0.000167, 'epochs': 18, 'dropout': 0.079, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': False, 'lstm_hidden': 128}
+   -> OK  testF1=0.9861 (P=0.982 R=0.990)  thr=0.03 (valF1=0.985)  attrs=9  time=2857.93s  mem=1602.1MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[15/50] config: {'composition': 'average', 'pair_feature': 'similarity', 'hidden_dim': 256, 'lr': 0.004823, 'epochs': 21, 'dropout': 0.304, 'batch_size': 64, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.9865 (P=0.982 R=0.991)  thr=0.22 (valF1=0.985)  attrs=9  time=586.01s  mem=1060.9MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[16/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 256, 'lr': 0.000949, 'epochs': 8, 'dropout': 0.465, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.9910 (P=0.992 R=0.989)  thr=0.49 (valF1=0.989)  attrs=9  time=266.26s  mem=1090.4MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[17/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.002909, 'epochs': 31, 'dropout': 0.035, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.9887 (P=0.989 R=0.988)  thr=0.04 (valF1=0.984)  attrs=9  time=1809.95s  mem=1569.9MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[18/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.001136, 'epochs': 24, 'dropout': 0.212, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.9723 (P=0.969 R=0.976)  thr=0.63 (valF1=0.966)  attrs=9  time=690.13s  mem=1156.2MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[19/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.009779, 'epochs': 25, 'dropout': 0.187, 'batch_size': 256, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.9637 (P=0.979 R=0.949)  thr=0.01 (valF1=0.963)  attrs=9  time=1263.95s  mem=1474.2MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[20/50] config: {'composition': 'average', 'pair_feature': 'similarity', 'hidden_dim': 256, 'lr': 0.00011, 'epochs': 22, 'dropout': 0.115, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.9814 (P=0.989 R=0.974)  thr=0.97 (valF1=0.978)  attrs=9  time=604.44s  mem=967.9MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[21/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.000136, 'epochs': 6, 'dropout': 0.43, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 64}
+   -> OK  testF1=0.9936 (P=0.993 R=0.994)  thr=0.4 (valF1=0.989)  attrs=9  time=724.03s  mem=1573.5MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[22/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.001198, 'epochs': 28, 'dropout': 0.468, 'batch_size': 256, 'max_len': 24, 'tune_embeddings': False, 'lstm_hidden': 32}
+   -> OK  testF1=0.9884 (P=0.987 R=0.989)  thr=0.08 (valF1=0.987)  attrs=9  time=1692.01s  mem=1761.4MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[23/50] config: {'composition': 'idf_average', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000154, 'epochs': 26, 'dropout': 0.216, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': False}
+   -> OK  testF1=0.9917 (P=0.991 R=0.992)  thr=0.11 (valF1=0.995)  attrs=9  time=122.81s  mem=951.8MB
+      columns present but NOT embedded: ['entity_url', 'street_number', 'age', 'address_2']
+
+[24/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000132, 'epochs': 28, 'dropout': 0.17, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}

@@ -1,0 +1,42 @@
+DeepER (fastText, per-attribute) CCER random search | dataset=D5 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.003042, 'epochs': 12, 'dropout': 0.112, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.9005 (P=0.859 R=0.946)  thr=0.99 (valF1=0.905)  attrs=5  time=1700.25s  mem=1144.6MB
+
+[2/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000154, 'epochs': 12, 'dropout': 0.253, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.9150 (P=0.876 R=0.958)  thr=0.99 (valF1=0.914)  attrs=5  time=508.09s  mem=862.6MB
+
+[3/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000791, 'epochs': 13, 'dropout': 0.405, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False, 'lstm_hidden': 64}
+   -> OK  testF1=0.9176 (P=0.893 R=0.944)  thr=0.85 (valF1=0.927)  attrs=5  time=1383.58s  mem=840.5MB
+
+[4/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 128, 'lr': 0.008212, 'epochs': 15, 'dropout': 0.051, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.9078 (P=0.885 R=0.932)  thr=0.99 (valF1=0.911)  attrs=5  time=104.5s  mem=790.6MB
+
+[5/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 64, 'lr': 0.00288, 'epochs': 22, 'dropout': 0.062, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.6667 (P=0.641 R=0.695)  thr=0.98 (valF1=0.690)  attrs=5  time=127.65s  mem=772.3MB
+
+[6/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002565, 'epochs': 6, 'dropout': 0.331, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.6011 (P=0.820 R=0.475)  thr=1.0 (valF1=0.641)  attrs=5  time=426.98s  mem=857.3MB
+
+[7/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.001868, 'epochs': 16, 'dropout': 0.081, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.6710 (P=0.624 R=0.726)  thr=0.95 (valF1=0.707)  attrs=5  time=157.12s  mem=782.2MB
+
+[8/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.00117, 'epochs': 12, 'dropout': 0.082, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.8928 (P=0.859 R=0.929)  thr=0.99 (valF1=0.898)  attrs=5  time=3414.07s  mem=1098.0MB
+
+[9/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.004402, 'epochs': 30, 'dropout': 0.158, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.8416 (P=0.749 R=0.960)  thr=0.99 (valF1=0.844)  attrs=5  time=709.49s  mem=819.7MB
+
+[10/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002046, 'epochs': 17, 'dropout': 0.442, 'batch_size': 256, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 64}
+   -> OK  testF1=0.6527 (P=0.580 R=0.746)  thr=0.99 (valF1=0.645)  attrs=5  time=2810.68s  mem=1310.2MB
+
+[11/50] config: {'composition': 'average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.003119, 'epochs': 18, 'dropout': 0.449, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.9033 (P=0.884 R=0.924)  thr=0.98 (valF1=0.917)  attrs=5  time=502.56s  mem=848.7MB
+
+[12/50] config: {'composition': 'average', 'pair_feature': 'both', 'hidden_dim': 64, 'lr': 0.003248, 'epochs': 32, 'dropout': 0.055, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.8748 (P=0.820 R=0.938)  thr=0.64 (valF1=0.888)  attrs=5  time=222.52s  mem=788.5MB
+
+[13/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 512, 'lr': 0.00058, 'epochs': 19, 'dropout': 0.265, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.8970 (P=0.862 R=0.935)  thr=0.99 (valF1=0.905)  attrs=5  time=2698.65s  mem=1148.6MB
+
+[14/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 256, 'lr': 0.000167, 'epochs': 18, 'dropout': 0.079, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': False, 'lstm_hidden': 128}

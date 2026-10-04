@@ -1,0 +1,12 @@
+pyJedAI SEMANTIC CCER random search | dataset=D9 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'vectorizer': 'smpnet', 'similarity_distance': 'cosine', 'top_k': 48, 'similarity_threshold': 0.275, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9525 (P=0.970 R=0.935)  thr=0.275 (valF1=0.955)  time=4813.29s  mem=2411.5MB
+
+[2/50] config: {'vectorizer': 'sdistilroberta', 'similarity_distance': 'cosine', 'top_k': 44, 'similarity_threshold': 0.7407, 'clusterer': 'UniqueMappingClustering'}
+   -> OK  testF1=0.9472 (P=0.972 R=0.923)  thr=0.7407 (valF1=0.935)  time=2780.83s  mem=2138.6MB
+
+[3/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 3, 'similarity_threshold': 0.0298, 'clusterer': 'UniqueMappingClustering'}
+   -> TIMEOUT  time=5400.81s
+
+[4/50] config: {'vectorizer': 'st5', 'similarity_distance': 'cosine', 'top_k': 36, 'similarity_threshold': 0.1988, 'clusterer': 'ConnectedComponentsClustering'}

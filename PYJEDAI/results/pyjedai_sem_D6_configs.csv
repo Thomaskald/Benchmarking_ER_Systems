@@ -1,0 +1,10 @@
+config_id,status,vectorizer,similarity_distance,top_k,similarity_threshold,clusterer,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,time_sec,peak_mem_mb
+1,OK,smpnet,cosine,48,0.275,UniqueMappingClustering,0.275,0.534545,0.426554,0.790576,0.554128,827.39,1297.1
+2,OK,sdistilroberta,cosine,44,0.7407,UniqueMappingClustering,0.7407,0.4,0.557692,0.303665,0.39322,526.78,1196.1
+3,OK,albert,euclidean,3,0.0298,UniqueMappingClustering,0.0298,0.0,0.666667,0.010471,0.020619,2631.84,7937.7
+4,OK,st5,cosine,36,0.1988,ConnectedComponentsClustering,0.1988,0.0,0.0,0.0,0.0,3195.68,2637.7
+5,OK,st5,euclidean,38,0.2782,UniqueMappingClustering,0.2782,0.523636,0.38601,0.780105,0.516464,3240.28,2631.9
+6,OK,sdistilroberta,euclidean,22,0.2779,UniqueMappingClustering,0.2779,0.559184,0.417683,0.717277,0.527938,525.73,1201.1
+7,OK,bert,cosine,6,0.3799,ConnectedComponentsClustering,0.3799,0.0,0.0,0.0,0.0,2430.43,7240.5
+8,OK,bert,euclidean,3,0.7297,UniqueMappingClustering,0.7297,0.0,0.666667,0.010471,0.020619,2430.6,7315.3
+9,OK,distilbert,cosine,36,0.2932,ConnectedComponentsClustering,0.2932,0.0,0.0,0.0,0.0,1241.18,7191.3

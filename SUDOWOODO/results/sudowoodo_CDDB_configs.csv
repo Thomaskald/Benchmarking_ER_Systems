@@ -1,0 +1,6 @@
+config_id,status,task,lm,ssl_method,n_ssl_epochs,n_epochs,max_len,batch_size,lr,da,projector,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,best_epoch,n_train_pairs,time_sec,peak_mem_mb
+1,OK,CDDB,distilbert,simclr,1,2,64,64,1.76e-05,drop_col,768,0.1,0.28125,0.185185,0.540541,0.275862,2,2508,1507.71,6506.7
+2,OK,CDDB,distilbert,simclr,1,3,32,64,1.07e-05,drop_col,768,0.14,0.415094,0.653846,0.459459,0.539683,3,2508,1249.13,3231.5
+3,OK,CDDB,distilbert,simclr,1,2,64,64,1.66e-05,ins,4096,0.13,0.71875,0.5,0.513514,0.506667,2,2508,1528.16,6558.4
+4,OK,CDDB,distilbert,simclr,1,2,64,64,2.19e-05,drop_col,768,0.1,0.356436,0.232877,0.459459,0.309091,2,2508,1526.77,6407.4
+5,OK,CDDB,distilbert,barlow_twins,1,2,32,64,2.4e-05,append_col,4096,0.2,0.678571,0.842105,0.432432,0.571429,2,2508,1016.4,3452.2

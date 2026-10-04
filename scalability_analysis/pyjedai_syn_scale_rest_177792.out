@@ -1,0 +1,12 @@
+
+============================================================
+  PYJEDAI SYNTACTIC SCALABILITY (fixed best config)
+  ratio=0.9497 | CardinalityEdgePruning/COSINE | tfidf/cosine/char_tokenizer q=3 | thr=0.25
+============================================================
+
+============================================================
+  Dataset: 50K
+============================================================
+  Records    : 50,000
+  Test pairs : 25,356  (pos=6,339)
+  Load time  : 0.53s  |  mem: 295 MB

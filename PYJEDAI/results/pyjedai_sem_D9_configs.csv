@@ -1,0 +1,4 @@
+config_id,status,vectorizer,similarity_distance,top_k,similarity_threshold,clusterer,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,time_sec,peak_mem_mb
+1,OK,smpnet,cosine,48,0.275,UniqueMappingClustering,0.275,0.954654,0.970223,0.935407,0.952497,4813.29,2411.5
+2,OK,sdistilroberta,cosine,44,0.7407,UniqueMappingClustering,0.7407,0.935129,0.972292,0.923445,0.947239,2780.83,2138.6
+3,TIMEOUT,albert,euclidean,3,0.0298,UniqueMappingClustering,,,,,,5400.81,

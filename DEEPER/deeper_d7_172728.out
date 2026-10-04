@@ -1,0 +1,153 @@
+DeepER (fastText, per-attribute) CCER random search | dataset=D7 | B=50 | caps: 1.50h / 12GB per config
+
+[1/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.003042, 'epochs': 12, 'dropout': 0.112, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.6456 (P=0.636 R=0.655)  thr=0.74 (valF1=0.729)  attrs=6  time=105.83s  mem=1285.7MB
+
+[2/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000154, 'epochs': 12, 'dropout': 0.253, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.6025 (P=0.620 R=0.586)  thr=0.87 (valF1=0.707)  attrs=6  time=51.29s  mem=1061.3MB
+
+[3/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000791, 'epochs': 13, 'dropout': 0.405, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False, 'lstm_hidden': 64}
+   -> OK  testF1=0.6667 (P=0.707 R=0.631)  thr=0.84 (valF1=0.676)  attrs=6  time=63.14s  mem=891.3MB
+
+[4/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 128, 'lr': 0.008212, 'epochs': 15, 'dropout': 0.051, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.4730 (P=0.313 R=0.970)  thr=0.68 (valF1=0.486)  attrs=6  time=7.09s  mem=777.8MB
+
+[5/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 64, 'lr': 0.00288, 'epochs': 22, 'dropout': 0.062, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.5676 (P=0.523 R=0.621)  thr=0.81 (valF1=0.625)  attrs=6  time=9.04s  mem=817.7MB
+
+[6/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002565, 'epochs': 6, 'dropout': 0.331, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.4802 (P=0.517 R=0.448)  thr=0.88 (valF1=0.499)  attrs=6  time=31.87s  mem=975.6MB
+
+[7/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.001868, 'epochs': 16, 'dropout': 0.081, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.5963 (P=0.507 R=0.724)  thr=0.73 (valF1=0.635)  attrs=6  time=10.94s  mem=832.2MB
+
+[8/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.00117, 'epochs': 12, 'dropout': 0.082, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.6244 (P=0.644 R=0.606)  thr=0.94 (valF1=0.734)  attrs=6  time=206.47s  mem=1248.9MB
+
+[9/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.004402, 'epochs': 30, 'dropout': 0.158, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.6553 (P=0.650 R=0.660)  thr=0.9 (valF1=0.734)  attrs=6  time=66.04s  mem=905.2MB
+
+[10/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.002046, 'epochs': 17, 'dropout': 0.442, 'batch_size': 256, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 64}
+   -> OK  testF1=0.4716 (P=0.557 R=0.409)  thr=0.97 (valF1=0.527)  attrs=6  time=176.33s  mem=1432.8MB
+
+[11/50] config: {'composition': 'average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.003119, 'epochs': 18, 'dropout': 0.449, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.4716 (P=0.310 R=0.980)  thr=0.03 (valF1=0.484)  attrs=6  time=44.11s  mem=981.5MB
+
+[12/50] config: {'composition': 'average', 'pair_feature': 'both', 'hidden_dim': 64, 'lr': 0.003248, 'epochs': 32, 'dropout': 0.055, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.6091 (P=0.542 R=0.695)  thr=0.78 (valF1=0.670)  attrs=6  time=13.78s  mem=912.4MB
+
+[13/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 512, 'lr': 0.00058, 'epochs': 19, 'dropout': 0.265, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.6482 (P=0.662 R=0.635)  thr=0.9 (valF1=0.737)  attrs=6  time=167.29s  mem=1300.3MB
+
+[14/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 256, 'lr': 0.000167, 'epochs': 18, 'dropout': 0.079, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': False, 'lstm_hidden': 128}
+   -> OK  testF1=0.6305 (P=0.663 R=0.601)  thr=0.61 (valF1=0.708)  attrs=6  time=423.68s  mem=1322.4MB
+
+[15/50] config: {'composition': 'average', 'pair_feature': 'similarity', 'hidden_dim': 256, 'lr': 0.004823, 'epochs': 21, 'dropout': 0.304, 'batch_size': 64, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.6538 (P=0.643 R=0.665)  thr=0.85 (valF1=0.730)  attrs=6  time=86.74s  mem=912.0MB
+
+[16/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 256, 'lr': 0.000949, 'epochs': 8, 'dropout': 0.465, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.6326 (P=0.625 R=0.640)  thr=0.65 (valF1=0.732)  attrs=6  time=42.17s  mem=931.2MB
+
+[17/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.002909, 'epochs': 31, 'dropout': 0.035, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.6452 (P=0.650 R=0.640)  thr=0.89 (valF1=0.729)  attrs=6  time=269.3s  mem=1256.7MB
+
+[18/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.001136, 'epochs': 24, 'dropout': 0.212, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.4693 (P=0.309 R=0.980)  thr=0.04 (valF1=0.484)  attrs=6  time=112.59s  mem=986.7MB
+
+[19/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.009779, 'epochs': 25, 'dropout': 0.187, 'batch_size': 256, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.5615 (P=0.614 R=0.517)  thr=0.87 (valF1=0.582)  attrs=6  time=186.82s  mem=1357.7MB
+
+[20/50] config: {'composition': 'average', 'pair_feature': 'similarity', 'hidden_dim': 256, 'lr': 0.00011, 'epochs': 22, 'dropout': 0.115, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.6422 (P=0.639 R=0.645)  thr=0.78 (valF1=0.734)  attrs=6  time=87.7s  mem=963.2MB
+
+[21/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.000136, 'epochs': 6, 'dropout': 0.43, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 64}
+   -> OK  testF1=0.5882 (P=0.612 R=0.567)  thr=0.83 (valF1=0.698)  attrs=6  time=110.52s  mem=1281.4MB
+
+[22/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.001198, 'epochs': 28, 'dropout': 0.468, 'batch_size': 256, 'max_len': 24, 'tune_embeddings': False, 'lstm_hidden': 32}
+   -> OK  testF1=0.6650 (P=0.656 R=0.675)  thr=0.6 (valF1=0.716)  attrs=6  time=278.69s  mem=1447.8MB
+
+[23/50] config: {'composition': 'idf_average', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000154, 'epochs': 26, 'dropout': 0.216, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': False}
+   -> OK  testF1=0.6667 (P=0.604 R=0.744)  thr=0.69 (valF1=0.746)  attrs=6  time=19.72s  mem=865.1MB
+
+[24/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000132, 'epochs': 28, 'dropout': 0.17, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.6115 (P=0.622 R=0.601)  thr=0.79 (valF1=0.714)  attrs=6  time=207.56s  mem=941.7MB
+
+[25/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.000698, 'epochs': 13, 'dropout': 0.231, 'batch_size': 64, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.6636 (P=0.627 R=0.704)  thr=0.62 (valF1=0.732)  attrs=6  time=136.38s  mem=1117.2MB
+
+[26/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.007124, 'epochs': 32, 'dropout': 0.118, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': False, 'lstm_hidden': 32}
+   -> OK  testF1=0.6473 (P=0.635 R=0.660)  thr=0.91 (valF1=0.727)  attrs=6  time=206.69s  mem=1048.5MB
+
+[27/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.000573, 'epochs': 17, 'dropout': 0.133, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': False}
+   -> OK  testF1=0.6384 (P=0.646 R=0.631)  thr=0.91 (valF1=0.732)  attrs=6  time=19.68s  mem=847.2MB
+
+[28/50] config: {'composition': 'lstm', 'pair_feature': 'both', 'hidden_dim': 128, 'lr': 0.00024, 'epochs': 11, 'dropout': 0.484, 'batch_size': 256, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.6853 (P=0.650 R=0.724)  thr=0.74 (valF1=0.745)  attrs=6  time=294.89s  mem=1959.6MB
+
+[29/50] config: {'composition': 'idf_average', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.001474, 'epochs': 21, 'dropout': 0.46, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.6287 (P=0.632 R=0.626)  thr=0.84 (valF1=0.737)  attrs=6  time=28.93s  mem=928.2MB
+
+[30/50] config: {'composition': 'lstm', 'pair_feature': 'similarity', 'hidden_dim': 128, 'lr': 0.000137, 'epochs': 7, 'dropout': 0.338, 'batch_size': 64, 'max_len': 16, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.5810 (P=0.608 R=0.557)  thr=0.86 (valF1=0.702)  attrs=6  time=139.59s  mem=1247.8MB
+
+[31/50] config: {'composition': 'average', 'pair_feature': 'similarity', 'hidden_dim': 64, 'lr': 0.000689, 'epochs': 23, 'dropout': 0.283, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.6359 (P=0.627 R=0.645)  thr=0.8 (valF1=0.737)  attrs=6  time=54.01s  mem=953.5MB
+
+[32/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.00034, 'epochs': 9, 'dropout': 0.336, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': False, 'lstm_hidden': 32}
+   -> OK  testF1=0.5777 (P=0.569 R=0.586)  thr=0.71 (valF1=0.688)  attrs=6  time=57.85s  mem=1027.7MB
+
+[33/50] config: {'composition': 'average', 'pair_feature': 'both', 'hidden_dim': 64, 'lr': 0.00014, 'epochs': 11, 'dropout': 0.253, 'batch_size': 64, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.6500 (P=0.603 R=0.704)  thr=0.68 (valF1=0.730)  attrs=6  time=46.05s  mem=919.9MB
+
+[34/50] config: {'composition': 'average', 'pair_feature': 'hadamard', 'hidden_dim': 256, 'lr': 0.000207, 'epochs': 31, 'dropout': 0.272, 'batch_size': 128, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.5702 (P=0.520 R=0.631)  thr=0.67 (valF1=0.631)  attrs=6  time=88.33s  mem=1024.5MB
+
+[35/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 64, 'lr': 0.007548, 'epochs': 9, 'dropout': 0.132, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 64}
+   -> OK  testF1=0.5577 (P=0.651 R=0.488)  thr=0.97 (valF1=0.583)  attrs=6  time=173.44s  mem=1288.6MB
+
+[36/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.000255, 'epochs': 25, 'dropout': 0.426, 'batch_size': 256, 'max_len': 16, 'tune_embeddings': False}
+   -> OK  testF1=0.4744 (P=0.313 R=0.980)  thr=0.33 (valF1=0.486)  attrs=6  time=21.23s  mem=890.3MB
+
+[37/50] config: {'composition': 'average', 'pair_feature': 'similarity', 'hidden_dim': 512, 'lr': 0.004557, 'epochs': 6, 'dropout': 0.002, 'batch_size': 64, 'max_len': 24, 'tune_embeddings': False}
+   -> OK  testF1=0.6536 (P=0.652 R=0.655)  thr=0.92 (valF1=0.735)  attrs=6  time=8.28s  mem=913.3MB
+
+[38/50] config: {'composition': 'average', 'pair_feature': 'both', 'hidden_dim': 512, 'lr': 0.001324, 'epochs': 8, 'dropout': 0.038, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': True}
+   -> OK  testF1=0.6667 (P=0.641 R=0.695)  thr=0.86 (valF1=0.720)  attrs=6  time=14.92s  mem=961.0MB
+
+[39/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 512, 'lr': 0.00018, 'epochs': 14, 'dropout': 0.182, 'batch_size': 64, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.4693 (P=0.309 R=0.980)  thr=0.09 (valF1=0.485)  attrs=6  time=76.99s  mem=1002.9MB
+
+[40/50] config: {'composition': 'lstm', 'pair_feature': 'abs_diff', 'hidden_dim': 64, 'lr': 0.00051, 'epochs': 22, 'dropout': 0.442, 'batch_size': 128, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 32}
+   -> OK  testF1=0.4736 (P=0.313 R=0.970)  thr=0.72 (valF1=0.485)  attrs=6  time=270.4s  mem=1294.8MB
+
+[41/50] config: {'composition': 'average', 'pair_feature': 'abs_diff', 'hidden_dim': 512, 'lr': 0.000112, 'epochs': 28, 'dropout': 0.462, 'batch_size': 128, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.4743 (P=0.313 R=0.975)  thr=0.37 (valF1=0.486)  attrs=6  time=76.4s  mem=1025.7MB
+
+[42/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 64, 'lr': 0.000582, 'epochs': 6, 'dropout': 0.429, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.4727 (P=0.311 R=0.980)  thr=0.33 (valF1=0.485)  attrs=6  time=4.4s  mem=809.9MB
+
+[43/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 128, 'lr': 0.000279, 'epochs': 26, 'dropout': 0.097, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.4896 (P=0.396 R=0.640)  thr=0.25 (valF1=0.549)  attrs=6  time=58.51s  mem=958.0MB
+
+[44/50] config: {'composition': 'idf_average', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.002286, 'epochs': 31, 'dropout': 0.268, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.5291 (P=0.412 R=0.739)  thr=0.55 (valF1=0.573)  attrs=6  time=34.02s  mem=872.5MB
+
+[45/50] config: {'composition': 'average', 'pair_feature': 'hadamard', 'hidden_dim': 64, 'lr': 0.000165, 'epochs': 18, 'dropout': 0.173, 'batch_size': 128, 'max_len': 16, 'tune_embeddings': True}
+   -> OK  testF1=0.5894 (P=0.578 R=0.601)  thr=0.82 (valF1=0.667)  attrs=6  time=42.45s  mem=976.9MB
+
+[46/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.000123, 'epochs': 18, 'dropout': 0.001, 'batch_size': 256, 'max_len': 24, 'tune_embeddings': True}
+   -> OK  testF1=0.4738 (P=0.312 R=0.980)  thr=0.31 (valF1=0.485)  attrs=6  time=47.11s  mem=980.2MB
+
+[47/50] config: {'composition': 'idf_average', 'pair_feature': 'both', 'hidden_dim': 64, 'lr': 0.007902, 'epochs': 15, 'dropout': 0.312, 'batch_size': 256, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.6509 (P=0.579 R=0.744)  thr=0.78 (valF1=0.687)  attrs=6  time=7.27s  mem=798.9MB
+
+[48/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.000449, 'epochs': 27, 'dropout': 0.148, 'batch_size': 64, 'max_len': 8, 'tune_embeddings': False, 'lstm_hidden': 128}
+   -> OK  testF1=0.5674 (P=0.660 R=0.498)  thr=0.82 (valF1=0.632)  attrs=6  time=246.65s  mem=964.5MB
+
+[49/50] config: {'composition': 'idf_average', 'pair_feature': 'abs_diff', 'hidden_dim': 256, 'lr': 0.000649, 'epochs': 31, 'dropout': 0.0, 'batch_size': 128, 'max_len': 8, 'tune_embeddings': False}
+   -> OK  testF1=0.4716 (P=0.310 R=0.980)  thr=0.05 (valF1=0.484)  attrs=6  time=14.95s  mem=797.4MB
+
+[50/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.000765, 'epochs': 26, 'dropout': 0.107, 'batch_size': 128, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 128}
+   -> OK  testF1=0.5562 (P=0.608 R=0.512)  thr=0.88 (valF1=0.596)  attrs=6  time=642.14s  mem=1480.7MB
+
+Done. Wrote /home/it2022025/er_scalability/deeper/results/deeper_D7_configs.csv and /home/it2022025/er_scalability/deeper/results/deeper_D7_curves.json

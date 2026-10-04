@@ -1,0 +1,57 @@
+################ distilbert ################
+Sudowoodo CPU feasibility check
+  lm=distilbert ssl_method=combined batch_size=64 max_len=128 threads=4
+  cuda available: False (expected False)
+
+  model load: 1s (counted as per-config startup)
+
+  Measured per-step cost, per dataset (seq = mean padded sequence length):
+
+    task   train     ssl step    ft step    
+    --------------------------------------------
+    CDDB   2508      18.81s seq52 5.58s seq74
+    CORA   142714    38.57s seq113 13.05s seq128
+    D2     20014     48.35s seq128 14.28s seq128
+    D3     8124      44.44s seq128 16.69s seq128
+    D4     1376      38.35s seq107 11.50s seq127
+    D5     95194     14.28s seq49 6.12s seq78
+    D6     193460    9.20s seq34 3.93s seq55
+    D7     4686      41.14s seq128 14.09s seq128
+    D8     26050     27.66s seq87 13.54s seq128
+    D9     7548      31.24s seq102 10.56s seq125
+
+  Projected wall time per config. Lower bound -- excludes
+  --bootstrap and --clustering, which add an encode pass each.
+
+    task   (3,50)      (3,10)      (2,5)       (1,3)       (1,1)      
+    ------------------------------------------------------------------
+    CDDB   8.9h      ! 3.4h      ! 2.1h      ! 66m         50m        
+    CORA   817.2h    ! 128.7h    ! 57.1h     ! 37.1h     ! 2.7h      !
+    D2     144.6h    ! 28.0h     ! 13.8h     ! 8.4h      ! 2.5h      !
+    D3     71.7h     ! 16.1h     ! 8.5h      ! 4.9h      ! 2.1h      !
+    D4     12.6h     ! 6.2h      ! 3.9h      ! 2.0h      ! 1.7h      !
+    D5     286.0h    ! 46.5h     ! 21.1h     ! 13.5h     ! 1.5h      !
+    D6     377.4h    ! 60.6h     ! 27.2h     ! 17.6h     ! 1.7h      !
+    D7     37.3h     ! 10.4h     ! 5.8h      ! 3.2h      ! 1.9h      !
+    D8     170.5h    ! 29.6h     ! 13.9h     ! 8.7h      ! 1.7h      !
+    D9     44.1h     ! 10.4h     ! 5.5h      ! 3.2h      ! 1.5h      !
+
+    '!' = over the 1.5h cap. Those become TIMEOUT rows, which is a
+    reportable result -- but a dataset that is '!' in EVERY column
+    cannot be searched at all under the frozen protocol, and that
+    needs raising with the supervisor.
+
+    (3,50) is the authors' published setting.
+
+################ roberta ################
+Sudowoodo CPU feasibility check
+  lm=roberta ssl_method=combined batch_size=64 max_len=128 threads=4
+  cuda available: False (expected False)
+
+  model load: 1s (counted as per-config startup)
+
+  Measured per-step cost, per dataset (seq = mean padded sequence length):
+
+    task   train     ssl step    ft step    
+    --------------------------------------------
+    CDDB   2508      40.86s seq74 17.32s seq91

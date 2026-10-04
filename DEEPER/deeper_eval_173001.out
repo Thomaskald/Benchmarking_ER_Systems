@@ -1,0 +1,52 @@
+
+=== D2 ===
+RESULT_JSON:{"dataset": "D2", "config_id": "2", "family": "ccer", "csv_test_f1": 0.498952, "pairwise_precision": 0.419014, "pairwise_recall": 0.61658, "pairwise_f1": 0.498952, "bcubed_precision": 0.911259, "bcubed_recall": 0.962012, "bcubed_f1": 0.935948, "n_entities": 1948, "n_pred_pairs": 284, "n_gt_pairs": 193, "time_sec": 54.61, "status": "OK"}
+  pairwise_f1=0.498952  csv_test_f1=0.498952  delta=+0.000000
+  bcubed_f1=0.935948  n_entities=1948  n_gt_pairs=193
+
+=== D3 ===
+RESULT_JSON:{"dataset": "D3", "config_id": "26", "family": "ccer", "csv_test_f1": 0.612691, "pairwise_precision": 0.546875, "pairwise_recall": 0.696517, "pairwise_f1": 0.612691, "bcubed_precision": 0.952164, "bcubed_recall": 0.97643, "bcubed_f1": 0.964144, "n_entities": 2588, "n_pred_pairs": 256, "n_gt_pairs": 201, "time_sec": 197.2, "status": "OK"}
+  pairwise_f1=0.612691  csv_test_f1=0.612691  delta=+0.000000
+  bcubed_f1=0.964144  n_entities=2588  n_gt_pairs=201
+
+=== D4 ===
+RESULT_JSON:{"dataset": "D4", "config_id": "9", "family": "ccer", "csv_test_f1": 0.997717, "pairwise_precision": 0.995444, "pairwise_recall": 1.0, "pairwise_f1": 0.997717, "bcubed_precision": 0.997805, "bcubed_recall": 1.0, "bcubed_f1": 0.998901, "n_entities": 911, "n_pred_pairs": 439, "n_gt_pairs": 437, "time_sec": 5.34, "status": "OK"}
+  pairwise_f1=0.997717  csv_test_f1=0.997717  delta=+0.000000
+  bcubed_f1=0.998901  n_entities=911  n_gt_pairs=437
+
+=== D5 ===
+RESULT_JSON:{"dataset": "D5", "config_id": "3", "family": "ccer", "csv_test_f1": 0.917582, "pairwise_precision": 0.893048, "pairwise_recall": 0.943503, "pairwise_f1": 0.917582, "bcubed_precision": 0.995324, "bcubed_recall": 0.997662, "bcubed_f1": 0.996491, "n_entities": 8554, "n_pred_pairs": 374, "n_gt_pairs": 354, "time_sec": 1261.0, "status": "OK"}
+  pairwise_f1=0.917582  csv_test_f1=0.917582  delta=+0.000000
+  bcubed_f1=0.996491  n_entities=8554  n_gt_pairs=354
+
+=== D6 ===
+RESULT_JSON:{"dataset": "D6", "config_id": "1", "family": "ccer", "csv_test_f1": 0.601449, "pairwise_precision": 0.976471, "pairwise_recall": 0.434555, "pairwise_f1": 0.601449, "bcubed_precision": 0.999809, "bcubed_recall": 0.989707, "bcubed_f1": 0.994733, "n_entities": 10493, "n_pred_pairs": 85, "n_gt_pairs": 191, "time_sec": 2567.32, "status": "OK"}
+  pairwise_f1=0.601449  csv_test_f1=0.601449  delta=+0.000000
+  bcubed_f1=0.994733  n_entities=10493  n_gt_pairs=191
+
+=== D7 ===
+RESULT_JSON:{"dataset": "D7", "config_id": "28", "family": "ccer", "csv_test_f1": 0.685315, "pairwise_precision": 0.650442, "pairwise_recall": 0.724138, "pairwise_f1": 0.685315, "bcubed_precision": 0.968849, "bcubed_recall": 0.977918, "bcubed_f1": 0.973362, "n_entities": 2536, "n_pred_pairs": 226, "n_gt_pairs": 203, "time_sec": 237.27, "status": "OK"}
+  pairwise_f1=0.685315  csv_test_f1=0.685315  delta=+0.000000
+  bcubed_f1=0.973362  n_entities=2536  n_gt_pairs=203
+
+=== D8 ===
+RESULT_JSON:{"dataset": "D8", "config_id": "12", "family": "ccer", "csv_test_f1": 0.557823, "pairwise_precision": 0.58156, "pairwise_recall": 0.535948, "pairwise_f1": 0.557823, "bcubed_precision": 0.992693, "bcubed_recall": 0.991353, "bcubed_f1": 0.992022, "n_entities": 8211, "n_pred_pairs": 141, "n_gt_pairs": 153, "time_sec": 34.69, "status": "OK"}
+  pairwise_f1=0.557823  csv_test_f1=0.557823  delta=+0.000000
+  bcubed_f1=0.992022  n_entities=8211  n_gt_pairs=153
+
+=== D9 ===
+RESULT_JSON:{"dataset": "D9", "config_id": "16", "family": "ccer", "csv_test_f1": 0.938424, "pairwise_precision": 0.967005, "pairwise_recall": 0.911483, "pairwise_f1": 0.938424, "bcubed_precision": 0.996221, "bcubed_recall": 0.989768, "bcubed_f1": 0.992984, "n_entities": 3616, "n_pred_pairs": 394, "n_gt_pairs": 418, "time_sec": 108.24, "status": "OK"}
+  pairwise_f1=0.938424  csv_test_f1=0.938424  delta=+0.000000
+  bcubed_f1=0.992984  n_entities=3616  n_gt_pairs=418
+
+=== CORA ===
+RESULT_JSON:{"dataset": "CORA", "config_id": "5", "family": "der", "csv_test_f1": 0.907325, "pairwise_precision": 0.976906, "pairwise_recall": 0.846997, "pairwise_f1": 0.907325, "bcubed_precision": 0.606151, "bcubed_recall": 0.988877, "bcubed_f1": 0.751596, "n_entities": 177, "n_pred_pairs": 2295, "n_gt_pairs": 2647, "time_sec": 200.83, "status": "OK"}
+  pairwise_f1=0.907325  csv_test_f1=0.907325  delta=+0.000000
+  bcubed_f1=0.751596  n_entities=177  n_gt_pairs=2647
+
+=== CDDB ===
+RESULT_JSON:{"dataset": "CDDB", "config_id": "22", "family": "der", "csv_test_f1": 0.958904, "pairwise_precision": 0.972222, "pairwise_recall": 0.945946, "pairwise_f1": 0.958904, "bcubed_precision": 0.998366, "bcubed_recall": 0.996732, "bcubed_f1": 0.997548, "n_entities": 612, "n_pred_pairs": 36, "n_gt_pairs": 37, "time_sec": 87.97, "status": "OK"}
+  pairwise_f1=0.958904  csv_test_f1=0.958904  delta=+0.000000
+  bcubed_f1=0.997548  n_entities=612  n_gt_pairs=37
+
+Wrote /home/it2022025/er_scalability/deeper/results/deeper_bestconfig_eval.csv

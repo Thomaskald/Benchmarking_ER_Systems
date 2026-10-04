@@ -1,0 +1,15 @@
+config_id,status,vectorizer,similarity_distance,top_k,similarity_threshold,clusterer,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,time_sec,peak_mem_mb
+1,OK,smpnet,cosine,48,0.275,UniqueMappingClustering,0.275,0.777646,0.690229,0.937853,0.79521,580.4,1261.7
+2,OK,sdistilroberta,cosine,44,0.7407,UniqueMappingClustering,0.7407,0.434238,0.791667,0.268362,0.400844,338.13,1158.8
+3,OK,albert,euclidean,3,0.0298,UniqueMappingClustering,0.0298,0.022161,0.333333,0.002825,0.005602,2049.45,6404.1
+4,OK,st5,cosine,36,0.1988,ConnectedComponentsClustering,0.1988,0.0,0.0,0.0,0.0,1967.77,2630.5
+5,OK,st5,euclidean,38,0.2782,UniqueMappingClustering,0.2782,0.790036,0.667331,0.946328,0.78271,1961.88,2631.9
+6,OK,sdistilroberta,euclidean,22,0.2779,UniqueMappingClustering,0.2779,0.763454,0.714286,0.875706,0.786802,335.32,1174.6
+7,OK,bert,cosine,6,0.3799,ConnectedComponentsClustering,0.3799,0.0,0.0,0.0,0.0,1882.33,6048.6
+8,OK,bert,euclidean,3,0.7297,UniqueMappingClustering,0.7297,0.022346,1.0,0.002825,0.005634,1854.55,6168.9
+9,OK,distilbert,cosine,36,0.2932,ConnectedComponentsClustering,0.2932,0.0,0.0,0.0,0.0,942.51,5732.2
+10,OK,albert,cosine,46,0.0696,UniqueMappingClustering,0.0696,0.137405,0.555556,0.042373,0.07874,2045.56,6165.4
+11,OK,sent_glove,cosine,15,0.8665,ConnectedComponentsClustering,0.8665,0.663194,0.857895,0.460452,0.599265,12.95,1740.8
+12,OK,sent_glove,euclidean,41,0.8341,UniqueMappingClustering,0.8341,0.526119,0.819876,0.372881,0.512621,8.89,1740.0
+13,OK,bert,euclidean,14,0.6702,UniqueMappingClustering,0.6702,0.022346,1.0,0.002825,0.005634,1859.11,6104.7
+14,OK,albert,cosine,35,0.7291,UniqueMappingClustering,0.7291,0.137755,0.555556,0.042373,0.07874,2046.55,6410.6

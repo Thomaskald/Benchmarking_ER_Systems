@@ -1,0 +1,10 @@
+config_id,status,composition,pair_feature,hidden_dim,lstm_hidden,lr,epochs,dropout,batch_size,max_len,tune_embeddings,chosen_threshold,valid_f1,test_precision,test_recall,test_f1,n_attrs,vocab_size,tokens_missing_from_cache,time_sec,peak_mem_mb
+1,OK,lstm,similarity,64,128,0.003042,12,0.112,256,8,True,0.99,0.613718,0.976471,0.434555,0.601449,4,9115,0,3002.33,1068.5
+2,OK,idf_average,similarity,64,,0.000154,12,0.253,64,24,True,0.99,0.522472,0.329768,0.968586,0.492021,4,9115,0,909.36,848.5
+3,OK,lstm,both,128,64,0.000791,13,0.405,64,8,False,1.0,0.590406,1.0,0.413613,0.585185,4,9115,0,2080.65,841.6
+4,OK,idf_average,abs_diff,128,,0.008212,15,0.051,128,8,False,0.92,0.509194,0.331522,0.958115,0.492598,4,9115,0,135.63,776.4
+5,OK,idf_average,hadamard,64,,0.00288,22,0.062,128,8,False,0.96,0.391304,0.266871,0.455497,0.336557,4,9115,0,115.93,746.7
+6,OK,lstm,hadamard,128,32,0.002565,6,0.331,128,8,True,0.99,0.454902,0.349845,0.591623,0.439689,4,9115,0,707.61,837.9
+7,OK,idf_average,hadamard,512,,0.001868,16,0.081,128,8,False,0.95,0.356537,0.237598,0.47644,0.317073,4,9115,0,233.85,779.0
+8,TIMEOUT,lstm,similarity,128,128,0.00117,12,0.082,128,16,True,,,,,,,,,5400.18,
+9,OK,idf_average,similarity,128,,0.004402,30,0.158,128,8,True,1.0,0.56391,1.0,0.408377,0.579926,4,9115,0,1272.17,815.2

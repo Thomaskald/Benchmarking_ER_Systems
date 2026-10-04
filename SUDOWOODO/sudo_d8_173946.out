@@ -1,0 +1,12 @@
+Sudowoodo random search | dataset=D8 | B=5 | caps: 1.50h / 12GB per config
+
+[1/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 1.76e-05, 'da': 'drop_col', 'projector': '768'}
+   -> TIMEOUT  time=5400.34s
+
+[2/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 3, 'max_len': 32, 'batch_size': 64, 'lr': 1.07e-05, 'da': 'drop_col', 'projector': '768'}
+   -> TIMEOUT  time=5400.27s
+
+[3/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 1.66e-05, 'da': 'ins', 'projector': '4096'}
+   -> TIMEOUT  time=5400.35s
+
+[4/5] config: {'lm': 'distilbert', 'ssl_method': 'simclr', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 64, 'batch_size': 64, 'lr': 2.19e-05, 'da': 'drop_col', 'projector': '768'}
