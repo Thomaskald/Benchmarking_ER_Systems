@@ -18,4 +18,4 @@ LinkTransformer CCER random search | dataset=D4 | B=5 | caps: 1.50h / 12GB per c
 [5/5] config: {'base_model': 'sentence-transformers/all-MiniLM-L12-v2', 'loss_type': 'onlinecontrastive', 'num_epochs': 1, 'train_batch_size': 32, 'learning_rate': 1.46e-06, 'warm_up_perc': 0.847}
    -> OK  testF1=0.9908 (P=0.991 R=0.991)  thr=0.96 (valF1=0.990)  time=188.17s  mem=8507.1MB
 
-Done. Wrote /home/it2022025/er_scalability/linktransformer_CCER/results/linktransformer_D4_configs.csv and /home/it2022025/er_scalability/linktransformer_CCER/results/linktransformer_D4_curves.json
+Done. Wrote /path/to/your/er_scalability/linktransformer_CCER/results/linktransformer_D4_configs.csv and /path/to/your/er_scalability/linktransformer_CCER/results/linktransformer_D4_curves.json

@@ -16,14 +16,14 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import precision_score, recall_score, f1_score
 import zope
-zope.__path__.append("/home/it2022025/.local/lib/python3.10/site-packages/zope")
+zope.__path__.append("/path/to/your/.local/lib/python3.10/site-packages/zope")
 import dedupe
 
 # Synthetic FEBRL 10K (scalability tuning size). Single-source dirty ER.
-PROFILES_PATH = "/home/it2022025/er_scalability/converted/10K/profiles.csv"
-TRAIN_PATH    = "/home/it2022025/er_scalability/splits/10K/train_set.csv"
-VALID_PATH    = "/home/it2022025/er_scalability/splits/10K/valid_set.csv"
-TEST_PATH     = "/home/it2022025/er_scalability/splits/10K/test_set.csv"
+PROFILES_PATH = "/path/to/your/er_scalability/converted/10K/profiles.csv"
+TRAIN_PATH    = "/path/to/your/er_scalability/splits/10K/train_set.csv"
+VALID_PATH    = "/path/to/your/er_scalability/splits/10K/valid_set.csv"
+TEST_PATH     = "/path/to/your/er_scalability/splits/10K/test_set.csv"
 
 # End-to-end operating-point grid. This threshold is the dedupe.partition()
 # CLUSTERING cut (not a raw pairwise-score cut) -- the same knob the fixed

@@ -51,8 +51,8 @@ RESULTS_DIR = os.path.join(HERE, "results")
 PAIRS_DIR = os.path.join(RESULTS_DIR, "pairs")
 SUMMARY_CSV = os.path.join(RESULTS_DIR, "splink_bestconfig_eval.csv")
 
-DATA_ROOT = "/home/it2022025/er_scalability/datasets"
-SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
+DATA_ROOT = "/path/to/your/er_scalability/datasets"
+SPLIT_ROOT = "/path/to/your/er_scalability/train_validation_test_sets"
 
 SEED = 42
 

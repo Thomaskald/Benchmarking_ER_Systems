@@ -151,4 +151,4 @@ Splink scalability search (10K tuning) | dataset=10K | B=50 | caps: 1.50h / 12GB
 [50/50] config: {'comparison_strictness': 0.9719, 'estimate_u_max_pairs': 5266952.0}
    -> OK  testF1=0.9573 (P=1.000 R=0.918)  thr=0.05 (valF1=0.970)  time=46.8s  mem=1051.8MB
 
-Done. Wrote /home/it2022025/er_scalability/scalability/results/splink_10K_configs.csv and /home/it2022025/er_scalability/scalability/results/splink_10K_curves.json
+Done. Wrote /path/to/your/er_scalability/scalability/results/splink_10K_configs.csv and /path/to/your/er_scalability/scalability/results/splink_10K_curves.json

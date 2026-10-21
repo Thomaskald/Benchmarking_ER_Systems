@@ -19,10 +19,10 @@ export TOKENIZERS_PARALLELISM=false
 # Java + standalone Spark 3.5.0 (Zingg 0.5.0). Zingg builds SparkSession on
 # import, so the worker sets PYSPARK_SUBMIT_ARGS before importing zingg.
 export JAVA_HOME="${JAVA_HOME:-/usr/lib/jvm/java-11-openjdk-amd64}"
-export SPARK_HOME="/home/it2022025/spark-3.5.0-bin-hadoop3"
+export SPARK_HOME="/path/to/your/spark-3.5.0-bin-hadoop3"
 export PATH="$SPARK_HOME/bin:$JAVA_HOME/bin:$PATH"
-export ZINGG_JAR="/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar"
-export ZINGG_HOME="/home/it2022025/software/zingg/zingg-0.5.0"
+export ZINGG_JAR="/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar"
+export ZINGG_HOME="/path/to/your/software/zingg/zingg-0.5.0"
 
 # per-config /tmp scratch is created/removed inside the worker
 srun python3 -u zingg_scalability_search10K.py

@@ -19,7 +19,7 @@ import sys
 import os
 # Use the Zingg 0.5.0 python package (matches the 0.5.0 jar; avoids the 0.6.0
 # license/registration step). Prepend so it shadows the 0.6.0 install in ~/.local.
-ZINGG_050_PY = "/home/it2022025/software/zingg/zingg-0.5.0/python/build/lib"
+ZINGG_050_PY = "/path/to/your/software/zingg/zingg-0.5.0/python/build/lib"
 if ZINGG_050_PY not in sys.path:
     sys.path.insert(0, ZINGG_050_PY)
 
@@ -41,7 +41,7 @@ import numpy as np
 # Zingg 0.5.0 jar (matches the 0.5.0 python package above).
 ZINGG_JAR = os.environ.get(
     "ZINGG_JAR",
-    "/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
+    "/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
 )
 
 _NCORES = os.environ.get("SLURM_CPUS_PER_TASK", "4")
@@ -64,8 +64,8 @@ RESULTS_DIR = os.path.join(HERE, "results")
 PAIRS_DIR = os.path.join(RESULTS_DIR, "pairs")
 SUMMARY_CSV = os.path.join(RESULTS_DIR, "zingg_bestconfig_eval.csv")
 
-DATA_ROOT = "/home/it2022025/er_scalability/datasets"
-SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
+DATA_ROOT = "/path/to/your/er_scalability/datasets"
+SPLIT_ROOT = "/path/to/your/er_scalability/train_validation_test_sets"
 
 # SCADS movie-benchmark column headers (D5 raw imdb/tmdb tables are '|'-delimited
 # with these URI headers; the D5 worker reduces them to id/title/name/genre_list).

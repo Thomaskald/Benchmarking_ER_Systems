@@ -29,4 +29,4 @@
 === CDDB ===
   -> pairwise F1=0.8169  B3 F1=0.9894  (P=0.992 R=0.987)  cfg#7  17.47s
 
-Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_bestconfig_eval.csv
+Done. Wrote /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_bestconfig_eval.csv

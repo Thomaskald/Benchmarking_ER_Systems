@@ -18,11 +18,11 @@ from pyjedai.workflow import EmbeddingsNNWorkFlow
 from pyjedai.vector_based_blocking import EmbeddingsNNBlockBuilding
 from pyjedai.clustering import ConnectedComponentsClustering
 
-CORA_PATH  = "/home/it2022025/er_scalability/datasets/cora/cora.csv"
-GT_PATH    = "/home/it2022025/er_scalability/datasets/cora/cora_gt.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cora/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cora/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/cora/test_set.csv"
+CORA_PATH  = "/path/to/your/er_scalability/datasets/cora/cora.csv"
+GT_PATH    = "/path/to/your/er_scalability/datasets/cora/cora_gt.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cora/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cora/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/cora/test_set.csv"
 
 ID_COL = "Entity Id"
 

@@ -24,8 +24,8 @@ import sys
 import numpy as np
 import pandas as pd
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-EMB_DIR = "/home/it2022025/er_scalability/embeddings"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+EMB_DIR = "/path/to/your/er_scalability/embeddings"
 FT_MODEL = os.path.join(EMB_DIR, "wiki.en.bin")
 EMB_DIM = 300
 

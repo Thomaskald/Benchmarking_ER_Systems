@@ -44,9 +44,9 @@ from pyjedai.comparison_cleaning import (
 from pyjedai.matching import EntityMatching
 from pyjedai.clustering import ConnectedComponentsClustering
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
-OUTPUT_CSV    = "/home/it2022025/er_scalability/scalability/pyjedai_syn_scalability_results.csv"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
+OUTPUT_CSV    = "/path/to/your/er_scalability/scalability/pyjedai_syn_scalability_results.csv"
 
 # 10K excluded -- it was the tuning size. Rest of the ladder:
 DATASETS = ["50K", "100K", "200K", "300K", "1M", "2M"]

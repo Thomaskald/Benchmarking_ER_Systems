@@ -19,10 +19,10 @@ from pyjedai.vector_based_blocking import EmbeddingsNNBlockBuilding
 from pyjedai.clustering import ConnectedComponentsClustering
 
 # Synthetic FEBRL 10K (scalability tuning size). Single-source dirty ER.
-PROFILES_PATH = "/home/it2022025/er_scalability/converted/10K/profiles.csv"
-TRAIN_PATH    = "/home/it2022025/er_scalability/splits/10K/train_set.csv"
-VALID_PATH    = "/home/it2022025/er_scalability/splits/10K/valid_set.csv"
-TEST_PATH     = "/home/it2022025/er_scalability/splits/10K/test_set.csv"
+PROFILES_PATH = "/path/to/your/er_scalability/converted/10K/profiles.csv"
+TRAIN_PATH    = "/path/to/your/er_scalability/splits/10K/train_set.csv"
+VALID_PATH    = "/path/to/your/er_scalability/splits/10K/valid_set.csv"
+TEST_PATH     = "/path/to/your/er_scalability/splits/10K/test_set.csv"
 
 ID_COL = "id"
 # FEBRL person-record fields used for embeddings (from the scalability script)

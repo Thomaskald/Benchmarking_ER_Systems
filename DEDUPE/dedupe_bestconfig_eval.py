@@ -57,8 +57,8 @@ RESULTS_DIR = os.path.join(HERE, "results")
 PAIRS_DIR = os.path.join(RESULTS_DIR, "pairs")
 SUMMARY_CSV = os.path.join(RESULTS_DIR, "dedupe_bestconfig_eval.csv")
 
-DATA_ROOT = "/home/it2022025/er_scalability/datasets"
-SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
+DATA_ROOT = "/path/to/your/er_scalability/datasets"
+SPLIT_ROOT = "/path/to/your/er_scalability/train_validation_test_sets"
 
 SEED = 42
 # Same training-sample ceilings the DER workers used (OOM guards).
@@ -455,7 +455,7 @@ def load_split_pairs(path, left_records, right_records):
 # ===========================================================================
 def eval_ccer(ds, cfg, params):
     import zope
-    zope.__path__.append("/home/it2022025/.local/lib/python3.10/site-packages/zope")
+    zope.__path__.append("/path/to/your/.local/lib/python3.10/site-packages/zope")
     import dedupe
 
     rng = random.Random(SEED)
@@ -509,7 +509,7 @@ def eval_ccer(ds, cfg, params):
 # ===========================================================================
 def eval_der(ds, cfg, params):
     import zope
-    zope.__path__.append("/home/it2022025/.local/lib/python3.10/site-packages/zope")
+    zope.__path__.append("/path/to/your/.local/lib/python3.10/site-packages/zope")
     import dedupe
 
     rng = random.Random(SEED)

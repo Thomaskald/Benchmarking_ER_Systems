@@ -16,11 +16,11 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 # NOTE: left_id indexes Walmart (≤2553), right_id indexes Amazon (≤22073)
-WALMART_PATH = "/home/it2022025/er_scalability/datasets/D8/walmart.csv"   # LEFT table
-AMAZON_PATH  = "/home/it2022025/er_scalability/datasets/D8/amazon.csv"    # RIGHT table
-TRAIN_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db8/train_set.csv"
-VALID_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db8/valid_set.csv"
-TEST_PATH    = "/home/it2022025/er_scalability/train_validation_test_sets/db8/test_set.csv"
+WALMART_PATH = "/path/to/your/er_scalability/datasets/D8/walmart.csv"   # LEFT table
+AMAZON_PATH  = "/path/to/your/er_scalability/datasets/D8/amazon.csv"    # RIGHT table
+TRAIN_PATH   = "/path/to/your/er_scalability/train_validation_test_sets/db8/train_set.csv"
+VALID_PATH   = "/path/to/your/er_scalability/train_validation_test_sets/db8/valid_set.csv"
+TEST_PATH    = "/path/to/your/er_scalability/train_validation_test_sets/db8/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

@@ -153,4 +153,4 @@ Magellan CCER random search | dataset=D8 | B=50 | caps: 1.50h / 12GB per config
 [50/50] config: {'matcher': 'SVM', 'C': 23.94775, 'class_weight': 'none'}
    -> OK  testF1=0.6277 (P=0.711 R=0.562)  thr=0.03 (valF1=0.628)  time=43.09s  mem=388.2MB
 
-Done. Wrote /home/it2022025/er_scalability/magellan_CCER/results/magellan_D8_configs.csv and /home/it2022025/er_scalability/magellan_CCER/results/magellan_D8_curves.json
+Done. Wrote /path/to/your/er_scalability/magellan_CCER/results/magellan_D8_configs.csv and /path/to/your/er_scalability/magellan_CCER/results/magellan_D8_curves.json

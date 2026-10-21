@@ -1,5 +1,5 @@
 #!/bin/bash
-# Sudowoodo CPU install for hpc-login (10.100.59.229).
+# Sudowoodo CPU install for the cluster login node.
 #
 # RUN THIS ON THE LOGIN NODE -- it needs internet. Compute nodes on `solo`
 # are assumed to have none, so everything that must be downloaded (conda,

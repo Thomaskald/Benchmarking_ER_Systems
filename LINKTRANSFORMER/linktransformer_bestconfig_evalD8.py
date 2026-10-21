@@ -30,12 +30,12 @@ SEED = 42  # matches the workers' seed=42 for reproducible retraining
 CFG = dict(
     sep='|',
     col_map=None,
-    d1='/home/it2022025/er_scalability/datasets/D8/walmart.csv',
-    d2='/home/it2022025/er_scalability/datasets/D8/amazon.csv',
+    d1='/path/to/your/er_scalability/datasets/D8/walmart.csv',
+    d2='/path/to/your/er_scalability/datasets/D8/amazon.csv',
     text=[('title', 'text'), ('brand', 'text'), ('modelno', 'str')],
-    train='/home/it2022025/er_scalability/train_validation_test_sets/db8/train_set.csv',
-    valid='/home/it2022025/er_scalability/train_validation_test_sets/db8/valid_set.csv',
-    test='/home/it2022025/er_scalability/train_validation_test_sets/db8/test_set.csv',
+    train='/path/to/your/er_scalability/train_validation_test_sets/db8/train_set.csv',
+    valid='/path/to/your/er_scalability/train_validation_test_sets/db8/valid_set.csv',
+    test='/path/to/your/er_scalability/train_validation_test_sets/db8/test_set.csv',
 )
 
 

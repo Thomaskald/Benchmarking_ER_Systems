@@ -35,9 +35,9 @@ import torch.nn as nn
 import torch.nn.functional as F
 from sklearn.metrics import precision_score, recall_score, f1_score
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
-EMB_DIR       = "/home/it2022025/er_scalability/embeddings"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
+EMB_DIR       = "/path/to/your/er_scalability/embeddings"
 DATASET       = "10K"
 ID_COL        = "id"
 

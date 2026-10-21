@@ -51,11 +51,11 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 # blocking is not exercised (consistent with how the other pair classifiers are
 # scored).
 
-D1_PATH    = "/home/it2022025/er_scalability/datasets/D7/tmdb.csv"
-D2_PATH    = "/home/it2022025/er_scalability/datasets/D7/tvdb.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db7/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db7/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db7/test_set.csv"
+D1_PATH    = "/path/to/your/er_scalability/datasets/D7/tmdb.csv"
+D2_PATH    = "/path/to/your/er_scalability/datasets/D7/tvdb.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db7/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db7/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db7/test_set.csv"
 DELIM      = "|"
 ID_COL     = "id"
 
@@ -73,7 +73,7 @@ RENAME = {
 }
 ATTRS  = ["title", "name", "abstract", "episodeNumber", "seasonNumber", "releaseDate"]
 
-FT_CACHE = "/home/it2022025/er_scalability/embeddings/ft_cache_D7.npz"
+FT_CACHE = "/path/to/your/er_scalability/embeddings/ft_cache_D7.npz"
 EMB_DIM  = 300
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)

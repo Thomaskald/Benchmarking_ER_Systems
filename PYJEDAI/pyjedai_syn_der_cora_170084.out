@@ -150,4 +150,4 @@ pyJedAI SYNTACTIC DER random search | dataset=CORA | B=50 | caps: 1.50h / 12GB p
 [50/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'ratio': 0.6193, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 3, 'metric': 'cosine'}
    -> OK  testF1=0.6156 (P=1.000 R=0.445)  thr=0.0 (valF1=0.813)  time=132.22s  mem=484.9MB
 
-Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CORA_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CORA_curves.json
+Done. Wrote /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CORA_configs.csv and /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CORA_curves.json

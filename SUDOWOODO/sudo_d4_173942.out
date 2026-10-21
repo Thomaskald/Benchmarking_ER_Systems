@@ -15,4 +15,4 @@ Sudowoodo random search | dataset=D4 | B=5 | caps: 1.50h / 12GB per config
 [5/5] config: {'lm': 'distilbert', 'ssl_method': 'barlow_twins', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 32, 'batch_size': 64, 'lr': 2.4e-05, 'da': 'append_col', 'projector': '4096'}
    -> OK  testF1=0.9754 (P=0.952 R=1.000)  thr=0.0 (valF1=0.975)  epoch=2  time=792.42s  mem=3378.3MB
 
-Done. 5/5 OK. Wrote /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_D4_configs.csv and /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_D4_curves.json
+Done. 5/5 OK. Wrote /path/to/your/er_scalability/sudowoodo/results/sudowoodo_D4_configs.csv and /path/to/your/er_scalability/sudowoodo/results/sudowoodo_D4_curves.json

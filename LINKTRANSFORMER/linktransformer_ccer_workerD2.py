@@ -14,11 +14,11 @@ import pandas as pd
 from sklearn.metrics import precision_score, recall_score, f1_score
 import linktransformer as lt
 
-ABT_PATH   = "/home/it2022025/er_scalability/datasets/D2/abt.csv"
-BUY_PATH   = "/home/it2022025/er_scalability/datasets/D2/buy.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db2/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db2/test_set.csv"
+ABT_PATH   = "/path/to/your/er_scalability/datasets/D2/abt.csv"
+BUY_PATH   = "/path/to/your/er_scalability/datasets/D2/buy.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db2/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db2/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db2/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

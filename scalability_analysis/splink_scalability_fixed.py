@@ -40,9 +40,9 @@ logging.disable(logging.CRITICAL)
 import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
-OUTPUT_CSV    = "/home/it2022025/er_scalability/scalability/splink_scalability_results.csv"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
+OUTPUT_CSV    = "/path/to/your/er_scalability/scalability/splink_scalability_results.csv"
 
 # 10K excluded (tuning size). Rest of the ladder, looped internally:
 DATASETS = ["50K", "100K", "200K", "300K", "1M", "2M"]

@@ -150,4 +150,4 @@ pyJedAI CCER random search | dataset=D8 | B=50 | caps: 1.50h / 12GB per config
 [50/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'DICE', 'clusterer': 'UniqueMappingClustering', 'ratio': 0.9393, 'vectorizer': 'tfidf', 'tokenizer': 'word_tokenizer', 'qgram': 2, 'metric': 'cosine'}
    -> OK  testF1=0.5354 (P=0.447 R=0.667)  thr=0.18 (valF1=0.523)  time=200.06s  mem=9746.2MB
 
-Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_D8_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_D8_curves.json
+Done. Wrote /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_D8_configs.csv and /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_D8_curves.json

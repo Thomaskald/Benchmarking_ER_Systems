@@ -150,4 +150,4 @@ DeepER (fastText, per-attribute) CCER random search | dataset=D9 | B=50 | caps: 
 [50/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.000765, 'epochs': 26, 'dropout': 0.107, 'batch_size': 128, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 128}
    -> OK  testF1=0.8317 (P=0.836 R=0.828)  thr=0.54 (valF1=0.827)  attrs=4  time=1000.88s  mem=1875.5MB
 
-Done. Wrote /home/it2022025/er_scalability/deeper/results/deeper_D9_configs.csv and /home/it2022025/er_scalability/deeper/results/deeper_D9_curves.json
+Done. Wrote /path/to/your/er_scalability/deeper/results/deeper_D9_configs.csv and /path/to/your/er_scalability/deeper/results/deeper_D9_curves.json

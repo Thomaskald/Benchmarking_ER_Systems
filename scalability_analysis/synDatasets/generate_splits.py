@@ -30,8 +30,8 @@ import pandas as pd
 # CONFIG
 # -------------------------------------------------------
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
 
 DATASETS = ["10K", "50K", "100K", "200K", "300K", "1M", "2M"]
 

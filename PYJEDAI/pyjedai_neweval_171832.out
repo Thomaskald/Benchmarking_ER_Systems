@@ -29,7 +29,7 @@
 === CDDB  [syn_der] ===
   -> pairwise F1=1.0000  B3 F1=1.0000  (P=1.000 R=1.000)  cfg#26  35.53s
 
-  pyJedAI-sem -> /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_sem_bestconfig_eval.csv  (8 new + 2 copied)
-  pyJedAI-syn -> /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_syn_bestconfig_eval.csv  (8 copied + 2 new)
+  pyJedAI-sem -> /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_sem_bestconfig_eval.csv  (8 new + 2 copied)
+  pyJedAI-syn -> /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_syn_bestconfig_eval.csv  (8 copied + 2 new)
 
 Done.

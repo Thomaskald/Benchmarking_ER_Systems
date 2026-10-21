@@ -40,10 +40,10 @@ from pyjedai.clustering import ConnectedComponentsClustering
 # ConnectedComponentsClustering only: UniqueMappingClustering enforces 1-to-1
 # matching, which is meaningful for Clean-Clean ER and not for Dirty ER.
 
-SRC_PATH   = "/home/it2022025/er_scalability/datasets/CDDB/cddb.csv"
-GT_PATH    = "/home/it2022025/er_scalability/datasets/CDDB/gt.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/test_set.csv"
+SRC_PATH   = "/path/to/your/er_scalability/datasets/CDDB/cddb.csv"
+GT_PATH    = "/path/to/your/er_scalability/datasets/CDDB/gt.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cddb/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/cddb/test_set.csv"
 
 ID_COL      = "id"
 BLOCK_ATTRS = ["artist", "title", "year"]

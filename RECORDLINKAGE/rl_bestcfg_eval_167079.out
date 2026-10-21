@@ -23,4 +23,4 @@
 === D9 ===
   -> pairwise F1=0.9531 (csv=0.9531, dF1=+0.0000)  B3 F1=0.9944 (P=0.995 R=0.994)  cfg#29  10.61s
 
-Done. Wrote /home/it2022025/er_scalability/recordlinkage_CCER/results/recordlinkage_bestconfig_eval.csv
+Done. Wrote /path/to/your/er_scalability/recordlinkage_CCER/results/recordlinkage_bestconfig_eval.csv

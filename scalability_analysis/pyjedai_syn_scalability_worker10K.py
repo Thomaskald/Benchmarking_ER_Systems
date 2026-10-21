@@ -39,9 +39,9 @@ from pyjedai.clustering import ConnectedComponentsClustering
 # ConnectedComponentsClustering only: UniqueMappingClustering enforces 1-to-1
 # matching, which is meaningful for Clean-Clean ER and not for Dirty ER.
 
-PROFILES_PATH = "/home/it2022025/er_scalability/converted/10K/profiles.csv"
-VALID_PATH    = "/home/it2022025/er_scalability/splits/10K/valid_set.csv"
-TEST_PATH     = "/home/it2022025/er_scalability/splits/10K/test_set.csv"
+PROFILES_PATH = "/path/to/your/er_scalability/converted/10K/profiles.csv"
+VALID_PATH    = "/path/to/your/er_scalability/splits/10K/valid_set.csv"
+TEST_PATH     = "/path/to/your/er_scalability/splits/10K/test_set.csv"
 
 ID_COL      = "id"
 BLOCK_ATTRS = ["given_name", "surname", "address_1", "suburb", "postcode"]

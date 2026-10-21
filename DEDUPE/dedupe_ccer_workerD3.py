@@ -16,14 +16,14 @@ import pandas as pd
 from unidecode import unidecode
 from sklearn.metrics import precision_score, recall_score, f1_score
 import zope
-zope.__path__.append("/home/it2022025/.local/lib/python3.10/site-packages/zope")
+zope.__path__.append("/path/to/your/.local/lib/python3.10/site-packages/zope")
 import dedupe
 
-D1_PATH    = "/home/it2022025/er_scalability/datasets/D3/amazon.csv"
-D2_PATH    = "/home/it2022025/er_scalability/datasets/D3/gp.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db3/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db3/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db3/test_set.csv"
+D1_PATH    = "/path/to/your/er_scalability/datasets/D3/amazon.csv"
+D2_PATH    = "/path/to/your/er_scalability/datasets/D3/gp.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db3/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db3/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db3/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

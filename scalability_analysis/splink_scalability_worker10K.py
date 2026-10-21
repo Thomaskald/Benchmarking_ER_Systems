@@ -16,10 +16,10 @@ import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
 # Synthetic FEBRL 10K (scalability tuning size). Single-source dirty ER.
-PROFILES_PATH = "/home/it2022025/er_scalability/converted/10K/profiles.csv"
-TRAIN_PATH    = "/home/it2022025/er_scalability/splits/10K/train_set.csv"
-VALID_PATH    = "/home/it2022025/er_scalability/splits/10K/valid_set.csv"
-TEST_PATH     = "/home/it2022025/er_scalability/splits/10K/test_set.csv"
+PROFILES_PATH = "/path/to/your/er_scalability/converted/10K/profiles.csv"
+TRAIN_PATH    = "/path/to/your/er_scalability/splits/10K/train_set.csv"
+VALID_PATH    = "/path/to/your/er_scalability/splits/10K/valid_set.csv"
+TEST_PATH     = "/path/to/your/er_scalability/splits/10K/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

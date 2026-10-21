@@ -31,7 +31,7 @@ import sys
 import os
 # Use the Zingg 0.5.0 python package (matches the 0.5.0 jar; avoids the 0.6.0
 # license/registration step). Prepend so it shadows the 0.6.0 install in ~/.local.
-ZINGG_050_PY = "/home/it2022025/software/zingg/zingg-0.5.0/python/build/lib"
+ZINGG_050_PY = "/path/to/your/software/zingg/zingg-0.5.0/python/build/lib"
 if ZINGG_050_PY not in sys.path:
     sys.path.insert(0, ZINGG_050_PY)
 
@@ -51,7 +51,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 
 ZINGG_JAR = os.environ.get(
     "ZINGG_JAR",
-    "/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
+    "/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
 )
 
 _NCORES = os.environ.get("SLURM_CPUS_PER_TASK", "4")
@@ -72,9 +72,9 @@ from pyspark.sql import SparkSession
 from zingg.client import Arguments, ClientOptions, ZinggWithSpark, FieldDefinition, MatchType
 from zingg.pipes import CsvPipe, Pipe
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
-OUTPUT_CSV    = "/home/it2022025/er_scalability/scalability/zingg_scalability_results.csv"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
+OUTPUT_CSV    = "/path/to/your/er_scalability/scalability/zingg_scalability_results.csv"
 
 ID_COL = "id"
 DATASETS = ["50K", "100K", "200K", "300K", "1M", "2M"]

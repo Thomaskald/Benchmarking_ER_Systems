@@ -34,10 +34,10 @@ from pyjedai.clustering import UniqueMappingClustering, ConnectedComponentsClust
 #   - the decision threshold is a SAMPLED hyperparameter -- no validation sweep,
 #     so pr_curve is the single operating point.
 
-D1_PATH    = "/home/it2022025/er_scalability/datasets/D7/tmdb.csv"
-D2_PATH    = "/home/it2022025/er_scalability/datasets/D7/tvdb.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db7/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db7/test_set.csv"
+D1_PATH    = "/path/to/your/er_scalability/datasets/D7/tmdb.csv"
+D2_PATH    = "/path/to/your/er_scalability/datasets/D7/tvdb.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db7/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db7/test_set.csv"
 DELIM      = "|"
 
 ID_COL = "id"

@@ -26,4 +26,4 @@ py_entitymatching 0.4.2
 === D9 ===
   -> pairwise F1=0.9466 (csv=0.9466, dF1=+0.0000)  B3 F1=0.9932 (P=0.989 R=0.997)  cfg#22  14.42s
 
-Done. Wrote /home/it2022025/er_scalability/magellan_CCER/results/magellan_bestconfig_eval.csv
+Done. Wrote /path/to/your/er_scalability/magellan_CCER/results/magellan_bestconfig_eval.csv

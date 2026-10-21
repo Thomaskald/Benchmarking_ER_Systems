@@ -36,12 +36,12 @@ CFG = dict(
         'http://dbpedia.org/ontology/episodeNumber': 'episodeNumber',
         'http://dbpedia.org/ontology/seasonNumber': 'seasonNumber',
     },
-    d1='/home/it2022025/er_scalability/datasets/D6/imdb.csv',
-    d2='/home/it2022025/er_scalability/datasets/D6/tvdb.csv',
+    d1='/path/to/your/er_scalability/datasets/D6/imdb.csv',
+    d2='/path/to/your/er_scalability/datasets/D6/tvdb.csv',
     text=[('title', 'text'), ('name', 'text'), ('episodeNumber', 'numstr'), ('seasonNumber', 'numstr')],
-    train='/home/it2022025/er_scalability/train_validation_test_sets/db6/train_set.csv',
-    valid='/home/it2022025/er_scalability/train_validation_test_sets/db6/valid_set.csv',
-    test='/home/it2022025/er_scalability/train_validation_test_sets/db6/test_set.csv',
+    train='/path/to/your/er_scalability/train_validation_test_sets/db6/train_set.csv',
+    valid='/path/to/your/er_scalability/train_validation_test_sets/db6/valid_set.csv',
+    test='/path/to/your/er_scalability/train_validation_test_sets/db6/test_set.csv',
 )
 
 

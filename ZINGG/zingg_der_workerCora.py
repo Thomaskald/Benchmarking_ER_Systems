@@ -2,7 +2,7 @@ import sys
 import os
 # Use the Zingg 0.5.0 python package (matches the 0.5.0 jar; avoids the 0.6.0
 # license/registration step). Prepend so it shadows the 0.6.0 install in ~/.local.
-ZINGG_050_PY = "/home/it2022025/software/zingg/zingg-0.5.0/python/build/lib"
+ZINGG_050_PY = "/path/to/your/software/zingg/zingg-0.5.0/python/build/lib"
 if ZINGG_050_PY not in sys.path:
     sys.path.insert(0, ZINGG_050_PY)
 
@@ -23,7 +23,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 # Zingg 0.5.0 jar (matches the 0.5.0 python package above). Overridable via env.
 ZINGG_JAR = os.environ.get(
     "ZINGG_JAR",
-    "/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
+    "/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
 )
 
 _NCORES = os.environ.get("SLURM_CPUS_PER_TASK", "4")
@@ -46,10 +46,10 @@ from pyspark.sql import SparkSession
 from zingg.client import Arguments, ClientOptions, ZinggWithSpark, FieldDefinition, MatchType
 from zingg.pipes import CsvPipe, Pipe
 
-CORA_PATH  = "/home/it2022025/er_scalability/datasets/cora/cora.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cora/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cora/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/cora/test_set.csv"
+CORA_PATH  = "/path/to/your/er_scalability/datasets/cora/cora.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cora/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cora/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/cora/test_set.csv"
 
 ID_COL = "Entity Id"
 

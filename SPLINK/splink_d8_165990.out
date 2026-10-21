@@ -150,4 +150,4 @@ Splink CCER random search | dataset=D8 | B=50 | caps: 1.50h / 12GB per config
 [50/50] config: {'comparison_strictness': 0.9719, 'estimate_u_max_pairs': 5266952.0}
    -> OK  testF1=0.4181 (P=0.448 R=0.392)  thr=0.04 (valF1=0.420)  time=54.8s  mem=1605.9MB
 
-Done. Wrote /home/it2022025/er_scalability/splink_CCER/results/splink_D8_configs.csv and /home/it2022025/er_scalability/splink_CCER/results/splink_D8_curves.json
+Done. Wrote /path/to/your/er_scalability/splink_CCER/results/splink_D8_configs.csv and /path/to/your/er_scalability/splink_CCER/results/splink_D8_curves.json

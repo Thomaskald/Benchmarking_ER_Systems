@@ -54,8 +54,8 @@ EXISTING_CSV = os.path.join(RESULTS_DIR, "pyjedai_bestconfig_eval.csv")
 SEM_CSV = os.path.join(RESULTS_DIR, "pyjedai_sem_bestconfig_eval.csv")
 SYN_CSV = os.path.join(RESULTS_DIR, "pyjedai_syn_bestconfig_eval.csv")
 
-DATA_ROOT = "/home/it2022025/er_scalability/datasets"
-SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
+DATA_ROOT = "/path/to/your/er_scalability/datasets"
+SPLIT_ROOT = "/path/to/your/er_scalability/train_validation_test_sets"
 
 # variant "sem_ccer" = embeddings-NN on two clean sources (the CORA/CDDB method)
 # variant "syn_der"  = blocking chain on one dirty source (the D2..D9 method)

@@ -150,4 +150,4 @@ DeepER (fastText, per-attribute) DER random search | dataset=CDDB | B=50 | caps:
 [50/50] config: {'composition': 'lstm', 'pair_feature': 'hadamard', 'hidden_dim': 512, 'lr': 0.000765, 'epochs': 26, 'dropout': 0.107, 'batch_size': 128, 'max_len': 24, 'tune_embeddings': True, 'lstm_hidden': 128}
    -> OK  testF1=0.8857 (P=0.939 R=0.838)  thr=0.22 (valF1=0.909)  attrs=5  time=276.71s  mem=1325.8MB
 
-Done. Wrote /home/it2022025/er_scalability/deeper/results/deeper_CDDB_configs.csv and /home/it2022025/er_scalability/deeper/results/deeper_CDDB_curves.json
+Done. Wrote /path/to/your/er_scalability/deeper/results/deeper_CDDB_configs.csv and /path/to/your/er_scalability/deeper/results/deeper_CDDB_curves.json

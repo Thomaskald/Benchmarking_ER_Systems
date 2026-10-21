@@ -23,10 +23,10 @@ from pyjedai.comparison_cleaning import (
 from pyjedai.matching import EntityMatching
 from pyjedai.clustering import UniqueMappingClustering, ConnectedComponentsClustering
 
-D1_PATH    = "/home/it2022025/er_scalability/datasets/D8/walmart.csv"
-D2_PATH    = "/home/it2022025/er_scalability/datasets/D8/amazon.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db8/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db8/test_set.csv"
+D1_PATH    = "/path/to/your/er_scalability/datasets/D8/walmart.csv"
+D2_PATH    = "/path/to/your/er_scalability/datasets/D8/amazon.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db8/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db8/test_set.csv"
 DELIM      = "|"          # D8 uses | as separator
 BLOCK_ATTRS = ["title"]   # D8 (Walmart-Amazon) blocks on title
 

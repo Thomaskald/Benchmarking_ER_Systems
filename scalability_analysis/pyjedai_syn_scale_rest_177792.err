@@ -1,5 +1,5 @@
 [nltk_data] Downloading package stopwords to
-[nltk_data]     /home/it2022025/nltk_data...
+[nltk_data]     /path/to/your/nltk_data...
 [nltk_data]   Package stopwords is already up-to-date!
 Standard Blocking:   0%|          | 0/50000 [00:00<?, ?it/s]Standard Blocking:   0%|          | 1/50000 [00:25<352:21:05, 25.37s/it]Standard Blocking:   4%|▍         | 2151/50000 [00:25<06:39, 119.83it/s]Standard Blocking:  20%|██        | 10242/50000 [00:25<00:52, 750.22it/s]Standard Blocking:  50%|████▉     | 24990/50000 [00:26<00:10, 2319.54it/s]Standard Blocking:  79%|███████▉  | 39389/50000 [00:26<00:02, 4473.25it/s]Standard Blocking:  95%|█████████▍| 47476/50000 [00:26<00:00, 5863.20it/s]Standard Blocking: 100%|██████████| 50000/50000 [00:26<00:00, 1885.45it/s]
 srun: error: hpc02: task 0: Killed

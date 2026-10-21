@@ -26,7 +26,7 @@ Usage:
 
   # Custom paths
   python3 convert_jedai_datasets.py \
-      --data_dir /home/thomas/train_test_valid_datasets/synDatasets/data \
+      --data_dir /path/to/your/synDatasets/data \
       --output_dir ./converted \
       --jar ./jedai-core-3.2-jar-with-dependencies.jar \
       --format csv          # or parquet

@@ -75,7 +75,7 @@ SUMMARY_CSV = os.path.join(RESULTS_DIR, "sudowoodo_bestconfig_eval.csv")
 
 def per_dataset_csv(ds):
     return os.path.join(RESULTS_DIR, "sudowoodo_bestconfig_eval_%s.csv" % ds)
-BASE = "/home/it2022025/er_scalability"
+BASE = "/path/to/your/er_scalability"
 SPLIT_ROOT = os.path.join(BASE, "train_validation_test_sets")
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)

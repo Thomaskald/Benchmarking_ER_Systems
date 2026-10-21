@@ -7,7 +7,7 @@ Sudowoodo random search | dataset=D2 | B=5 | caps: 1.50h / 12GB per config
    -> ERROR  time=1145.4s
       stderr: rD2.py", line 183, in main
     new_trainset, _tpr, _tnr, _fpr, _fnr = do_bootstrap(model, hp)
-  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
+  File "/path/to/your/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
     for i in range(min(hp.size, N)):
 TypeError: '<' not supported between instances of 'int' and 'NoneType'
 
@@ -16,7 +16,7 @@ TypeError: '<' not supported between instances of 'int' and 'NoneType'
    -> ERROR  time=1192.36s
       stderr: rD2.py", line 183, in main
     new_trainset, _tpr, _tnr, _fpr, _fnr = do_bootstrap(model, hp)
-  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
+  File "/path/to/your/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
     for i in range(min(hp.size, N)):
 TypeError: '<' not supported between instances of 'int' and 'NoneType'
 
@@ -25,7 +25,7 @@ TypeError: '<' not supported between instances of 'int' and 'NoneType'
    -> ERROR  time=2259.7s
       stderr: rD2.py", line 183, in main
     new_trainset, _tpr, _tnr, _fpr, _fnr = do_bootstrap(model, hp)
-  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
+  File "/path/to/your/er_scalability/sudowoodo/src/selfsl/bootstrap.py", line 119, in bootstrap
     for i in range(min(hp.size, N)):
 TypeError: '<' not supported between instances of 'int' and 'NoneType'
 
@@ -34,9 +34,9 @@ TypeError: '<' not supported between instances of 'int' and 'NoneType'
    -> ERROR  time=5.37s
       stderr: lability/sudowoodo/src/selfsl/augment.py", line 234, in augment_sent
     tokens, labels = self.augment(tokens, labels, op=op)
-  File "/home/it2022025/er_scalability/sudowoodo/src/selfsl/augment.py", line 185, in augment
+  File "/path/to/your/er_scalability/sudowoodo/src/selfsl/augment.py", line 185, in augment
     raise ValueError('DA operator not found')
 ValueError: DA operator not found
 
 
-Done. 0/5 OK. Wrote /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_D2_configs.csv and /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_D2_curves.json
+Done. 0/5 OK. Wrote /path/to/your/er_scalability/sudowoodo/results/sudowoodo_D2_configs.csv and /path/to/your/er_scalability/sudowoodo/results/sudowoodo_D2_curves.json

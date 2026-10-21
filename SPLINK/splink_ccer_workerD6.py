@@ -15,11 +15,11 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
-IMDB_PATH  = "/home/it2022025/er_scalability/datasets/D6/imdb.csv"
-TVDB_PATH  = "/home/it2022025/er_scalability/datasets/D6/tvdb.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db6/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db6/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db6/test_set.csv"
+IMDB_PATH  = "/path/to/your/er_scalability/datasets/D6/imdb.csv"
+TVDB_PATH  = "/path/to/your/er_scalability/datasets/D6/tvdb.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db6/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db6/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db6/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

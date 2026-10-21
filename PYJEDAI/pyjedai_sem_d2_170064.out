@@ -150,4 +150,4 @@ pyJedAI SEMANTIC CCER random search | dataset=D2 | B=50 | caps: 1.50h / 12GB per
 [50/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 33, 'similarity_threshold': 0.9194, 'clusterer': 'UniqueMappingClustering'}
    -> OK  testF1=0.0000 (P=0.000 R=0.000)  thr=0.9194 (valF1=0.000)  time=400.57s  mem=2380.3MB
 
-Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_sem_D2_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_sem_D2_curves.json
+Done. Wrote /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_sem_D2_configs.csv and /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_sem_D2_curves.json

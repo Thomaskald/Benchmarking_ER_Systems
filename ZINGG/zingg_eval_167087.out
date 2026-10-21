@@ -1,9 +1,9 @@
 Node: hpc02
 Using python: /usr/bin/python3
-SPARK_HOME=/home/it2022025/spark-3.5.0-bin-hadoop3
+SPARK_HOME=/path/to/your/spark-3.5.0-bin-hadoop3
 java: openjdk version "11.0.31" 2026-04-21
-ZINGG_JAR=/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar
-pyspark 3.4.1 | zingg /home/it2022025/software/zingg/zingg-0.5.0/python/build/lib/zingg/__init__.py
+ZINGG_JAR=/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar
+pyspark 3.4.1 | zingg /path/to/your/software/zingg/zingg-0.5.0/python/build/lib/zingg/__init__.py
 
 === D2 ===
   -> pairwise F1=0.4675 (csv 0.4905)  B3 F1=0.9451 (P=0.943 R=0.947)  cfg#20  107.08s
@@ -35,4 +35,4 @@ pyspark 3.4.1 | zingg /home/it2022025/software/zingg/zingg-0.5.0/python/build/li
 === CDDB ===
   -> pairwise F1=0.9118 (csv 0.9118)  B3 F1=0.9956 (P=1.000 R=0.991)  cfg#8  140.29s
 
-Done. Wrote /home/it2022025/er_scalability/zingg_CCER/results/zingg_bestconfig_eval.csv
+Done. Wrote /path/to/your/er_scalability/zingg_CCER/results/zingg_bestconfig_eval.csv

@@ -14,11 +14,11 @@ import pandas as pd
 from sklearn.metrics import precision_score, recall_score, f1_score
 import linktransformer as lt
 
-IMDB_PATH  = "/home/it2022025/er_scalability/datasets/D5/imdb.csv"
-TMDB_PATH  = "/home/it2022025/er_scalability/datasets/D5/tmdb.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db5/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db5/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db5/test_set.csv"
+IMDB_PATH  = "/path/to/your/er_scalability/datasets/D5/imdb.csv"
+TMDB_PATH  = "/path/to/your/er_scalability/datasets/D5/tmdb.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db5/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db5/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db5/test_set.csv"
 
 # The D5 base tables use full ontology URIs as column headers. Map the fields
 # used for matching to short names so the rest of the pipeline is clean.

@@ -32,7 +32,7 @@ the 1.5h per-config cap.
 Source numbers live in scalability_analysis/*_scalability_results.csv
 Palette + framework order are inherited from the main thesis plots (CVD-safe).
 
-Run:  /home/thomas/miniconda3/bin/python make_scalability_plots.py
+Run:  python3 make_scalability_plots.py
 """
 
 import os

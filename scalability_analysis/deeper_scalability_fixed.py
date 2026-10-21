@@ -67,10 +67,10 @@ import torch.nn.functional as F
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
-EMB_DIR       = "/home/it2022025/er_scalability/embeddings"
-OUTPUT_CSV    = "/home/it2022025/er_scalability/scalability/deeper_scalability_results.csv"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
+EMB_DIR       = "/path/to/your/er_scalability/embeddings"
+OUTPUT_CSV    = "/path/to/your/er_scalability/scalability/deeper_scalability_results.csv"
 SEARCH_CSV    = os.path.join(HERE, "results", "deeper_10K_configs.csv")
 
 DATASETS = ["50K", "100K", "200K", "300K", "1M", "2M"]

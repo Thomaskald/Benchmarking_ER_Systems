@@ -396,8 +396,8 @@ operator its README lists is not implemented, so the search drivers leave it out
 
 ## Expected data layout
 
-The scripts reference absolute cluster paths. On the machine these ran on, `$DATA_ROOT`
-was `/home/it2022025/er_scalability`:
+The scripts reference absolute cluster paths. In the code these appear as
+`/path/to/your/er_scalability`, which is `$DATA_ROOT` below; replace it with your own location:
 
 ```
 $DATA_ROOT/

@@ -36,7 +36,7 @@ import sys
 
 import pandas as pd
 
-BASE = "/home/it2022025/er_scalability"
+BASE = "/path/to/your/er_scalability"
 OUT_BASE = os.path.join(BASE, "sudowoodo", "src", "data", "em")
 
 # The SCADS movie benchmark ships ontology URIs as column names. Same map the

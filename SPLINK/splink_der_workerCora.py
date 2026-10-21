@@ -16,10 +16,10 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 import splink.comparison_library as cl
 from splink import DuckDBAPI, Linker, SettingsCreator, block_on
 
-CORA_PATH  = "/home/it2022025/er_scalability/datasets/cora/cora.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cora/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cora/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/cora/test_set.csv"
+CORA_PATH  = "/path/to/your/er_scalability/datasets/cora/cora.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cora/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cora/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/cora/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

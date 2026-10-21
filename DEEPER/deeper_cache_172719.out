@@ -19,14 +19,14 @@ CORA  attrs=['address', 'author', 'editor', 'institution', 'month', 'note', 'pag
 CDDB  attrs=['artist', 'category', 'genre', 'title', 'year']
       16265 distinct tokens
 
-loading /home/it2022025/er_scalability/embeddings/wiki.en.bin (this is the slow part) ...
-D2    -> /home/it2022025/er_scalability/embeddings/ft_cache_D2.npz  (6648 x 300)
-D3    -> /home/it2022025/er_scalability/embeddings/ft_cache_D3.npz  (17669 x 300)
-D4    -> /home/it2022025/er_scalability/embeddings/ft_cache_D4.npz  (8043 x 300)
-D5    -> /home/it2022025/er_scalability/embeddings/ft_cache_D5.npz  (9812 x 300)
-D6    -> /home/it2022025/er_scalability/embeddings/ft_cache_D6.npz  (9113 x 300)
-D7    -> /home/it2022025/er_scalability/embeddings/ft_cache_D7.npz  (20938 x 300)
-D8    -> /home/it2022025/er_scalability/embeddings/ft_cache_D8.npz  (36967 x 300)
-D9    -> /home/it2022025/er_scalability/embeddings/ft_cache_D9.npz  (89979 x 300)
-CORA  -> /home/it2022025/er_scalability/embeddings/ft_cache_CORA.npz  (1209 x 300)
-CDDB  -> /home/it2022025/er_scalability/embeddings/ft_cache_CDDB.npz  (16265 x 300)
+loading /path/to/your/er_scalability/embeddings/wiki.en.bin (this is the slow part) ...
+D2    -> /path/to/your/er_scalability/embeddings/ft_cache_D2.npz  (6648 x 300)
+D3    -> /path/to/your/er_scalability/embeddings/ft_cache_D3.npz  (17669 x 300)
+D4    -> /path/to/your/er_scalability/embeddings/ft_cache_D4.npz  (8043 x 300)
+D5    -> /path/to/your/er_scalability/embeddings/ft_cache_D5.npz  (9812 x 300)
+D6    -> /path/to/your/er_scalability/embeddings/ft_cache_D6.npz  (9113 x 300)
+D7    -> /path/to/your/er_scalability/embeddings/ft_cache_D7.npz  (20938 x 300)
+D8    -> /path/to/your/er_scalability/embeddings/ft_cache_D8.npz  (36967 x 300)
+D9    -> /path/to/your/er_scalability/embeddings/ft_cache_D9.npz  (89979 x 300)
+CORA  -> /path/to/your/er_scalability/embeddings/ft_cache_CORA.npz  (1209 x 300)
+CDDB  -> /path/to/your/er_scalability/embeddings/ft_cache_CDDB.npz  (16265 x 300)

@@ -51,9 +51,9 @@ RESULTS_DIR = os.path.join(HERE, "results")
 PAIRS_DIR = os.path.join(RESULTS_DIR, "pairs")
 SUMMARY_CSV = os.path.join(RESULTS_DIR, "deeper_bestconfig_eval.csv")
 
-DATA_ROOT  = "/home/it2022025/er_scalability/datasets"
-SPLIT_ROOT = "/home/it2022025/er_scalability/train_validation_test_sets"
-EMB_DIR    = "/home/it2022025/er_scalability/embeddings"
+DATA_ROOT  = "/path/to/your/er_scalability/datasets"
+SPLIT_ROOT = "/path/to/your/er_scalability/train_validation_test_sets"
+EMB_DIR    = "/path/to/your/er_scalability/embeddings"
 
 SEED = 42
 EMB_DIM = 300

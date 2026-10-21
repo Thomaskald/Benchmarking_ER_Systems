@@ -150,4 +150,4 @@ Dedupe CCER random search | dataset=D2 | B=50 | caps: 1.50h / 12GB per config
 [50/50] config: {'neg_ratio': 3.2312, 'recall': 0.9064, 'index_predicates': True}
    -> OK  testF1=0.3791 (P=0.327 R=0.451)  thr=0.71 (valF1=0.415)  time=37.38s  mem=750.8MB
 
-Done. Wrote /home/it2022025/er_scalability/dedupe_CCER/results/dedupe_D2_configs.csv and /home/it2022025/er_scalability/dedupe_CCER/results/dedupe_D2_curves.json
+Done. Wrote /path/to/your/er_scalability/dedupe_CCER/results/dedupe_D2_configs.csv and /path/to/your/er_scalability/dedupe_CCER/results/dedupe_D2_curves.json

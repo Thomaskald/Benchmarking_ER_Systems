@@ -51,17 +51,17 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 # blocking is not exercised (consistent with how the other pair classifiers are
 # scored).
 
-SRC_PATH   = "/home/it2022025/er_scalability/datasets/CDDB/cddb.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/test_set.csv"
+SRC_PATH   = "/path/to/your/er_scalability/datasets/CDDB/cddb.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cddb/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cddb/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/cddb/test_set.csv"
 DELIM      = ","
 ID_COL     = "id"
 # Columns dropped before composing (CDDB's `tracks` field holds very long
 # strings; the pyJedAI workers exclude it for the same reason).
 DROP_COLS  = ["tracks"]
 
-FT_CACHE = "/home/it2022025/er_scalability/embeddings/ft_cache_CDDB.npz"
+FT_CACHE = "/path/to/your/er_scalability/embeddings/ft_cache_CDDB.npz"
 EMB_DIM  = 300
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)

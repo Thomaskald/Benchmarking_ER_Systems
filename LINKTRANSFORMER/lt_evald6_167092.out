@@ -1,7 +1,7 @@
 Node: hpc02
 Using python: /usr/bin/python3
 linktransformer 0.1.17 | torch 2.5.1+cu124
-Loading config saved at /home/it2022025/.local/lib/python3.10/site-packages/linktransformer/configs/linkage.json
+Loading config saved at /path/to/your/.local/lib/python3.10/site-packages/linktransformer/configs/linkage.json
 Using base model: sentence-transformers/all-MiniLM-L6-v2
 Currently wandb logging is set to False. Your training run can be logged on wandb by setting log_wandb=True , setting approriate parameters in the config and  making an account on wandb if you don't have one yet
 Testing at end:  True

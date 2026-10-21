@@ -164,4 +164,4 @@ Standard Blocking: 100%|██████████| 9763/9763 [00:23<00:00, 
 [50/50] config: {'comparison_cleaner': 'CardinalityEdgePruning', 'weighting_scheme': 'X2', 'ratio': 0.6193, 'vectorizer': 'tf', 'tokenizer': 'char_tokenizer', 'qgram': 3, 'metric': 'cosine'}
    -> OK  testF1=0.8861 (P=0.833 R=0.946)  thr=0.25 (valF1=0.923)  time=245.56s  mem=13540.9MB
 
-Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CDDB_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CDDB_curves.json
+Done. Wrote /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CDDB_configs.csv and /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_syn_CDDB_curves.json

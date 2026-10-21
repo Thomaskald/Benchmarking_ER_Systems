@@ -23,10 +23,10 @@ from pyjedai.comparison_cleaning import (
 from pyjedai.matching import EntityMatching
 from pyjedai.clustering import UniqueMappingClustering, ConnectedComponentsClustering
 
-D1_PATH    = "/home/it2022025/er_scalability/datasets/D9/dblp.csv"
-D2_PATH    = "/home/it2022025/er_scalability/datasets/D9/scholar.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db9/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db9/test_set.csv"
+D1_PATH    = "/path/to/your/er_scalability/datasets/D9/dblp.csv"
+D2_PATH    = "/path/to/your/er_scalability/datasets/D9/scholar.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db9/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db9/test_set.csv"
 DELIM      = ">"          # D9 uses > as separator
 BLOCK_ATTRS = ["title"]   # D9 (DBLP-Scholar) blocks on title
 

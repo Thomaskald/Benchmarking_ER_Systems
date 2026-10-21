@@ -153,4 +153,4 @@ RecordLinkage CCER random search | dataset=D2 | B=50 | caps: 1.50h / 12GB per co
 [50/50] config: {'matcher': 'GradientBoosting', 'n_estimators': 436, 'max_depth': 8, 'learning_rate': 0.2168}
    -> OK  testF1=0.7422 (P=0.819 R=0.679)  thr=0.98 (valF1=0.805)  time=53.86s  mem=315.6MB
 
-Done. Wrote /home/it2022025/er_scalability/recordlinkage_CCER/results/recordlinkage_D2_configs.csv and /home/it2022025/er_scalability/recordlinkage_CCER/results/recordlinkage_D2_curves.json
+Done. Wrote /path/to/your/er_scalability/recordlinkage_CCER/results/recordlinkage_D2_configs.csv and /path/to/your/er_scalability/recordlinkage_CCER/results/recordlinkage_D2_curves.json

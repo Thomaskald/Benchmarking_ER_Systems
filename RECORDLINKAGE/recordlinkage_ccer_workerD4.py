@@ -15,11 +15,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-DBLP_PATH  = "/home/it2022025/er_scalability/datasets/D4/dblp.csv"
-ACM_PATH   = "/home/it2022025/er_scalability/datasets/D4/acm.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db4/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db4/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db4/test_set.csv"
+DBLP_PATH  = "/path/to/your/er_scalability/datasets/D4/dblp.csv"
+ACM_PATH   = "/path/to/your/er_scalability/datasets/D4/acm.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db4/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db4/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db4/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

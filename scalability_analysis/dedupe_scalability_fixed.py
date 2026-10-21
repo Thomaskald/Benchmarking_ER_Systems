@@ -25,7 +25,7 @@ Output: dedupe_scalability_results.csv
 import sys
 # zope namespace fix
 import zope
-zope.__path__.append("/home/it2022025/.local/lib/python3.10/site-packages/zope")
+zope.__path__.append("/path/to/your/.local/lib/python3.10/site-packages/zope")
 
 import os
 import re
@@ -49,9 +49,9 @@ logging.disable(logging.CRITICAL)
 random.seed(42)
 np.random.seed(42)
 
-CONVERTED_DIR = "/home/it2022025/er_scalability/converted"
-SPLITS_DIR    = "/home/it2022025/er_scalability/splits"
-OUTPUT_CSV    = "/home/it2022025/er_scalability/scalability/dedupe_scalability_results.csv"
+CONVERTED_DIR = "/path/to/your/er_scalability/converted"
+SPLITS_DIR    = "/path/to/your/er_scalability/splits"
+OUTPUT_CSV    = "/path/to/your/er_scalability/scalability/dedupe_scalability_results.csv"
 
 # 10K excluded (tuning size). Rest of the ladder, looped internally:
 DATASETS = ["50K", "100K", "200K", "300K", "1M", "2M"]

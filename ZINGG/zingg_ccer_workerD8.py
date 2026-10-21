@@ -2,7 +2,7 @@ import sys
 import os
 # Use the Zingg 0.5.0 python package (matches the 0.5.0 jar; avoids the 0.6.0
 # license/registration step). Prepend so it shadows the 0.6.0 install in ~/.local.
-ZINGG_050_PY = "/home/it2022025/software/zingg/zingg-0.5.0/python/build/lib"
+ZINGG_050_PY = "/path/to/your/software/zingg/zingg-0.5.0/python/build/lib"
 if ZINGG_050_PY not in sys.path:
     sys.path.insert(0, ZINGG_050_PY)
 
@@ -23,7 +23,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 # Zingg 0.5.0 jar (matches the 0.5.0 python package above). Overridable via env.
 ZINGG_JAR = os.environ.get(
     "ZINGG_JAR",
-    "/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
+    "/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
 )
 
 _NCORES = os.environ.get("SLURM_CPUS_PER_TASK", "4")
@@ -52,11 +52,11 @@ from zingg.pipes import CsvPipe, Pipe
 # benchmark, where table A is the smaller Walmart catalog and table B is the
 # larger Amazon catalog -- swap the two filenames below if that's backwards
 # for your copy of the data.
-AMAZON_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/db8/tableB.csv"
-WALMART_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/db8/tableA.csv"
-TRAIN_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db8/train_set.csv"
-VALID_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db8/valid_set.csv"
-TEST_PATH    = "/home/it2022025/er_scalability/train_validation_test_sets/db8/test_set.csv"
+AMAZON_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/db8/tableB.csv"
+WALMART_PATH = "/path/to/your/er_scalability/train_validation_test_sets/db8/tableA.csv"
+TRAIN_PATH   = "/path/to/your/er_scalability/train_validation_test_sets/db8/train_set.csv"
+VALID_PATH   = "/path/to/your/er_scalability/train_validation_test_sets/db8/valid_set.csv"
+TEST_PATH    = "/path/to/your/er_scalability/train_validation_test_sets/db8/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

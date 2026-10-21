@@ -27,8 +27,8 @@ import sys
 import numpy as np
 import pandas as pd
 
-DATA_ROOT = "/home/it2022025/er_scalability/datasets"
-EMB_DIR   = "/home/it2022025/er_scalability/embeddings"
+DATA_ROOT = "/path/to/your/er_scalability/datasets"
+EMB_DIR   = "/path/to/your/er_scalability/embeddings"
 # The authors use the Wikipedia fastText model. cc.en.300.bin works too -- if
 # you switch, say which one in the paper, and rebuild every cache.
 FT_MODEL  = os.path.join(EMB_DIR, "wiki.en.bin")

@@ -20,11 +20,11 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.preprocessing import normalize
 
-DBLP_PATH    = "/home/it2022025/er_scalability/datasets/D9/dblp.csv"
-SCHOLAR_PATH = "/home/it2022025/er_scalability/datasets/D9/scholar.csv"
-TRAIN_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db9/train_set.csv"
-VALID_PATH   = "/home/it2022025/er_scalability/train_validation_test_sets/db9/valid_set.csv"
-TEST_PATH    = "/home/it2022025/er_scalability/train_validation_test_sets/db9/test_set.csv"
+DBLP_PATH    = "/path/to/your/er_scalability/datasets/D9/dblp.csv"
+SCHOLAR_PATH = "/path/to/your/er_scalability/datasets/D9/scholar.csv"
+TRAIN_PATH   = "/path/to/your/er_scalability/train_validation_test_sets/db9/train_set.csv"
+VALID_PATH   = "/path/to/your/er_scalability/train_validation_test_sets/db9/valid_set.csv"
+TEST_PATH    = "/path/to/your/er_scalability/train_validation_test_sets/db9/test_set.csv"
 
 THRESHOLD_GRID = np.arange(0.0, 1.001, 0.01)
 

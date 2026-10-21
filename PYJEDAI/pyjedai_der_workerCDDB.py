@@ -18,11 +18,11 @@ from pyjedai.workflow import EmbeddingsNNWorkFlow
 from pyjedai.vector_based_blocking import EmbeddingsNNBlockBuilding
 from pyjedai.clustering import ConnectedComponentsClustering
 
-CDDB_PATH  = "/home/it2022025/er_scalability/datasets/CDDB/cddb.csv"
-GT_PATH    = "/home/it2022025/er_scalability/datasets/CDDB/gt.csv"
-TRAIN_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/train_set.csv"
-VALID_PATH = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/valid_set.csv"
-TEST_PATH  = "/home/it2022025/er_scalability/train_validation_test_sets/cddb/test_set.csv"
+CDDB_PATH  = "/path/to/your/er_scalability/datasets/CDDB/cddb.csv"
+GT_PATH    = "/path/to/your/er_scalability/datasets/CDDB/gt.csv"
+TRAIN_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cddb/train_set.csv"
+VALID_PATH = "/path/to/your/er_scalability/train_validation_test_sets/cddb/valid_set.csv"
+TEST_PATH  = "/path/to/your/er_scalability/train_validation_test_sets/cddb/test_set.csv"
 
 ID_COL = "id"
 BLOCK_ATTRS = ["artist", "title", "year"]   # CDDB restricts embedding attributes

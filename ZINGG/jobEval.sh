@@ -14,7 +14,7 @@ mkdir -p results/pairs
 
 # --- Standalone Spark 3.5.0 (this is what makes Zingg actually run on this
 #     cluster; the bare pip pyspark stalls at LogisticRegression.treeAggregate) ---
-export SPARK_HOME=/home/it2022025/spark-3.5.0-bin-hadoop3
+export SPARK_HOME=/path/to/your/spark-3.5.0-bin-hadoop3
 export PATH="$SPARK_HOME/bin:$HOME/.local/bin:$PATH"
 export PYSPARK_PYTHON=python3
 

@@ -15,4 +15,4 @@ Sudowoodo random search | dataset=CDDB | B=5 | caps: 1.50h / 12GB per config
 [5/5] config: {'lm': 'distilbert', 'ssl_method': 'barlow_twins', 'n_ssl_epochs': 1, 'n_epochs': 2, 'max_len': 32, 'batch_size': 64, 'lr': 2.4e-05, 'da': 'append_col', 'projector': '4096'}
    -> OK  testF1=0.5714 (P=0.842 R=0.432)  thr=0.2 (valF1=0.679)  epoch=2  time=1016.4s  mem=3452.2MB
 
-Done. 5/5 OK. Wrote /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_CDDB_configs.csv and /home/it2022025/er_scalability/sudowoodo/results/sudowoodo_CDDB_curves.json
+Done. 5/5 OK. Wrote /path/to/your/er_scalability/sudowoodo/results/sudowoodo_CDDB_configs.csv and /path/to/your/er_scalability/sudowoodo/results/sudowoodo_CDDB_curves.json

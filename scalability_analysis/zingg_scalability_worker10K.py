@@ -2,7 +2,7 @@ import sys
 import os
 # Use the Zingg 0.5.0 python package (matches the 0.5.0 jar; avoids the 0.6.0
 # license/registration step). Prepend so it shadows the 0.6.0 install in ~/.local.
-ZINGG_050_PY = "/home/it2022025/software/zingg/zingg-0.5.0/python/build/lib"
+ZINGG_050_PY = "/path/to/your/software/zingg/zingg-0.5.0/python/build/lib"
 if ZINGG_050_PY not in sys.path:
     sys.path.insert(0, ZINGG_050_PY)
 
@@ -22,7 +22,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 
 ZINGG_JAR = os.environ.get(
     "ZINGG_JAR",
-    "/home/it2022025/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
+    "/path/to/your/software/zingg/zingg-0.5.0/zingg-0.5.0.jar",
 )
 
 _NCORES = os.environ.get("SLURM_CPUS_PER_TASK", "4")
@@ -44,10 +44,10 @@ from zingg.client import Arguments, ClientOptions, ZinggWithSpark, FieldDefiniti
 from zingg.pipes import CsvPipe, Pipe
 
 # Synthetic FEBRL 10K (scalability tuning size). Single-source dirty ER.
-PROFILES_PATH = "/home/it2022025/er_scalability/converted/10K/profiles.csv"
-TRAIN_PATH    = "/home/it2022025/er_scalability/splits/10K/train_set.csv"
-VALID_PATH    = "/home/it2022025/er_scalability/splits/10K/valid_set.csv"
-TEST_PATH     = "/home/it2022025/er_scalability/splits/10K/test_set.csv"
+PROFILES_PATH = "/path/to/your/er_scalability/converted/10K/profiles.csv"
+TRAIN_PATH    = "/path/to/your/er_scalability/splits/10K/train_set.csv"
+VALID_PATH    = "/path/to/your/er_scalability/splits/10K/valid_set.csv"
+TEST_PATH     = "/path/to/your/er_scalability/splits/10K/test_set.csv"
 
 ID_COL = "id"
 

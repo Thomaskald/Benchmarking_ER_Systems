@@ -150,4 +150,4 @@ pyJedAI DER random search | dataset=CORA | B=50 | caps: 1.50h / 12GB per config
 [50/50] config: {'vectorizer': 'albert', 'similarity_distance': 'euclidean', 'top_k': 16, 'similarity_threshold': 0.7846}
    -> OK  testF1=0.0195 (P=1.000 R=0.010)  thr=0.7846 (valF1=0.034)  time=275.23s  mem=2507.1MB
 
-Done. Wrote /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_CORA_configs.csv and /home/it2022025/er_scalability/pyJedAI_CCER/results/pyjedai_CORA_curves.json
+Done. Wrote /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_CORA_configs.csv and /path/to/your/er_scalability/pyJedAI_CCER/results/pyjedai_CORA_curves.json

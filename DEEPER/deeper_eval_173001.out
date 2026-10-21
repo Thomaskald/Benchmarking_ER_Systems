@@ -49,4 +49,4 @@ RESULT_JSON:{"dataset": "CDDB", "config_id": "22", "family": "der", "csv_test_f1
   pairwise_f1=0.958904  csv_test_f1=0.958904  delta=+0.000000
   bcubed_f1=0.997548  n_entities=612  n_gt_pairs=37
 
-Wrote /home/it2022025/er_scalability/deeper/results/deeper_bestconfig_eval.csv
+Wrote /path/to/your/er_scalability/deeper/results/deeper_bestconfig_eval.csv
