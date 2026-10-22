@@ -99,7 +99,7 @@ def _missing_for(df_ds):
     return [fw for fw in FRAMEWORK_ORDER if fw in na]
 
 
-def _note_missing(fig, missing, y=-0.01, ax=None):
+def _note_missing(fig, missing, y=-0.01, ax=None, fontsize=8.5):
     """Footnote explaining which frameworks have no result.
 
     Placed in figure coords, or in `ax` coords when given (so it sits a fixed
@@ -107,7 +107,7 @@ def _note_missing(fig, missing, y=-0.01, ax=None):
     if not missing:
         return
     text = TIME_LIMIT_NOTE.replace("Sudowoodo", ", ".join(missing))
-    kw = dict(ha="center", va="top", fontsize=8.5, style="italic",
+    kw = dict(ha="center", va="top", fontsize=fontsize, style="italic",
               color="#555555")
     if ax is not None:
         ax.text(0.5, y, text, transform=ax.transAxes, **kw)
@@ -115,9 +115,9 @@ def _note_missing(fig, missing, y=-0.01, ax=None):
         fig.text(0.5, y, text, **kw)
 
 
-def _mark_na(ax, x, y=0.012):
+def _mark_na(ax, x, y=0.012, fontsize=6.5):
     """Visible marker where a framework has no bar."""
-    ax.text(x, y, "n/a", ha="center", va="bottom", fontsize=6.5,
+    ax.text(x, y, "n/a", ha="center", va="bottom", fontsize=fontsize,
             rotation=90, color="#555555")
 
 
@@ -187,7 +187,7 @@ def plot_f1_only(df_ds, dataset, metric_prefix, title_metric, out_path):
 
 
 def plot_overview_pr(combined, datasets, metric_prefix, title_metric,
-                     family_label, out_path):
+                     family_label, out_path, style):
     """Same layout as plot_overview_f1, but precision and recall.
 
     Two stacked panels sharing one x axis and one legend: precision on top,
@@ -202,8 +202,9 @@ def plot_overview_pr(combined, datasets, metric_prefix, title_metric,
     group_w = 0.82
     bar_w = group_w / max(n_fw, 1)
 
+    fs = style["font"]
     fig, axes = plt.subplots(
-        2, 1, sharex=True, figsize=(max(8, n_groups * n_fw * 0.28), 8.4))
+        2, 1, sharex=True, figsize=(style["width"], style["pr_height"]))
     for ax, part in zip(axes, ["precision", "recall"]):
         col = f"{metric_prefix}_{part}"
         for i, fw in enumerate(frameworks):
@@ -217,28 +218,32 @@ def plot_overview_pr(combined, datasets, metric_prefix, title_metric,
                    hatch=FRAMEWORK_HATCH[fw])
             for xv, v in zip(xs, vals):
                 if pd.isna(v):
-                    _mark_na(ax, xv)
+                    _mark_na(ax, xv, fontsize=fs * 0.75)
         ax.set_ylim(0, 1.05)
-        ax.set_ylabel(f"{title_metric} {part}")
+        ax.set_ylabel(f"{title_metric} {part}", fontsize=fs)
+        ax.tick_params(axis="both", labelsize=fs)
         ax.grid(axis="y", linestyle="--", alpha=0.4)
         ax.set_axisbelow(True)
 
     axes[-1].set_xticks(range(n_groups))
     axes[-1].set_xticklabels([disp(d) for d in datasets])
-    axes[-1].set_xlabel("Dataset")
+    axes[-1].set_xlabel("Dataset", fontsize=fs)
     fig.suptitle(f"{family_label} — {title_metric} precision and recall "
-                 f"across datasets")
+                 f"across datasets", fontsize=fs * 1.1)
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, fontsize=8, ncol=min(n_fw, 5), framealpha=0.9,
-               loc="lower center", bbox_to_anchor=(0.5, -0.02))
-    fig.tight_layout(rect=(0, 0.04, 1, 0.97))
-    _note_missing(fig, _missing_for(sub), y=-0.035)
-    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    ncol = style["ncol"] or n_fw
+    fig.legend(handles, labels, fontsize=fs * 0.95, ncol=ncol, framealpha=0.9,
+               loc="upper center", bbox_to_anchor=(0.5, 0.0),
+               columnspacing=1.0, handlelength=1.6, handletextpad=0.4)
+    fig.tight_layout(rect=(0, 0, 1, 0.97))
+    _note_missing(fig, _missing_for(sub), y=style["pr_note_y"],
+                  fontsize=fs * 0.8)
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
     plt.close(fig)
 
 
 def plot_overview_f1(combined, datasets, metric_prefix, title_metric,
-                     family_label, out_path):
+                     family_label, out_path, style):
     """One figure: x = dataset, grouped bars = frameworks, y = F1.
 
     Gives a single-glance comparison of every framework across a whole family.
@@ -253,7 +258,8 @@ def plot_overview_f1(combined, datasets, metric_prefix, title_metric,
     group_w = 0.82
     bar_w = group_w / max(n_fw, 1)
 
-    fig, ax = plt.subplots(figsize=(max(8, n_groups * n_fw * 0.28), 5.2))
+    fs = style["font"]
+    fig, ax = plt.subplots(figsize=(style["width"], style["f1_height"]))
     for i, fw in enumerate(frameworks):
         vals = []
         for ds in datasets:
@@ -265,22 +271,39 @@ def plot_overview_f1(combined, datasets, metric_prefix, title_metric,
                hatch=FRAMEWORK_HATCH[fw])
         for xv, v in zip(xs, vals):
             if pd.isna(v):
-                _mark_na(ax, xv)
+                _mark_na(ax, xv, fontsize=fs * 0.75)
 
     ax.set_xticks(range(n_groups))
     ax.set_xticklabels([disp(d) for d in datasets])
+    ax.tick_params(axis="both", labelsize=fs)
     ax.set_ylim(0, 1.05)
-    ax.set_ylabel("F1")
-    ax.set_xlabel("Dataset")
-    ax.set_title(f"{family_label} — {title_metric} F1 across datasets")
+    ax.set_ylabel("F1", fontsize=fs)
+    ax.set_xlabel("Dataset", fontsize=fs)
+    ax.set_title(f"{family_label} — {title_metric} F1 across datasets",
+                 fontsize=fs * 1.1)
     ax.grid(axis="y", linestyle="--", alpha=0.4)
     ax.set_axisbelow(True)
-    ax.legend(fontsize=8, ncol=min(n_fw, 5), framealpha=0.9,
-              loc="upper center", bbox_to_anchor=(0.5, -0.12))
+    ncol = style["ncol"] or n_fw
+    ax.legend(fontsize=fs * 0.95, ncol=ncol, framealpha=0.9,
+              loc="upper center", bbox_to_anchor=(0.5, style["f1_legend_y"]),
+              columnspacing=1.0, handlelength=1.6, handletextpad=0.4)
     fig.tight_layout()
-    _note_missing(fig, _missing_for(sub), y=-0.31, ax=ax)
-    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    _note_missing(fig, _missing_for(sub), y=style["f1_note_y"], ax=ax,
+                  fontsize=fs * 0.8)
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
     plt.close(fig)
+
+
+# Overview figure geometry per family. The paper places the CCER overviews at
+# full text width and the DER ones in a single column, so each family gets a
+# canvas and font size that stay legible at that printed width.  ncol=None
+# puts the whole legend on one line.
+OVERVIEW_STYLE = {
+    "CCER": dict(width=15, f1_height=4.6, pr_height=7.6, font=15, ncol=None,
+                 f1_legend_y=-0.17, f1_note_y=-0.42, pr_note_y=-0.075),
+    "DER":  dict(width=7, f1_height=4.6, pr_height=7.6, font=15, ncol=4,
+                 f1_legend_y=-0.19, f1_note_y=-0.58, pr_note_y=-0.13),
+}
 
 
 def make_dataset_plots(combined, dataset, out_dir):
@@ -321,16 +344,18 @@ def main():
 
     print("\nOverview figures (all datasets at a glance)")
     for prefix, tm in [("pairwise", "Pairwise"), ("bcubed", "B-Cubed")]:
-        plot_overview_f1(combined, CCER_DATASETS, prefix, tm, "CCER",
-                         os.path.join(CCER_DIR, f"overview_{prefix}_f1.png"))
-        plot_overview_f1(combined, DER_DATASETS, prefix, tm, "DER",
-                         os.path.join(DER_DIR, f"overview_{prefix}_f1.png"))
-        # precision/recall overview: CCER only
-        plot_overview_pr(combined, CCER_DATASETS, prefix, tm, "CCER",
-                         os.path.join(CCER_DIR, f"overview_{prefix}_pr.png"))
-        total += 3
-    print("  [ok] 4 overview F1 figures (2 per family) + 2 CCER "
-          "precision/recall overviews")
+        for family, datasets, out_dir in [("CCER", CCER_DATASETS, CCER_DIR),
+                                          ("DER", DER_DATASETS, DER_DIR)]:
+            style = OVERVIEW_STYLE[family]
+            plot_overview_f1(combined, datasets, prefix, tm, family,
+                             os.path.join(out_dir, f"overview_{prefix}_f1.png"),
+                             style)
+            plot_overview_pr(combined, datasets, prefix, tm, family,
+                             os.path.join(out_dir, f"overview_{prefix}_pr.png"),
+                             style)
+            total += 2
+    print("  [ok] 4 overview F1 figures + 4 precision/recall overviews "
+          "(2 of each per family)")
 
     print(f"\nDone. {total} plots written.")
 

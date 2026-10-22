@@ -269,8 +269,8 @@ def plot_mean_ranks_bar(avg_ranks, k, n, title, out_path, note=None):
 def plot_rank_heatmap(combined, metric, nice, out_path):
     """One row per framework, one column per dataset, cell = rank position.
 
-    CCER (D1..D8) and DER (CORA, CDDB) sit in the same figure; the last column
-    holds the mean rank over the CCER datasets.  Ranks are computed within each
+    CCER (D1..D8) and DER (CORA, CDDB) sit in the same figure; the column
+    right after D8 holds the mean rank over the CCER datasets.  Ranks are computed within each
     column over the frameworks with a complete block, so they match the
     critical-difference and mean-rank tables.  Cells are shaded by relative
     position inside their own column (dark = best) so the two blocks stay
@@ -288,25 +288,28 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     der_ranks = der_M.rank(axis=1, ascending=False, method="average")
 
     rows = avg.sort_values().index.tolist()          # best framework on top
-    cols = ([(disp(d), ccer_ranks, len(ccer_fw)) for d in CCER_DATASETS] +
-            [(d, der_ranks, len(der_fw)) for d in DER_DATASETS])
+    # Column order: CCER datasets, then the CCER mean rank right after them,
+    # then the DER datasets.  src=None marks the mean-rank column.
+    cols = ([(disp(d), d, ccer_ranks, len(ccer_fw)) for d in CCER_DATASETS] +
+            [("Avg rank\n(CCER)", None, None, len(ccer_fw))] +
+            [(d, d, der_ranks, len(der_fw)) for d in DER_DATASETS])
+    avg_col = len(CCER_DATASETS)
 
-    n_r, n_c = len(rows), len(cols) + 1
+    n_r, n_c = len(rows), len(cols)
     ranks = np.full((n_r, n_c), np.nan)              # raw rank (annotation)
     shade = np.full((n_r, n_c), np.nan)              # 0 = best .. 1 = worst
-    for j, (label, rank_df, k_col) in enumerate(cols):
-        src = CCER_DATASETS[j] if j < len(CCER_DATASETS) else DER_DATASETS[j - len(CCER_DATASETS)]
+    for j, (label, src, rank_df, k_col) in enumerate(cols):
         for i, fw in enumerate(rows):
-            if fw not in rank_df.columns or pd.isna(rank_df.loc[src, fw]):
+            if src is None:
+                r = float(avg[fw])
+            elif fw not in rank_df.columns or pd.isna(rank_df.loc[src, fw]):
                 continue
-            r = float(rank_df.loc[src, fw])
+            else:
+                r = float(rank_df.loc[src, fw])
             ranks[i, j] = r
             shade[i, j] = (r - 1.0) / max(k_col - 1, 1)
-    for i, fw in enumerate(rows):
-        ranks[i, -1] = avg[fw]
-        shade[i, -1] = (avg[fw] - 1.0) / max(len(ccer_fw) - 1, 1)
 
-    col_labels = [c[0] for c in cols] + ["Avg rank\n(CCER)"]
+    col_labels = [c[0] for c in cols]
 
     cmap = plt.get_cmap("Blues_r").copy()            # single hue, dark = best
     cmap.set_bad("#ececec")
@@ -321,11 +324,11 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
                         color="#999999")
                 continue
             v = ranks[i, j]
-            txt = f"{v:.2f}" if j == n_c - 1 else (
+            txt = f"{v:.2f}" if j == avg_col else (
                 f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}")
             ax.text(j, i, txt, ha="center", va="center",
-                    fontsize=11.5 if j == n_c - 1 else 11,
-                    fontweight="bold" if j == n_c - 1 else "normal",
+                    fontsize=11.5 if j == avg_col else 11,
+                    fontweight="bold" if j == avg_col else "normal",
                     color="white" if shade[i, j] < 0.45 else "#222222")
 
     ax.set_xticks(range(n_c))
@@ -340,11 +343,11 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     ax.set_yticks(np.arange(-0.5, n_r, 1), minor=True)
     ax.grid(which="minor", color="white", linewidth=2.2)
     ax.tick_params(which="minor", length=0)
-    for x in (len(CCER_DATASETS) - 0.5, n_c - 1.5):
+    for x in (avg_col - 0.5, avg_col + 0.5):
         ax.axvline(x, color="#555555", linewidth=1.8)
     ax.text((len(CCER_DATASETS) - 1) / 2, -0.85, "CCER (clean-clean)",
             ha="center", va="center", fontsize=11, fontweight="bold")
-    ax.text(len(CCER_DATASETS) + 0.5, -0.85, "DER (dirty)",
+    ax.text(avg_col + 1 + (len(DER_DATASETS) - 1) / 2, -0.85, "DER (dirty)",
             ha="center", va="center", fontsize=11, fontweight="bold")
     ax.set_title(f"Ranking position per dataset — {nice}  (1 = best)",
                  fontsize=13, pad=34)
