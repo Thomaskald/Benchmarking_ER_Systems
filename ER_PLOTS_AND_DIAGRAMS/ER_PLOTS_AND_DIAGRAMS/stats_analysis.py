@@ -289,9 +289,9 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     # the DER datasets and the DER mean rank.  A mean-rank column carries the
     # Series of means in place of a dataset id.
     cols = ([(disp(d), d, ccer_ranks, len(ccer_fw)) for d in CCER_DATASETS] +
-            [("Avg rank\n(CCER)", avg, None, len(ccer_fw))] +
+            [("Avg rank\n(Clean-\nClean ER)", avg, None, len(ccer_fw))] +
             [(d, d, der_ranks, len(der_fw)) for d in DER_DATASETS] +
-            [("Avg rank\n(DER)", der_avg, None, len(der_fw))])
+            [("Avg rank\n(Dirty ER)", der_avg, None, len(der_fw))])
     avg_col = len(CCER_DATASETS)
     der_avg_col = len(cols) - 1
     avg_cols = (avg_col, der_avg_col)
@@ -316,28 +316,31 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
 
     cmap = plt.get_cmap("Blues_r").copy()            # single hue, dark = best
     cmap.set_bad("#ececec")
-    fig, ax = plt.subplots(figsize=(1.02 * n_c + 2.6, 0.56 * n_r + 2.4))
+    # The paper prints this figure at single-column width, so the canvas is
+    # kept compact and the fonts large to stay legible once scaled down.
+    cell_fs, label_fs = 19, 15
+    fig, ax = plt.subplots(figsize=(0.97 * n_c + 1.6, 0.5 * n_r + 1.2))
     ax.imshow(np.ma.masked_invalid(shade), cmap=cmap, vmin=-0.05, vmax=1.25,
               aspect="auto")
 
     for i in range(n_r):
         for j in range(n_c):
             if np.isnan(ranks[i, j]):
-                ax.text(j, i, "—", ha="center", va="center", fontsize=15,
+                ax.text(j, i, "—", ha="center", va="center", fontsize=cell_fs,
                         color="#999999")
                 continue
             v = ranks[i, j]
             txt = f"{v:.2f}" if j in avg_cols else (
                 f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}")
             ax.text(j, i, txt, ha="center", va="center",
-                    fontsize=15,
+                    fontsize=cell_fs,
                     fontweight="bold" if j in avg_cols else "normal",
                     color="white" if shade[i, j] < 0.45 else "#222222")
 
     ax.set_xticks(range(n_c))
-    ax.set_xticklabels(col_labels, fontsize=10.5)
+    ax.set_xticklabels(col_labels, fontsize=label_fs)
     ax.set_yticks(range(n_r))
-    ax.set_yticklabels(rows, fontsize=11)
+    ax.set_yticklabels(rows, fontsize=label_fs + 1)
     ax.tick_params(length=0)
     for spine in ax.spines.values():
         spine.set_visible(False)
@@ -348,13 +351,13 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     ax.tick_params(which="minor", length=0)
     for x in (avg_col - 0.5, avg_col + 0.5, der_avg_col - 0.5):
         ax.axvline(x, color="#555555", linewidth=1.8)
-    ax.text((len(CCER_DATASETS) - 1) / 2, -0.85, "CCER (clean-clean)",
-            ha="center", va="center", fontsize=11, fontweight="bold")
-    ax.text(avg_col + 1 + len(DER_DATASETS) / 2, -0.85, "DER (dirty)",
-            ha="center", va="center", fontsize=11, fontweight="bold")
+    ax.text((len(CCER_DATASETS) - 1) / 2, -0.95, "Clean-Clean ER",
+            ha="center", va="center", fontsize=label_fs + 1, fontweight="bold")
+    ax.text(avg_col + 1 + len(DER_DATASETS) / 2, -0.95, "Dirty ER",
+            ha="center", va="center", fontsize=label_fs + 1, fontweight="bold")
     # No title or footnote: the paper's caption explains the figure.
     fig.tight_layout()
-    fig.savefig(out_path, dpi=150, bbox_inches="tight")
+    fig.savefig(out_path, dpi=200, bbox_inches="tight")
     plt.close(fig)
     return ccer_ranks, der_ranks, avg, der_avg
 
@@ -467,6 +470,9 @@ def plot_scalability(combined, datasets, out_path):
 
 METRICS = [("pairwise_f1", "Pairwise F1"), ("bcubed_f1", "B-Cubed F1")]
 
+# How each dataset family is named inside the figures.
+FAMILY_NAME = {"CCER": "Clean-Clean ER", "DER": "Dirty ER"}
+
 
 def pareto_section(combined, datasets, frameworks, family, log, excluded=()):
     """Pareto front (quality vs runtime) for one dataset family."""
@@ -483,7 +489,8 @@ def pareto_section(combined, datasets, frameworks, family, log, excluded=()):
         log(f"Pareto-optimal ({family}, {nice} vs runtime): "
             f"{', '.join(sorted(front))}")
         plot_pareto(agg, metric,
-                    f"Pareto front — {nice} vs. runtime ({family})",
+                    f"Pareto front — {nice} vs. runtime "
+                    f"({FAMILY_NAME[family]})",
                     os.path.join(STATS_DIR, f"pareto_{family}_{metric}.png"),
                     note=exclusion_note(list(excluded)))
     agg.round(4).to_csv(os.path.join(STATS_DIR, f"pareto_summary_{family}.csv"))
