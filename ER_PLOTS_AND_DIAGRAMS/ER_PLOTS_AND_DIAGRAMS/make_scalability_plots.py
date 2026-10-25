@@ -123,18 +123,9 @@ DATA = {
 MAX_REACHED = {"Splink": 1_000_000, "DeepER": 1_000_000, "pyJedAI-sem": 300_000,
                "Zingg": 100_000, "Dedupe": 10_000, "pyJedAI-syn": 10_000}
 
-# Frameworks with no point >= 50K, and why (shown in legends and notes).
+# Frameworks with no point >= 50K, and why (flagged in the legends; the
+# figures carry no footnotes, the paper's captions explain them).
 STOPPED_AT_10K = {"Dedupe": "timed out", "pyJedAI-syn": "out of memory, 64 GB"}
-DEDUPE_NOTE = ("Not shown, did not complete 50K (the first reported size):\n"
-               + "; ".join(f"{fw} ({why})" for fw, why in STOPPED_AT_10K.items()))
-DEEPER_NOTE = ("DeepER scores the fixed test pairs and does no blocking: its "
-               "runtime excludes candidate generation\nand its F1 is not limited "
-               "by blocking recall, so it is not directly comparable.")
-
-
-def deeper_note(ax, y=-0.13):
-    ax.text(0.5, y, DEEPER_NOTE, transform=ax.transAxes, fontsize=8.5,
-            style="italic", color="#777777", va="top", ha="center")
 
 
 def human(n):
@@ -185,10 +176,7 @@ def cost_quality_plot(metric, xlabel, title, fname, logx=True):
     ax.set_ylabel("Effectiveness  (pairwise F1)")
     ax.set_title(title)
     ax.set_ylim(0.55, 1.045)
-    ax.text(0.5, -0.13, DEDUPE_NOTE.replace("\n", " "), transform=ax.transAxes,
-            fontsize=8.5, style="italic", color="#777777", va="top", ha="center")
     full_legend(ax)
-    deeper_note(ax, y=-0.19)
     fig.savefig(os.path.join(OUT_DIR, fname))
     plt.close(fig)
     print("wrote", fname)
@@ -217,10 +205,7 @@ def scale_plot():
     ax.set_ylim(0.55, 1.045)
     ax.set_xticks([50_000, 100_000, 200_000, 300_000, 1_000_000])
     ax.get_xaxis().set_major_formatter(FuncFormatter(lambda x, _: human(x)))
-    ax.text(0.5, -0.13, DEDUPE_NOTE.replace("\n", " "), transform=ax.transAxes,
-            fontsize=8.5, style="italic", color="#777777", va="top", ha="center")
     full_legend(ax)
-    deeper_note(ax, y=-0.19)
     fig.savefig(os.path.join(OUT_DIR, "effectiveness_vs_scale.png"))
     plt.close(fig)
     print("wrote effectiveness_vs_scale.png")
@@ -258,12 +243,7 @@ def cost_vs_scale_plot(metric, ylabel, title, fname, fmt):
     ax.get_xaxis().set_major_formatter(FuncFormatter(lambda x, _: human(x)))
     ax.get_yaxis().set_major_formatter(FuncFormatter(fmt))
     ax.set_xlim(4e4, 2.2e6)
-    # below the axes: the curves fill the plotting area, so an in-axes note
-    # would sit on top of a series label
-    ax.text(0.5, -0.17, DEDUPE_NOTE.replace("\n", " "), transform=ax.transAxes,
-            fontsize=9, style="italic", color="#777777", va="top", ha="center")
     full_legend(ax)
-    deeper_note(ax, y=-0.23)
     fig.savefig(os.path.join(OUT_DIR, fname))
     plt.close(fig)
     print("wrote", fname)
@@ -291,12 +271,6 @@ def reach_plot():
     ax.set_xlim(5_000, 3_000_000)
     ax.grid(axis="y", visible=False)
     ax.get_xaxis().set_major_formatter(FuncFormatter(lambda x, _: human(x)))
-    ax.text(0.5, -0.2,
-            "Stopped at 10K, the tuning size: "
-            + ", ".join(f"{fw} ({why} at 50K)" for fw, why in STOPPED_AT_10K.items()),
-            transform=ax.transAxes, fontsize=8.5, style="italic",
-            color="#777777", va="top", ha="center")
-    deeper_note(ax, y=-0.27)
     fig.savefig(os.path.join(OUT_DIR, "how_far_each_went.png"))
     plt.close(fig)
     print("wrote how_far_each_went.png")

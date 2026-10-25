@@ -223,12 +223,7 @@ def plot_cd_diagram(avg_ranks, cd, k, n, title, out_path, alpha=0.05,
 
     ax.set_ylim(bottom, cd_y + 0.35)
     ax.axis("off")
-    if note:
-        ax.text(0.5, bottom - 0.05, note, ha="center", va="top", fontsize=9,
-                style="italic", color="#555555")
-    ax.set_title(f"{title}\n(k={k} frameworks, N={n} datasets,  "
-                 f"1 = best; bars join groups with no significant difference)",
-                 fontsize=12)
+    # No title or footnote: the paper's caption explains the figure.
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
@@ -270,7 +265,8 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     """One row per framework, one column per dataset, cell = rank position.
 
     CCER (D1..D8) and DER (CORA, CDDB) sit in the same figure; the column
-    right after D8 holds the mean rank over the CCER datasets.  Ranks are computed within each
+    right after D8 holds the mean rank over the CCER datasets and the last
+    column the mean rank over the DER datasets.  Ranks are computed within each
     column over the frameworks with a complete block, so they match the
     critical-difference and mean-rank tables.  Cells are shaded by relative
     position inside their own column (dark = best) so the two blocks stay
@@ -286,22 +282,29 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
         combined, DER_DATASETS, [fw for fw in ccer_fw if fw in DER_FRAMEWORKS])
     der_M = rank_matrix(combined, metric, DER_DATASETS, der_fw)
     der_ranks = der_M.rank(axis=1, ascending=False, method="average")
+    der_avg = der_ranks.mean(axis=0)
 
     rows = avg.sort_values().index.tolist()          # best framework on top
-    # Column order: CCER datasets, then the CCER mean rank right after them,
-    # then the DER datasets.  src=None marks the mean-rank column.
+    # Column order: CCER datasets, the CCER mean rank right after them, then
+    # the DER datasets and the DER mean rank.  A mean-rank column carries the
+    # Series of means in place of a dataset id.
     cols = ([(disp(d), d, ccer_ranks, len(ccer_fw)) for d in CCER_DATASETS] +
-            [("Avg rank\n(CCER)", None, None, len(ccer_fw))] +
-            [(d, d, der_ranks, len(der_fw)) for d in DER_DATASETS])
+            [("Avg rank\n(CCER)", avg, None, len(ccer_fw))] +
+            [(d, d, der_ranks, len(der_fw)) for d in DER_DATASETS] +
+            [("Avg rank\n(DER)", der_avg, None, len(der_fw))])
     avg_col = len(CCER_DATASETS)
+    der_avg_col = len(cols) - 1
+    avg_cols = (avg_col, der_avg_col)
 
     n_r, n_c = len(rows), len(cols)
     ranks = np.full((n_r, n_c), np.nan)              # raw rank (annotation)
     shade = np.full((n_r, n_c), np.nan)              # 0 = best .. 1 = worst
     for j, (label, src, rank_df, k_col) in enumerate(cols):
         for i, fw in enumerate(rows):
-            if src is None:
-                r = float(avg[fw])
+            if isinstance(src, pd.Series):
+                if fw not in src.index:
+                    continue
+                r = float(src[fw])
             elif fw not in rank_df.columns or pd.isna(rank_df.loc[src, fw]):
                 continue
             else:
@@ -320,15 +323,15 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     for i in range(n_r):
         for j in range(n_c):
             if np.isnan(ranks[i, j]):
-                ax.text(j, i, "—", ha="center", va="center", fontsize=11,
+                ax.text(j, i, "—", ha="center", va="center", fontsize=15,
                         color="#999999")
                 continue
             v = ranks[i, j]
-            txt = f"{v:.2f}" if j == avg_col else (
+            txt = f"{v:.2f}" if j in avg_cols else (
                 f"{v:.0f}" if float(v).is_integer() else f"{v:.1f}")
             ax.text(j, i, txt, ha="center", va="center",
-                    fontsize=11.5 if j == avg_col else 11,
-                    fontweight="bold" if j == avg_col else "normal",
+                    fontsize=15,
+                    fontweight="bold" if j in avg_cols else "normal",
                     color="white" if shade[i, j] < 0.45 else "#222222")
 
     ax.set_xticks(range(n_c))
@@ -343,30 +346,17 @@ def plot_rank_heatmap(combined, metric, nice, out_path):
     ax.set_yticks(np.arange(-0.5, n_r, 1), minor=True)
     ax.grid(which="minor", color="white", linewidth=2.2)
     ax.tick_params(which="minor", length=0)
-    for x in (avg_col - 0.5, avg_col + 0.5):
+    for x in (avg_col - 0.5, avg_col + 0.5, der_avg_col - 0.5):
         ax.axvline(x, color="#555555", linewidth=1.8)
     ax.text((len(CCER_DATASETS) - 1) / 2, -0.85, "CCER (clean-clean)",
             ha="center", va="center", fontsize=11, fontweight="bold")
-    ax.text(avg_col + 1 + (len(DER_DATASETS) - 1) / 2, -0.85, "DER (dirty)",
+    ax.text(avg_col + 1 + len(DER_DATASETS) / 2, -0.85, "DER (dirty)",
             ha="center", va="center", fontsize=11, fontweight="bold")
-    ax.set_title(f"Ranking position per dataset — {nice}  (1 = best)",
-                 fontsize=13, pad=34)
-    two_source = [fw for fw in ccer_fw if fw not in DER_FRAMEWORKS]
-    excluded = sorted(set(ccer_out) | set(der_out),
-                      key=FRAMEWORK_ORDER.index)
-    ax.text(0.5, -0.14,
-            f"Ranks are within a column: {len(ccer_fw)} frameworks on CCER, "
-            f"{len(der_fw)} on DER ({', '.join(two_source)} are two-source "
-            f"only and did not run DER, shown as —).\n"
-            "Shading is the relative position inside each column (darker = "
-            "better), so CCER and DER columns stay comparable.\n"
-            + exclusion_note(excluded),
-            transform=ax.transAxes, ha="center", va="top", fontsize=8.5,
-            style="italic", color="#555555")
+    # No title or footnote: the paper's caption explains the figure.
     fig.tight_layout()
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
-    return ccer_ranks, der_ranks, avg
+    return ccer_ranks, der_ranks, avg, der_avg
 
 
 # -------------------------------------------------------- pareto machinery --
@@ -432,10 +422,7 @@ def plot_pareto(agg, metric, title, out_path, note=""):
     ]
     ax.legend(handles=legend_handles, loc="lower left", fontsize=9,
               framealpha=0.9)
-    if note:
-        ax.text(0.5, -0.13, note.replace("a rank test needs every framework on every dataset", "a mean over fewer datasets is not comparable"),
-                transform=ax.transAxes, ha="center", va="top", fontsize=8.5,
-                style="italic", color="#555555", wrap=True)
+    # No footnote: the paper's caption names the excluded frameworks.
     fig.tight_layout()
     fig.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
@@ -588,13 +575,14 @@ def main():
     log("RANKING HEATMAP  (rank per dataset, mean rank over CCER)")
     log("=" * 70)
     for metric, nice in METRICS:
-        ccer_ranks, der_ranks, avg = plot_rank_heatmap(
+        ccer_ranks, der_ranks, avg, der_avg = plot_rank_heatmap(
             combined, metric, nice,
             os.path.join(STATS_DIR, f"rank_heatmap_{metric}.png"))
         ranks_out = ccer_ranks.copy()
         ranks_out.index = [disp(d) for d in ranks_out.index]
         ranks_out = pd.concat([ranks_out, der_ranks])
         ranks_out.loc["Avg rank (CCER)"] = avg
+        ranks_out.loc["Avg rank (DER)"] = der_avg
         ranks_out.round(2).to_csv(
             os.path.join(STATS_DIR, f"rank_heatmap_{metric}.csv"))
         log(f"  [ok] rank_heatmap_{metric}.png  ({nice})")

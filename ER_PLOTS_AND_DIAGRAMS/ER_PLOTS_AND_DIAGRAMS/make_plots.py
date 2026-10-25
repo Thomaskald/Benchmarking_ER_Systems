@@ -294,16 +294,75 @@ def plot_overview_f1(combined, datasets, metric_prefix, title_metric,
     plt.close(fig)
 
 
+def plot_overview_stacked(combined, datasets, out_path, style):
+    """Paper figure: F1, precision and recall as three equal stacked panels.
+
+    The panels share one x axis (dataset labels on the bottom panel only) and
+    one legend at the top; no title and no footnote, so the caption carries
+    the explanation.
+    """
+    sub = combined[combined["dataset"].isin(datasets)]
+    datasets = [d for d in datasets if d in set(sub["dataset"])]
+    frameworks = [fw for fw in FRAMEWORK_ORDER if fw in set(sub["framework"])]
+
+    n_groups = len(datasets)
+    n_fw = len(frameworks)
+    group_w = 0.82
+    bar_w = group_w / max(n_fw, 1)
+
+    fs = style["font"]
+    fig, axes = plt.subplots(3, 1, sharex=True,
+                             figsize=(style["width"], style["stack_height"]))
+    for ax, part, ylabel in zip(axes, ["f1", "precision", "recall"],
+                                ["F1", "Precision", "Recall"]):
+        col = f"pairwise_{part}"
+        for i, fw in enumerate(frameworks):
+            vals = []
+            for ds in datasets:
+                row = sub[(sub["framework"] == fw) & (sub["dataset"] == ds)]
+                vals.append(row.iloc[0][col] if len(row) else np.nan)
+            xs = [g - group_w / 2 + bar_w * (i + 0.5) for g in range(n_groups)]
+            ax.bar(xs, vals, width=bar_w, label=fw,
+                   color=FRAMEWORK_COLORS[fw], edgecolor="white", linewidth=0.6,
+                   hatch=FRAMEWORK_HATCH[fw])
+            for xv, v in zip(xs, vals):
+                if pd.isna(v):
+                    _mark_na(ax, xv, fontsize=fs * 0.75)
+        ax.set_ylim(0, 1.05)
+        ax.set_ylabel(ylabel, fontsize=fs)
+        ax.tick_params(axis="both", labelsize=fs)
+        ax.grid(axis="y", linestyle="--", alpha=0.4)
+        ax.set_axisbelow(True)
+
+    axes[-1].set_xticks(range(n_groups))
+    axes[-1].set_xticklabels([disp(d) for d in datasets])
+    axes[-1].set_xlabel("Dataset", fontsize=fs)
+    handles, labels = axes[0].get_legend_handles_labels()
+    ncol = style["ncol"] or n_fw
+    fig.legend(handles, labels, fontsize=fs * 0.95, ncol=ncol, framealpha=0.9,
+               loc="lower center", bbox_to_anchor=(0.5, 1.0),
+               columnspacing=1.0, handlelength=1.6, handletextpad=0.4)
+    fig.tight_layout()
+    fig.savefig(out_path, bbox_inches="tight")
+    plt.close(fig)
+
+
 # Overview figure geometry per family. The paper places the CCER overviews at
 # full text width and the DER ones in a single column, so each family gets a
 # canvas and font size that stay legible at that printed width.  ncol=None
 # puts the whole legend on one line.
 OVERVIEW_STYLE = {
     "CCER": dict(width=15, f1_height=4.6, pr_height=7.6, font=15, ncol=None,
-                 f1_legend_y=-0.17, f1_note_y=-0.42, pr_note_y=-0.075),
+                 f1_legend_y=-0.17, f1_note_y=-0.42, pr_note_y=-0.075,
+                 stack_height=10.5),
     "DER":  dict(width=7, f1_height=4.6, pr_height=7.6, font=15, ncol=4,
-                 f1_legend_y=-0.19, f1_note_y=-0.58, pr_note_y=-0.13),
+                 f1_legend_y=-0.19, f1_note_y=-0.58, pr_note_y=-0.13,
+                 stack_height=10.5),
 }
+
+# The stacked F1/precision/recall figures the paper includes (Figures 1 and 4),
+# written next to this script under the names the paper uses.
+STACKED_FIGURES = {"CCER": "results.pdf", "DER": "DERresults.pdf"}
 
 
 def make_dataset_plots(combined, dataset, out_dir):
@@ -356,6 +415,13 @@ def main():
             total += 2
     print("  [ok] 4 overview F1 figures + 4 precision/recall overviews "
           "(2 of each per family)")
+
+    for family, datasets in [("CCER", CCER_DATASETS), ("DER", DER_DATASETS)]:
+        plot_overview_stacked(combined, datasets,
+                              os.path.join(OUT_ROOT, STACKED_FIGURES[family]),
+                              OVERVIEW_STYLE[family])
+        total += 1
+    print(f"  [ok] paper figures: {', '.join(STACKED_FIGURES.values())}")
 
     print(f"\nDone. {total} plots written.")
 
