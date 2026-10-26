@@ -380,8 +380,12 @@ def pareto_front(points):
     return set(front)
 
 
-def plot_pareto(agg, metric, title, out_path, note=""):
-    """agg: DataFrame indexed by framework with columns 'f1' and 'time'."""
+def plot_pareto(agg, metric, title, out_path, note="", label=None):
+    """agg: DataFrame indexed by framework with columns 'f1' and 'time'.
+
+    `label` names the quality metric on the y axis (defaults to the column).
+    """
+    label = label or metric.replace("_", " ")
     pts = [(agg.loc[fw, "time"], agg.loc[fw, metric], fw) for fw in agg.index]
     front = pareto_front([(t, q, fw) for (t, q, fw) in pts])
 
@@ -403,14 +407,16 @@ def plot_pareto(agg, metric, title, out_path, note=""):
                    linewidth=1.8 if is_front else 0.8,
                    marker="*" if is_front else "o", zorder=3)
         ax.annotate(fw, (t, q), textcoords="offset points",
-                    xytext=(10, 7), fontsize=9,
+                    xytext=(10, 7), fontsize=12,
                     fontweight="bold" if is_front else "normal",
                     color=FRAMEWORK_COLORS[fw])
 
     ax.set_xscale("log")
-    ax.set_xlabel("Mean runtime per dataset  [s]  (log scale, lower = better)")
-    ax.set_ylabel(f"Mean {metric.replace('_', ' ')}  (higher = better)")
-    ax.set_title(title)
+    ax.set_xlabel("Mean runtime per dataset  [s]  (log scale, lower = better)",
+                  fontsize=13)
+    ax.set_ylabel(f"Mean {label}  (higher = better)", fontsize=13)
+    ax.tick_params(axis="both", which="both", labelsize=12)
+    ax.set_title(title, fontsize=14)
     ax.grid(True, which="both", linestyle="--", alpha=0.35)
     ax.set_axisbelow(True)
     # proxy legend: star = Pareto-optimal, circle = dominated
@@ -423,7 +429,7 @@ def plot_pareto(agg, metric, title, out_path, note=""):
         Line2D([0], [0], marker="o", color="w", markerfacecolor="#999",
                markersize=9, label="dominated"),
     ]
-    ax.legend(handles=legend_handles, loc="lower left", fontsize=9,
+    ax.legend(handles=legend_handles, loc="lower left", fontsize=12,
               framealpha=0.9)
     # No footnote: the paper's caption names the excluded frameworks.
     fig.tight_layout()
@@ -472,6 +478,9 @@ METRICS = [("pairwise_f1", "Pairwise F1"), ("bcubed_f1", "B-Cubed F1")]
 
 # How each dataset family is named inside the figures.
 FAMILY_NAME = {"CCER": "Clean-Clean ER", "DER": "Dirty ER"}
+# How each metric is named inside the figures (the paper calls pairwise F1
+# simply "F1").
+FIGURE_METRIC_NAME = {"pairwise_f1": "F1", "bcubed_f1": "B-Cubed F1"}
 
 
 def pareto_section(combined, datasets, frameworks, family, log, excluded=()):
@@ -488,11 +497,12 @@ def pareto_section(combined, datasets, frameworks, family, log, excluded=()):
                               for fw in agg.index])
         log(f"Pareto-optimal ({family}, {nice} vs runtime): "
             f"{', '.join(sorted(front))}")
+        label = FIGURE_METRIC_NAME[metric]
         plot_pareto(agg, metric,
-                    f"Pareto front — {nice} vs. runtime "
+                    f"Pareto front — {label} vs. runtime "
                     f"({FAMILY_NAME[family]})",
                     os.path.join(STATS_DIR, f"pareto_{family}_{metric}.png"),
-                    note=exclusion_note(list(excluded)))
+                    note=exclusion_note(list(excluded)), label=label)
     agg.round(4).to_csv(os.path.join(STATS_DIR, f"pareto_summary_{family}.csv"))
 
 
